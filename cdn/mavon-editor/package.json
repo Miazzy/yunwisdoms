@@ -1,36 +1,43 @@
 {
-  "name": "mavon-editor",
-  "version": "2.7.7",
-  "description": "Vue markdown editor",
-  "main": "dist/mavon-editor.js",
-  "types": "./mavon-editor.d.ts",
-  "scripts": {
-    "test": "echo true",
-    "dev": "webpack-dev-server --open --progress --config webpack/webpack.dev.js",
-    "build": "webpack --progress --config webpack/webpack.build.js",
-    "lint": "eslint --fix --ext .js,.vue src/"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/hinesboy/mavonEditor.git"
-  },
-  "keywords": [
-    "javascript",
-    "vue",
-    "markdown",
-    "editor",
-    "html"
+  "_args": [
+    [
+      "mavon-editor@2.7.7",
+      "/Users/yunwisdom/Workspace/oa-front-service"
+    ]
   ],
-  "author": "hinesboy",
-  "license": "MIT",
+  "_from": "mavon-editor@2.7.7",
+  "_id": "mavon-editor@2.7.7",
+  "_inBundle": false,
+  "_integrity": "sha1-a0kcr2+rq6y2mIOlMQ3IrSUfHJ4=",
+  "_location": "/mavon-editor",
+  "_phantomChildren": {},
+  "_requested": {
+    "type": "version",
+    "registry": true,
+    "raw": "mavon-editor@2.7.7",
+    "name": "mavon-editor",
+    "escapedName": "mavon-editor",
+    "rawSpec": "2.7.7",
+    "saveSpec": null,
+    "fetchSpec": "2.7.7"
+  },
+  "_requiredBy": [
+    "/"
+  ],
+  "_resolved": "https://registry.npm.taobao.org/mavon-editor/download/mavon-editor-2.7.7.tgz",
+  "_spec": "2.7.7",
+  "_where": "/Users/yunwisdom/Workspace/oa-front-service",
+  "author": {
+    "name": "hinesboy"
+  },
   "bugs": {
     "url": "https://github.com/hinesboy/mavonEditor/issues"
   },
-  "homepage": "https://github.com/hinesboy/mavonEditor#readme",
   "dependencies": {
     "highlight.js": "^9.11.0",
     "highlight.js-async-webpack": "^1.0.4"
   },
+  "description": "Vue markdown editor",
   "devDependencies": {
     "auto-textarea": "^1.4.0",
     "autoprefixer": "^8.3.0",
@@ -109,5 +116,28 @@
     "webpack-bundle-analyzer": "^2.8.1",
     "webpack-dev-server": "^2.11.5",
     "webpack-md5-hash": "^0.0.5"
-  }
+  },
+  "homepage": "https://github.com/hinesboy/mavonEditor#readme",
+  "keywords": [
+    "javascript",
+    "vue",
+    "markdown",
+    "editor",
+    "html"
+  ],
+  "license": "MIT",
+  "main": "dist/mavon-editor.js",
+  "name": "mavon-editor",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hinesboy/mavonEditor.git"
+  },
+  "scripts": {
+    "build": "webpack --progress --config webpack/webpack.build.js",
+    "dev": "webpack-dev-server --open --progress --config webpack/webpack.dev.js",
+    "lint": "eslint --fix --ext .js,.vue src/",
+    "test": "echo true"
+  },
+  "types": "./mavon-editor.d.ts",
+  "version": "2.7.7"
 }

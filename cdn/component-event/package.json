@@ -1,0 +1,52 @@
+{
+  "_args": [
+    [
+      "component-event@0.1.4",
+      "/Users/yunwisdom/Workspace/oa-front-service"
+    ]
+  ],
+  "_from": "component-event@0.1.4",
+  "_id": "component-event@0.1.4",
+  "_inBundle": false,
+  "_integrity": "sha1-PeePwoeCOBeH4kvyp8U2vwFCybQ=",
+  "_location": "/component-event",
+  "_phantomChildren": {},
+  "_requested": {
+    "type": "version",
+    "registry": true,
+    "raw": "component-event@0.1.4",
+    "name": "component-event",
+    "escapedName": "component-event",
+    "rawSpec": "0.1.4",
+    "saveSpec": null,
+    "fetchSpec": "0.1.4"
+  },
+  "_requiredBy": [
+    "/delegate-events",
+    "/min-dom"
+  ],
+  "_resolved": "https://registry.npm.taobao.org/component-event/download/component-event-0.1.4.tgz",
+  "_spec": "0.1.4",
+  "_where": "/Users/yunwisdom/Workspace/oa-front-service",
+  "bugs": {
+    "url": "https://github.com/component/event/issues"
+  },
+  "component": {
+    "scripts": {
+      "event/index.js": "index.js"
+    }
+  },
+  "description": "Event binding component",
+  "homepage": "https://github.com/component/event#readme",
+  "keywords": [
+    "browser",
+    "event",
+    "events"
+  ],
+  "name": "component-event",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/component/event.git"
+  },
+  "version": "0.1.4"
+}

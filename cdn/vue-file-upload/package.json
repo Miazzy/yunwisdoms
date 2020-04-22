@@ -1,26 +1,42 @@
 {
-  "name": "vue-file-upload",
-  "version": "0.1.12",
-  "description": "upload file component for vue.js",
-  "main": "./production/vuefileupload.min.js",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/marchFantasy/vue-file-upload"
-  },
-  "scripts": {
-    "start": "NODE_ENV=development webpack-dev-server --hot --inline --config=./build/webpack.config.js --port=6080 --content-base ./demo --host 0.0.0.0",
-    "release": "NODE_ENV=production ./node_modules/.bin/webpack --config ./build/webpack.production.js"
-  },
-  "keywords": [
-    "fileuplaod",
-    "vue.js",
-    "component",
-    "vue",
-    "file",
-    "uplaod"
+  "_args": [
+    [
+      "vue-file-upload@0.1.12",
+      "/Users/yunwisdom/Workspace/oa-front-service"
+    ]
   ],
-  "author": "marchFantasy",
-  "license": "MIT",
+  "_from": "vue-file-upload@0.1.12",
+  "_id": "vue-file-upload@0.1.12",
+  "_inBundle": false,
+  "_integrity": "sha1-yS68f4E6ZEnFgS6OoHtMxz5OMYw=",
+  "_location": "/vue-file-upload",
+  "_phantomChildren": {},
+  "_requested": {
+    "type": "version",
+    "registry": true,
+    "raw": "vue-file-upload@0.1.12",
+    "name": "vue-file-upload",
+    "escapedName": "vue-file-upload",
+    "rawSpec": "0.1.12",
+    "saveSpec": null,
+    "fetchSpec": "0.1.12"
+  },
+  "_requiredBy": [
+    "/"
+  ],
+  "_resolved": "https://registry.npm.taobao.org/vue-file-upload/download/vue-file-upload-0.1.12.tgz",
+  "_spec": "0.1.12",
+  "_where": "/Users/yunwisdom/Workspace/oa-front-service",
+  "author": {
+    "name": "marchFantasy"
+  },
+  "bugs": {
+    "url": "https://github.com/marchFantasy/vue-file-upload/issues"
+  },
+  "dependencies": {
+    "vue": "^2.4.2"
+  },
+  "description": "upload file component for vue.js",
   "devDependencies": {
     "babel-core": "^6.26.0",
     "babel-loader": "6.2.7",
@@ -38,7 +54,25 @@
     "webpack-dev-server": "^2.7.1",
     "webpack-merge": "^4.1.0"
   },
-  "dependencies": {
-    "vue": "^2.4.2"
-  }
+  "homepage": "https://github.com/marchFantasy/vue-file-upload#readme",
+  "keywords": [
+    "fileuplaod",
+    "vue.js",
+    "component",
+    "vue",
+    "file",
+    "uplaod"
+  ],
+  "license": "MIT",
+  "main": "./production/vuefileupload.min.js",
+  "name": "vue-file-upload",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/marchFantasy/vue-file-upload.git"
+  },
+  "scripts": {
+    "release": "NODE_ENV=production ./node_modules/.bin/webpack --config ./build/webpack.production.js",
+    "start": "NODE_ENV=development webpack-dev-server --hot --inline --config=./build/webpack.config.js --port=6080 --content-base ./demo --host 0.0.0.0"
+  },
+  "version": "0.1.12"
 }

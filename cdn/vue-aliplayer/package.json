@@ -1,37 +1,68 @@
 {
-  "name": "vue-aliplayer",
-  "version": "0.0.8",
+  "_args": [
+    [
+      "vue-aliplayer@0.0.8",
+      "/Users/yunwisdom/Workspace/oa-front-service"
+    ]
+  ],
+  "_from": "vue-aliplayer@0.0.8",
+  "_id": "vue-aliplayer@0.0.8",
+  "_inBundle": false,
+  "_integrity": "sha1-1v5ep6TKqtByrCaILPWc1yIWvcA=",
+  "_location": "/vue-aliplayer",
+  "_phantomChildren": {},
+  "_requested": {
+    "type": "version",
+    "registry": true,
+    "raw": "vue-aliplayer@0.0.8",
+    "name": "vue-aliplayer",
+    "escapedName": "vue-aliplayer",
+    "rawSpec": "0.0.8",
+    "saveSpec": null,
+    "fetchSpec": "0.0.8"
+  },
+  "_requiredBy": [
+    "/"
+  ],
+  "_resolved": "https://registry.npm.taobao.org/vue-aliplayer/download/vue-aliplayer-0.0.8.tgz",
+  "_spec": "0.0.8",
+  "_where": "/Users/yunwisdom/Workspace/oa-front-service",
+  "author": {
+    "name": "linfeng",
+    "url": "237242115@qq.com"
+  },
+  "bugs": {
+    "url": "https://github.com/slacrey/vue-aliplayer/issues"
+  },
+  "dependencies": {
+    "vue-github-badge": "^1.0.0"
+  },
   "description": "A Vue 2.x video player component based on AliPlayer",
-  "main": "dist/vue-aliplayer.js",
+  "devDependencies": {
+    "vbuild": "^6.0.0"
+  },
   "files": [
     "dist"
   ],
-  "scripts": {
-    "test": "echo test",
-    "build:dev": "vbuild -c vbuild.dev.js",
-    "build": "npm run build:cjs && npm run build:umd",
-    "build:cjs": "vbuild -c vbuild.build.js --format cjs",
-    "build:umd": "vbuild -c vbuild.build.js --format umd",
-    "dev": "vbuild -c vbuild.dev.js -d"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/slacrey/vue-aliplayer.git"
-  },
+  "homepage": "https://github.com/slacrey/vue-aliplayer#readme",
   "keywords": [
     "vue",
     "aliplayer"
   ],
-  "author": "linfeng (237242115@qq.com)",
   "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/slacrey/vue-aliplayer/issues"
+  "main": "dist/vue-aliplayer.js",
+  "name": "vue-aliplayer",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/slacrey/vue-aliplayer.git"
   },
-  "homepage": "https://github.com/slacrey/vue-aliplayer#readme",
-  "devDependencies": {
-    "vbuild": "^6.0.0"
+  "scripts": {
+    "build": "npm run build:cjs && npm run build:umd",
+    "build:cjs": "vbuild -c vbuild.build.js --format cjs",
+    "build:dev": "vbuild -c vbuild.dev.js",
+    "build:umd": "vbuild -c vbuild.build.js --format umd",
+    "dev": "vbuild -c vbuild.dev.js -d",
+    "test": "echo test"
   },
-  "dependencies": {
-    "vue-github-badge": "^1.0.0"
-  }
+  "version": "0.0.8"
 }

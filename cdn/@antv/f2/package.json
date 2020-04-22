@@ -1,0 +1,149 @@
+{
+  "_args": [
+    [
+      "@antv/f2@3.6.3",
+      "/Users/yunwisdom/Workspace/oa-front-service"
+    ]
+  ],
+  "_from": "@antv/f2@3.6.3",
+  "_id": "@antv/f2@3.6.3",
+  "_inBundle": false,
+  "_integrity": "sha1-DIATJJSXdzD+aanXYAguBlQLZHU=",
+  "_location": "/@antv/f2",
+  "_phantomChildren": {
+    "tslib": "1.10.0"
+  },
+  "_requested": {
+    "type": "version",
+    "registry": true,
+    "raw": "@antv/f2@3.6.3",
+    "name": "@antv/f2",
+    "escapedName": "@antv%2ff2",
+    "scope": "@antv",
+    "rawSpec": "3.6.3",
+    "saveSpec": null,
+    "fetchSpec": "3.6.3"
+  },
+  "_requiredBy": [
+    "/"
+  ],
+  "_resolved": "https://registry.npm.taobao.org/@antv/f2/download/@antv/f2-3.6.3.tgz?cache=0&sync_timestamp=1585564180983&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2F%40antv%2Ff2%2Fdownload%2F%40antv%2Ff2-3.6.3.tgz",
+  "_spec": "3.6.3",
+  "_where": "/Users/yunwisdom/Workspace/oa-front-service",
+  "author": {
+    "name": "https://github.com/orgs/antvis/people"
+  },
+  "browser": "build/f2.js",
+  "bugs": {
+    "url": "https://github.com/antvis/f2/issues"
+  },
+  "dependencies": {
+    "@antv/adjust": "~0.1.1",
+    "@antv/scale": "0.1.3",
+    "@antv/util": "~2.0.6",
+    "@babel/runtime": "^7.7.7",
+    "hammerjs": "^2.0.8"
+  },
+  "description": "Charts for mobile visualization.",
+  "devDependencies": {
+    "@antv/data-set": "^0.10.2",
+    "@antv/gatsby-theme-antv": "^0.10.17",
+    "@babel/cli": "^7.0.0",
+    "@babel/core": "^7.0.0",
+    "@babel/preset-env": "^7.0.0",
+    "babel-eslint": "~7.2.3",
+    "babel-loader": "^8.0.0",
+    "babel-plugin-transform-remove-strict-mode": "~0.0.2",
+    "babel-preset-gatsby": "^0.2.20",
+    "body-parser": "^1.18.2",
+    "chai": "~4.0.1",
+    "commander": "~2.9.0",
+    "connect": "~3.6.3",
+    "d3-queue": "~3.0.7",
+    "debug": "~3.1.0",
+    "electron": "^7.1.9",
+    "eslint": "^6.7.2",
+    "eslint-config-egg": "~4.2.0",
+    "gatsby": "^2.17.7",
+    "get-port": "~3.1.0",
+    "gh-pages": "^2.1.1",
+    "jest": "^24.9.0",
+    "jest-electron": "^0.1.11",
+    "jquery": "^3.3.1",
+    "jszip": "^3.1.5",
+    "nightmare": "~2.10.0",
+    "nunjucks": "~3.0.1",
+    "open": "~7.0.0",
+    "parseurl": "~1.3.1",
+    "pre-commit": "~1.2.2",
+    "react-i18next": "^11.0.1",
+    "serve-static": "~1.12.4",
+    "shelljs": "~0.7.8",
+    "uglify-js": "~3.0.15",
+    "webpack": "~3.4.1"
+  },
+  "files": [
+    "src",
+    "lib",
+    "build",
+    "dist",
+    "bundler"
+  ],
+  "homepage": "https://github.com/antvis/f2",
+  "jest": {
+    "runner": "jest-electron/runner",
+    "testEnvironment": "jest-electron/environment",
+    "testRegex": "/test/.*-spec\\.js?$"
+  },
+  "keywords": [
+    "f2",
+    "charts",
+    "mobile",
+    "visualization",
+    "data visualization",
+    "canvas",
+    "2d draw",
+    "mobile visualization",
+    "interactive"
+  ],
+  "main": "lib/index.js",
+  "module": "lib/index.js",
+  "name": "@antv/f2",
+  "pre-commit": {
+    "run": [
+      "lint",
+      "test"
+    ],
+    "silent": false
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/antvis/f2.git"
+  },
+  "scripts": {
+    "build": "webpack",
+    "build-lib": "babel src --out-dir lib",
+    "ci": "npm run lint && npm run test",
+    "compress": "sh ./bin/compress.sh",
+    "coverage": "jest --coverage",
+    "demos": "electron ./demos/app.js",
+    "demos-web": "node ./demos/app.js --web --port 2048",
+    "dev": "npm run watch & DEBUG=app:* npm run demos-web",
+    "dist": "rm -rf dist && mkdir dist && npm run build && npm run compress",
+    "lint": "eslint ./",
+    "lint-fix": "eslint --fix ./",
+    "prepublishOnly": "npm run build-lib && npm run dist",
+    "screenshot": "DEBUG=app:* ./bin/screenshot.js",
+    "site:build": "npm run site:clean && gatsby build --prefix-paths",
+    "site:clean": "gatsby clean",
+    "site:deploy": "npm run site:build && gh-pages -d public",
+    "site:develop": "gatsby develop --open",
+    "start": "npm run site:develop",
+    "test": "jest",
+    "test-bug": "jest test/bug",
+    "test-live": "DEBUG_MODE=1 jest --watch",
+    "test-unit": "jest test/unit",
+    "watch": "webpack --config webpack-dev.config.js"
+  },
+  "version": "3.6.3"
+}

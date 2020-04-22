@@ -1,0 +1,1 @@
+{"version":3,"file":"map.js","sourceRoot":"","sources":["../../src/transform/map.ts"],"names":[],"mappings":";;AAAA,wCAAsC;AAOtC,SAAS,eAAe,CAAC,GAAQ;IAC/B,OAAO,GAAG,CAAC;AACb,CAAC;AAED,kBAAO,CAAC,iBAAiB,CAAC,KAAK,EAAE,UAAC,QAAc,EAAE,OAAgB;IAChE,QAAQ,CAAC,IAAI,GAAG,QAAQ,CAAC,IAAI,CAAC,GAAG,CAAC,OAAO,CAAC,QAAQ,IAAI,eAAe,CAAC,CAAC;AACzE,CAAC,CAAC,CAAC"}

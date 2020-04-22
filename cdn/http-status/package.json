@@ -1,0 +1,73 @@
+{
+  "_args": [
+    [
+      "http-status@0.1.8",
+      "/Users/yunwisdom/Workspace/oa-front-service"
+    ]
+  ],
+  "_from": "http-status@0.1.8",
+  "_id": "http-status@0.1.8",
+  "_inBundle": false,
+  "_integrity": "sha1-XWziEEPI1RnWhFBVRQd/XKUHQCk=",
+  "_location": "/http-status",
+  "_phantomChildren": {},
+  "_requested": {
+    "type": "version",
+    "registry": true,
+    "raw": "http-status@0.1.8",
+    "name": "http-status",
+    "escapedName": "http-status",
+    "rawSpec": "0.1.8",
+    "saveSpec": null,
+    "fetchSpec": "0.1.8"
+  },
+  "_requiredBy": [
+    "/neo4j"
+  ],
+  "_resolved": "https://registry.npm.taobao.org/http-status/download/http-status-0.1.8.tgz",
+  "_spec": "0.1.8",
+  "_where": "/Users/yunwisdom/Workspace/oa-front-service",
+  "author": {
+    "name": "David Worms",
+    "email": "david@adaltas.com"
+  },
+  "bugs": {
+    "url": "http://github.com/wdavidw/node-http-status/issues",
+    "email": "open@adaltas.com"
+  },
+  "contributors": [
+    {
+      "name": "David Worms",
+      "email": "david@adaltas.com"
+    },
+    {
+      "name": "Daniel Gasienica",
+      "email": "daniel@gasienica.ch"
+    }
+  ],
+  "description": "Interact with HTTP status code",
+  "devDependencies": {
+    "coffee-script": "latest",
+    "mocha": "latest",
+    "should": "latest"
+  },
+  "engines": {
+    "node": ">= 0.4.0"
+  },
+  "homepage": "http://www.adaltas.com/projects/node-http-status",
+  "keywords": [
+    "http",
+    "express",
+    "connect"
+  ],
+  "main": "./lib",
+  "name": "http-status",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/wdavidw/node-http-status.git"
+  },
+  "scripts": {
+    "test": "mocha"
+  },
+  "version": "0.1.8"
+}

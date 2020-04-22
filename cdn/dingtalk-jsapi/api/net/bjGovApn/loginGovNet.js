@@ -1,0 +1,1 @@
+"use strict";function loginGovNet$(d){return ddSdk_1.ddSdk.invokeAPI(apiName,d)}var _a;Object.defineProperty(exports,"__esModule",{value:!0});var ddSdk_1=require("../../../lib/ddSdk"),apiName="net.bjGovApn.loginGovNet";ddSdk_1.ddSdk.setAPI(apiName,(_a={},_a[ddSdk_1.ENV_ENUM.android]={vs:"4.5.16"},_a)),exports.loginGovNet$=loginGovNet$,exports.default=loginGovNet$;

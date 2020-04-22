@@ -1,0 +1,1 @@
+"use strict";Object.defineProperty(exports,"__esModule",{value:!0}),exports.on=function(e,t){document.addEventListener(e,t)},exports.off=function(e,t){document.removeEventListener(e,t)};

@@ -1,19 +1,33 @@
 {
-  "name": "vue-apexcharts",
-  "version": "1.5.2",
-  "description": "Vue.js wrapper for ApexCharts",
-  "main": "dist/vue-apexcharts.js",
-  "scripts": {
-    "bundle": "rollup -c",
-    "build": "npm run bundle"
-  },
-  "keywords": [
-    "Vue.js",
-    "apexcharts",
-    "vue",
-    "charts",
-    "visualizations"
+  "_args": [
+    [
+      "vue-apexcharts@1.5.2",
+      "/Users/yunwisdom/Workspace/oa-front-service"
+    ]
   ],
+  "_from": "vue-apexcharts@1.5.2",
+  "_id": "vue-apexcharts@1.5.2",
+  "_inBundle": false,
+  "_integrity": "sha1-0fVbiJcYqp4cdT4mfIy1kFX/ifM=",
+  "_location": "/vue-apexcharts",
+  "_phantomChildren": {},
+  "_requested": {
+    "type": "version",
+    "registry": true,
+    "raw": "vue-apexcharts@1.5.2",
+    "name": "vue-apexcharts",
+    "escapedName": "vue-apexcharts",
+    "rawSpec": "1.5.2",
+    "saveSpec": null,
+    "fetchSpec": "1.5.2"
+  },
+  "_requiredBy": [
+    "/",
+    "/@jeecg/antd-onine"
+  ],
+  "_resolved": "https://registry.npm.taobao.org/vue-apexcharts/download/vue-apexcharts-1.5.2.tgz",
+  "_spec": "1.5.2",
+  "_where": "/Users/yunwisdom/Workspace/oa-front-service",
   "author": {
     "name": "Juned Chhipa",
     "email": "juned.chhipa@gmail.com"
@@ -21,10 +35,7 @@
   "bugs": {
     "url": "https://github.com/apexcharts/vue-apexcharts/issues"
   },
-  "license": "MIT",
-  "peerDependencies": {
-    "apexcharts": "^3.6.6"
-  },
+  "description": "Vue.js wrapper for ApexCharts",
   "devDependencies": {
     "@babel/core": "^7.4.0",
     "@babel/plugin-external-helpers": "^7.0.0",
@@ -40,5 +51,23 @@
     "rollup-plugin-node-resolve": "^3.4.0",
     "uglify-js": "^3.4.9",
     "vue": "^2.5.17"
-  }
+  },
+  "keywords": [
+    "Vue.js",
+    "apexcharts",
+    "vue",
+    "charts",
+    "visualizations"
+  ],
+  "license": "MIT",
+  "main": "dist/vue-apexcharts.js",
+  "name": "vue-apexcharts",
+  "peerDependencies": {
+    "apexcharts": "^3.6.6"
+  },
+  "scripts": {
+    "build": "npm run bundle",
+    "bundle": "rollup -c"
+  },
+  "version": "1.5.2"
 }

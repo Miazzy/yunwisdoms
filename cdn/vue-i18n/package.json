@@ -1,7 +1,33 @@
 {
-  "name": "vue-i18n",
-  "description": "Internationalization plugin for Vue.js",
-  "version": "8.16.0",
+  "_args": [
+    [
+      "vue-i18n@8.16.0",
+      "/Users/yunwisdom/Workspace/oa-front-service"
+    ]
+  ],
+  "_from": "vue-i18n@8.16.0",
+  "_id": "vue-i18n@8.16.0",
+  "_inBundle": false,
+  "_integrity": "sha1-+EGIo2pMw8h2QnuGnHxagtZpYIA=",
+  "_location": "/vue-i18n",
+  "_phantomChildren": {},
+  "_requested": {
+    "type": "version",
+    "registry": true,
+    "raw": "vue-i18n@8.16.0",
+    "name": "vue-i18n",
+    "escapedName": "vue-i18n",
+    "rawSpec": "8.16.0",
+    "saveSpec": null,
+    "fetchSpec": "8.16.0"
+  },
+  "_requiredBy": [
+    "/",
+    "/@jeecg/antd-onine"
+  ],
+  "_resolved": "https://registry.npm.taobao.org/vue-i18n/download/vue-i18n-8.16.0.tgz?cache=0&sync_timestamp=1585327349733&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Fvue-i18n%2Fdownload%2Fvue-i18n-8.16.0.tgz",
+  "_spec": "8.16.0",
+  "_where": "/Users/yunwisdom/Workspace/oa-front-service",
   "author": {
     "name": "kazuya kawaguchi",
     "email": "kawakazu80@gmail.com"
@@ -23,6 +49,7 @@
       "Type: Documentation": ":pencil: Documentation"
     }
   },
+  "description": "Internationalization plugin for Vue.js",
   "devDependencies": {
     "@babel/core": "^7.1.0",
     "@babel/plugin-proposal-class-properties": "^7.1.0",
@@ -104,6 +131,7 @@
   "license": "MIT",
   "main": "dist/vue-i18n.common.js",
   "module": "dist/vue-i18n.esm.js",
+  "name": "vue-i18n",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/kazupon/vue-i18n.git"
@@ -135,5 +163,6 @@
   },
   "sideEffects": false,
   "types": "types/index.d.ts",
-  "unpkg": "dist/vue-i18n.js"
+  "unpkg": "dist/vue-i18n.js",
+  "version": "8.16.0"
 }

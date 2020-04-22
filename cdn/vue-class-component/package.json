@@ -1,41 +1,41 @@
 {
-  "name": "vue-class-component",
-  "version": "6.3.2",
-  "description": "ES201X/TypeScript class decorator for Vue components",
-  "main": "dist/vue-class-component.common.js",
-  "typings": "lib/index.d.ts",
-  "files": [
-    "dist",
-    "lib"
+  "_args": [
+    [
+      "vue-class-component@6.3.2",
+      "/Users/yunwisdom/Workspace/oa-front-service"
+    ]
   ],
-  "scripts": {
-    "build": "npm run build:ts && npm run build:main",
-    "build:ts": "tsc -p .",
-    "build:main": "node build/build.js",
-    "clean": "rimraf ./lib",
-    "example": "npm run build && webpack --config example/webpack.config.js",
-    "dev": "webpack --config example/webpack.config.js --watch",
-    "dev:test": "node build/dev-test.js",
-    "lint": "eslint --ext js,jsx,ts,tsx,vue .",
-    "test": "npm run build && webpack --config test/webpack.config.js && mocha test/test.build.js",
-    "release": "bash build/release.sh"
+  "_from": "vue-class-component@6.3.2",
+  "_id": "vue-class-component@6.3.2",
+  "_inBundle": false,
+  "_integrity": "sha512-cH208IoM+jgZyEf/g7mnFyofwPDJTM/QvBNhYMjqGB8fCsRyTf68rH2ISw/G20tJv+5mIThQ3upKwoL4jLTr1A==",
+  "_location": "/vue-class-component",
+  "_phantomChildren": {},
+  "_requested": {
+    "type": "version",
+    "registry": true,
+    "raw": "vue-class-component@6.3.2",
+    "name": "vue-class-component",
+    "escapedName": "vue-class-component",
+    "rawSpec": "6.3.2",
+    "saveSpec": null,
+    "fetchSpec": "6.3.2"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/vuejs/vue-class-component.git"
-  },
-  "keywords": [
-    "vue",
-    "class",
-    "babel",
-    "typescript"
+  "_requiredBy": [
+    "/",
+    "/@jeecg/antd-onine",
+    "/vue-property-decorator"
   ],
-  "author": "Evan You",
-  "license": "MIT",
+  "_resolved": "https://registry.npmjs.org/vue-class-component/-/vue-class-component-6.3.2.tgz",
+  "_spec": "6.3.2",
+  "_where": "/Users/yunwisdom/Workspace/oa-front-service",
+  "author": {
+    "name": "Evan You"
+  },
   "bugs": {
     "url": "https://github.com/vuejs/vue-class-component/issues"
   },
-  "homepage": "https://github.com/vuejs/vue-class-component#readme",
+  "description": "ES201X/TypeScript class decorator for Vue components",
   "devDependencies": {
     "@babel/core": "^7.1.2",
     "@babel/plugin-proposal-class-properties": "^7.1.0",
@@ -67,5 +67,37 @@
     "vuex": "^3.0.1",
     "webpack": "^4.20.2",
     "webpack-cli": "^3.1.2"
-  }
+  },
+  "files": [
+    "dist",
+    "lib"
+  ],
+  "homepage": "https://github.com/vuejs/vue-class-component#readme",
+  "keywords": [
+    "vue",
+    "class",
+    "babel",
+    "typescript"
+  ],
+  "license": "MIT",
+  "main": "dist/vue-class-component.common.js",
+  "name": "vue-class-component",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vuejs/vue-class-component.git"
+  },
+  "scripts": {
+    "build": "npm run build:ts && npm run build:main",
+    "build:main": "node build/build.js",
+    "build:ts": "tsc -p .",
+    "clean": "rimraf ./lib",
+    "dev": "webpack --config example/webpack.config.js --watch",
+    "dev:test": "node build/dev-test.js",
+    "example": "npm run build && webpack --config example/webpack.config.js",
+    "lint": "eslint --ext js,jsx,ts,tsx,vue .",
+    "release": "bash build/release.sh",
+    "test": "npm run build && webpack --config test/webpack.config.js && mocha test/test.build.js"
+  },
+  "typings": "lib/index.d.ts",
+  "version": "6.3.2"
 }
