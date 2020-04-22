@@ -1,0 +1,81 @@
+{
+  "_args": [
+    [
+      "@form-create/core@1.0.9",
+      "/Users/yunwisdom/Workspace/oa-front-service"
+    ]
+  ],
+  "_from": "@form-create/core@1.0.9",
+  "_id": "@form-create/core@1.0.9",
+  "_inBundle": false,
+  "_integrity": "sha1-rq0+hhNtNrz96vyMuCTm7k4l1yQ=",
+  "_location": "/@form-create/core",
+  "_phantomChildren": {},
+  "_requested": {
+    "type": "version",
+    "registry": true,
+    "raw": "@form-create/core@1.0.9",
+    "name": "@form-create/core",
+    "escapedName": "@form-create%2fcore",
+    "scope": "@form-create",
+    "rawSpec": "1.0.9",
+    "saveSpec": null,
+    "fetchSpec": "1.0.9"
+  },
+  "_requiredBy": [
+    "/@form-create/element-ui"
+  ],
+  "_resolved": "https://registry.npm.taobao.org/@form-create/core/download/@form-create/core-1.0.9.tgz",
+  "_spec": "1.0.9",
+  "_where": "/Users/yunwisdom/Workspace/oa-front-service",
+  "author": {
+    "name": "xaboy"
+  },
+  "bugs": {
+    "url": "https://github.com/xaboy/form-create/issues"
+  },
+  "dependencies": {
+    "@form-create/utils": "^1.0.8",
+    "vue": "^2.6.10"
+  },
+  "description": "轻松搞定 form 表单,让你不在为表单而烦恼|Form builder with dynamic rendering, data collection, validation and submission capabilities, built-in 17 common form components, support for two-way data binding, event extension, and support for building built-in components and any vue components using json.",
+  "files": [
+    "README.md",
+    "package.json",
+    "LICENSE",
+    "src",
+    "types",
+    "dist"
+  ],
+  "gitHead": "36f1f1ababa308d6fe29b76400d42087f8d3c104",
+  "homepage": "http://www.form-create.com",
+  "keywords": [
+    "@form-create",
+    "form-builder",
+    "form",
+    "components",
+    "vue.js",
+    "json-form",
+    "vue-json-form"
+  ],
+  "license": "MIT",
+  "main": "./src/index.js",
+  "name": "@form-create/core",
+  "peerDependencies": {
+    "vue": "^2.5.2"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/xaboy/form-create.git"
+  },
+  "scripts": {
+    "bili": "cross-env UI_LIB=core bili",
+    "build": "npm-run-all clean bili",
+    "clean": "rimraf dist/"
+  },
+  "typings": "./types/index.d.ts",
+  "version": "1.0.9"
+}

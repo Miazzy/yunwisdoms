@@ -1,0 +1,67 @@
+{
+  "_args": [
+    [
+      "@form-create/utils@1.0.8",
+      "/Users/yunwisdom/Workspace/oa-front-service"
+    ]
+  ],
+  "_from": "@form-create/utils@1.0.8",
+  "_id": "@form-create/utils@1.0.8",
+  "_inBundle": false,
+  "_integrity": "sha1-cWCGt5Ermntt/P3M9GnElcMOMUs=",
+  "_location": "/@form-create/utils",
+  "_phantomChildren": {},
+  "_requested": {
+    "type": "version",
+    "registry": true,
+    "raw": "@form-create/utils@1.0.8",
+    "name": "@form-create/utils",
+    "escapedName": "@form-create%2futils",
+    "scope": "@form-create",
+    "rawSpec": "1.0.8",
+    "saveSpec": null,
+    "fetchSpec": "1.0.8"
+  },
+  "_requiredBy": [
+    "/@form-create/core",
+    "/@form-create/element-ui"
+  ],
+  "_resolved": "https://registry.npm.taobao.org/@form-create/utils/download/@form-create/utils-1.0.8.tgz",
+  "_spec": "1.0.8",
+  "_where": "/Users/yunwisdom/Workspace/oa-front-service",
+  "author": {
+    "name": "xaboy"
+  },
+  "bugs": {
+    "url": "https://github.com/xaboy/form-create/issues"
+  },
+  "dependencies": {
+    "vue": "^2.5.2"
+  },
+  "description": "**form-create 是一个可以通过 JSON 生成具有动态渲染、数据收集、验证和提交功能的表单生成器。并且支持生成任何 Vue 组件。结合内置17种常用表单组件和自定义组件，再复杂的表单都可以轻松搞定。** > form-create V2 助手方法包",
+  "files": [
+    "README.md",
+    "package.json",
+    "LICENSE",
+    "src"
+  ],
+  "gitHead": "14d0c12f5282f19e33b840b9e7813520d05eede6",
+  "homepage": "http://www.form-create.com",
+  "keywords": [
+    "@form-create"
+  ],
+  "license": "MIT",
+  "main": "./src/index.js",
+  "name": "@form-create/utils",
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/xaboy/form-create.git"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "version": "1.0.8"
+}
