@@ -1,0 +1,74 @@
+{
+  "_from": "idb-js",
+  "_id": "idb-js@1.3.1",
+  "_inBundle": false,
+  "_integrity": "sha1-pSQ9K5PZ/MDAmKRIehtFvRUGBLQ=",
+  "_location": "/idb-js",
+  "_phantomChildren": {},
+  "_requested": {
+    "type": "tag",
+    "registry": true,
+    "raw": "idb-js",
+    "name": "idb-js",
+    "escapedName": "idb-js",
+    "rawSpec": "",
+    "saveSpec": null,
+    "fetchSpec": "latest"
+  },
+  "_requiredBy": [
+    "#USER",
+    "/"
+  ],
+  "_resolved": "https://registry.npm.taobao.org/idb-js/download/idb-js-1.3.1.tgz",
+  "_shasum": "a5243d2b93d9fcc0c098a4487a1b45bd150604b4",
+  "_spec": "idb-js",
+  "_where": "/Users/yunwisdom/Workspace/oa-front-service",
+  "author": {
+    "name": "zhoucheng"
+  },
+  "bugs": {
+    "url": "https://github.com/verybigorange/indexDB_easy/issues"
+  },
+  "bundleDependencies": false,
+  "deprecated": false,
+  "description": "Simple to use indexdb",
+  "devDependencies": {
+    "ansi-styles": "^3.2.1",
+    "babel-core": "^6.26.3",
+    "babel-plugin-external-helpers": "^6.22.0",
+    "babel-preset-env": "^1.7.0",
+    "chalk": "^2.4.1",
+    "parcel-bundler": "^1.10.3",
+    "rmrf": "^2.0.0",
+    "rollup": "^0.67.3",
+    "rollup-plugin-babel": "^3.0.7",
+    "rollup-plugin-node-resolve": "^3.4.0",
+    "rollup-plugin-uglify": "^6.0.0"
+  },
+  "files": [
+    "src",
+    "dist/*.js",
+    "example/**"
+  ],
+  "homepage": "https://github.com/verybigorange/indexDB_easy#readme",
+  "keywords": [
+    "indexdb",
+    "database",
+    "indexDB"
+  ],
+  "license": "ISC",
+  "main": "dist/Idb.js",
+  "name": "idb-js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/verybigorange/indexDB_easy.git"
+  },
+  "scripts": {
+    "build": "node build.js",
+    "doc": "docsify serve docs",
+    "publish": "npm publish --access public",
+    "start": "parcel  --port 3001 example/index.html",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "version": "1.3.1"
+}
