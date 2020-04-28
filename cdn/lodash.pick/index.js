@@ -37,13 +37,17 @@ var root = freeGlobal || freeSelf || Function('return this')();
  * @returns {*} Returns the result of `func`.
  */
 function apply(func, thisArg, args) {
-  switch (args.length) {
-    case 0: return func.call(thisArg);
-    case 1: return func.call(thisArg, args[0]);
-    case 2: return func.call(thisArg, args[0], args[1]);
-    case 3: return func.call(thisArg, args[0], args[1], args[2]);
-  }
-  return func.apply(thisArg, args);
+    switch (args.length) {
+        case 0:
+            return func.call(thisArg);
+        case 1:
+            return func.call(thisArg, args[0]);
+        case 2:
+            return func.call(thisArg, args[0], args[1]);
+        case 3:
+            return func.call(thisArg, args[0], args[1], args[2]);
+    }
+    return func.apply(thisArg, args);
 }
 
 /**
@@ -56,14 +60,14 @@ function apply(func, thisArg, args) {
  * @returns {Array} Returns the new mapped array.
  */
 function arrayMap(array, iteratee) {
-  var index = -1,
-      length = array ? array.length : 0,
-      result = Array(length);
+    var index = -1,
+        length = array ? array.length : 0,
+        result = Array(length);
 
-  while (++index < length) {
-    result[index] = iteratee(array[index], index, array);
-  }
-  return result;
+    while (++index < length) {
+        result[index] = iteratee(array[index], index, array);
+    }
+    return result;
 }
 
 /**
@@ -75,14 +79,14 @@ function arrayMap(array, iteratee) {
  * @returns {Array} Returns `array`.
  */
 function arrayPush(array, values) {
-  var index = -1,
-      length = values.length,
-      offset = array.length;
+    var index = -1,
+        length = values.length,
+        offset = array.length;
 
-  while (++index < length) {
-    array[offset + index] = values[index];
-  }
-  return array;
+    while (++index < length) {
+        array[offset + index] = values[index];
+    }
+    return array;
 }
 
 /** Used for built-in method references. */
@@ -118,26 +122,26 @@ var nativeMax = Math.max;
  * @returns {Array} Returns the new flattened array.
  */
 function baseFlatten(array, depth, predicate, isStrict, result) {
-  var index = -1,
-      length = array.length;
+    var index = -1,
+        length = array.length;
 
-  predicate || (predicate = isFlattenable);
-  result || (result = []);
+    predicate || (predicate = isFlattenable);
+    result || (result = []);
 
-  while (++index < length) {
-    var value = array[index];
-    if (depth > 0 && predicate(value)) {
-      if (depth > 1) {
-        // Recursively flatten arrays (susceptible to call stack limits).
-        baseFlatten(value, depth - 1, predicate, isStrict, result);
-      } else {
-        arrayPush(result, value);
-      }
-    } else if (!isStrict) {
-      result[result.length] = value;
+    while (++index < length) {
+        var value = array[index];
+        if (depth > 0 && predicate(value)) {
+            if (depth > 1) {
+                // Recursively flatten arrays (susceptible to call stack limits).
+                baseFlatten(value, depth - 1, predicate, isStrict, result);
+            } else {
+                arrayPush(result, value);
+            }
+        } else if (!isStrict) {
+            result[result.length] = value;
+        }
     }
-  }
-  return result;
+    return result;
 }
 
 /**
@@ -150,10 +154,10 @@ function baseFlatten(array, depth, predicate, isStrict, result) {
  * @returns {Object} Returns the new object.
  */
 function basePick(object, props) {
-  object = Object(object);
-  return basePickBy(object, props, function(value, key) {
-    return key in object;
-  });
+    object = Object(object);
+    return basePickBy(object, props, function(value, key) {
+        return key in object;
+    });
 }
 
 /**
@@ -166,19 +170,19 @@ function basePick(object, props) {
  * @returns {Object} Returns the new object.
  */
 function basePickBy(object, props, predicate) {
-  var index = -1,
-      length = props.length,
-      result = {};
+    var index = -1,
+        length = props.length,
+        result = {};
 
-  while (++index < length) {
-    var key = props[index],
-        value = object[key];
+    while (++index < length) {
+        var key = props[index],
+            value = object[key];
 
-    if (predicate(value, key)) {
-      result[key] = value;
+        if (predicate(value, key)) {
+            result[key] = value;
+        }
     }
-  }
-  return result;
+    return result;
 }
 
 /**
@@ -190,24 +194,24 @@ function basePickBy(object, props, predicate) {
  * @returns {Function} Returns the new function.
  */
 function baseRest(func, start) {
-  start = nativeMax(start === undefined ? (func.length - 1) : start, 0);
-  return function() {
-    var args = arguments,
-        index = -1,
-        length = nativeMax(args.length - start, 0),
-        array = Array(length);
+    start = nativeMax(start === undefined ? (func.length - 1) : start, 0);
+    return function() {
+        var args = arguments,
+            index = -1,
+            length = nativeMax(args.length - start, 0),
+            array = Array(length);
 
-    while (++index < length) {
-      array[index] = args[start + index];
-    }
-    index = -1;
-    var otherArgs = Array(start + 1);
-    while (++index < start) {
-      otherArgs[index] = args[index];
-    }
-    otherArgs[start] = array;
-    return apply(func, this, otherArgs);
-  };
+        while (++index < length) {
+            array[index] = args[start + index];
+        }
+        index = -1;
+        var otherArgs = Array(start + 1);
+        while (++index < start) {
+            otherArgs[index] = args[index];
+        }
+        otherArgs[start] = array;
+        return apply(func, this, otherArgs);
+    };
 }
 
 /**
@@ -218,8 +222,8 @@ function baseRest(func, start) {
  * @returns {boolean} Returns `true` if `value` is flattenable, else `false`.
  */
 function isFlattenable(value) {
-  return isArray(value) || isArguments(value) ||
-    !!(spreadableSymbol && value && value[spreadableSymbol]);
+    return isArray(value) || isArguments(value) ||
+        !!(spreadableSymbol && value && value[spreadableSymbol]);
 }
 
 /**
@@ -230,11 +234,11 @@ function isFlattenable(value) {
  * @returns {string|symbol} Returns the key.
  */
 function toKey(value) {
-  if (typeof value == 'string' || isSymbol(value)) {
-    return value;
-  }
-  var result = (value + '');
-  return (result == '0' && (1 / value) == -INFINITY) ? '-0' : result;
+    if (typeof value == 'string' || isSymbol(value)) {
+        return value;
+    }
+    var result = (value + '');
+    return (result == '0' && (1 / value) == -INFINITY) ? '-0' : result;
 }
 
 /**
@@ -256,9 +260,9 @@ function toKey(value) {
  * // => false
  */
 function isArguments(value) {
-  // Safari 8.1 makes `arguments.callee` enumerable in strict mode.
-  return isArrayLikeObject(value) && hasOwnProperty.call(value, 'callee') &&
-    (!propertyIsEnumerable.call(value, 'callee') || objectToString.call(value) == argsTag);
+    // Safari 8.1 makes `arguments.callee` enumerable in strict mode.
+    return isArrayLikeObject(value) && hasOwnProperty.call(value, 'callee') &&
+        (!propertyIsEnumerable.call(value, 'callee') || objectToString.call(value) == argsTag);
 }
 
 /**
@@ -312,7 +316,7 @@ var isArray = Array.isArray;
  * // => false
  */
 function isArrayLike(value) {
-  return value != null && isLength(value.length) && !isFunction(value);
+    return value != null && isLength(value.length) && !isFunction(value);
 }
 
 /**
@@ -341,7 +345,7 @@ function isArrayLike(value) {
  * // => false
  */
 function isArrayLikeObject(value) {
-  return isObjectLike(value) && isArrayLike(value);
+    return isObjectLike(value) && isArrayLike(value);
 }
 
 /**
@@ -362,10 +366,10 @@ function isArrayLikeObject(value) {
  * // => false
  */
 function isFunction(value) {
-  // The use of `Object#toString` avoids issues with the `typeof` operator
-  // in Safari 8-9 which returns 'object' for typed array and other constructors.
-  var tag = isObject(value) ? objectToString.call(value) : '';
-  return tag == funcTag || tag == genTag;
+    // The use of `Object#toString` avoids issues with the `typeof` operator
+    // in Safari 8-9 which returns 'object' for typed array and other constructors.
+    var tag = isObject(value) ? objectToString.call(value) : '';
+    return tag == funcTag || tag == genTag;
 }
 
 /**
@@ -395,8 +399,8 @@ function isFunction(value) {
  * // => false
  */
 function isLength(value) {
-  return typeof value == 'number' &&
-    value > -1 && value % 1 == 0 && value <= MAX_SAFE_INTEGER;
+    return typeof value == 'number' &&
+        value > -1 && value % 1 == 0 && value <= MAX_SAFE_INTEGER;
 }
 
 /**
@@ -425,8 +429,8 @@ function isLength(value) {
  * // => false
  */
 function isObject(value) {
-  var type = typeof value;
-  return !!value && (type == 'object' || type == 'function');
+    var type = typeof value;
+    return !!value && (type == 'object' || type == 'function');
 }
 
 /**
@@ -454,7 +458,7 @@ function isObject(value) {
  * // => false
  */
 function isObjectLike(value) {
-  return !!value && typeof value == 'object';
+    return !!value && typeof value == 'object';
 }
 
 /**
@@ -475,8 +479,8 @@ function isObjectLike(value) {
  * // => false
  */
 function isSymbol(value) {
-  return typeof value == 'symbol' ||
-    (isObjectLike(value) && objectToString.call(value) == symbolTag);
+    return typeof value == 'symbol' ||
+        (isObjectLike(value) && objectToString.call(value) == symbolTag);
 }
 
 /**
@@ -497,7 +501,11 @@ function isSymbol(value) {
  * // => { 'a': 1, 'c': 3 }
  */
 var pick = baseRest(function(object, props) {
-  return object == null ? {} : basePick(object, arrayMap(baseFlatten(props, 1), toKey));
+    return object == null ? {} : basePick(object, arrayMap(baseFlatten(props, 1), toKey));
 });
 
-module.exports = pick;
+try {
+    module.exports = pick;
+} catch (error) {
+    console.log(error);
+}
