@@ -509,6 +509,18 @@ var mainSubTableNameConfig = {
     'BS_WORK_CONTACT': 'BS_WORK_CONTACT_ITEM'
 };
 
+var requestAPIConfig = {
+    domain: window._CONFIG['domain'],
+    restapi: window._CONFIG['restAPI'],
+    token: `${window._CONFIG['domain']}/jeecg-boot/sys/common/token`,
+    user: `${window._CONFIG['domain']}/jeecg-boot/api/user`,
+    role: `${window._CONFIG['domain']}/jeecg-boot/api/role`,
+    service: `${window._CONFIG['domain']}/jeecg-boot/api/service`,
+    permission: `${window._CONFIG['domain']}/jeecg-boot/api/permission`,
+    permissionNoPager: `${window._CONFIG['domain']}/jeecg-boot/api/permission/no-pager`,
+    PROCESS_NODE_DICT_ID: '095a5c3fed5b29706cdfc6d9cb32cd4c', //流程节点，对应的字典的ID,根据这个查询流程节点的名称
+}
+
 window.tableConfig = tableConfig;
 window.leaveTypeConfig = leaveTypeConfig;
 window.bpmStatusConfig = bpmStatus;
@@ -521,3 +533,4 @@ window.fileNameConfig = fileNameConfig;
 window.subTableFieldConfig = subTableFieldConfig;
 window.mainTableConfig = mainTableConfig;
 window.mainSubTableNameConfig = mainSubTableNameConfig;
+window.requestAPIConfig = requestAPIConfig;
