@@ -1,3 +1,7 @@
+//设置moment
+moment = null || moment;
+//设置superagent
+superagent = null || superagent;
 //定义工具
 window.tools = null || tools;
 //定义superagent
@@ -260,7 +264,6 @@ window.queryWflowMonthCount = queryWflowMonthCount;
  * @function 查询流程总数
  */
 const queryWflowCount = async() => {
-    debugger;
     //提交URL
     var queryURL = `${window.requestAPIConfig.restapi}/api/v_workflow_total/count`;
 
@@ -3141,7 +3144,7 @@ window.deleteTableData = deleteTableData;
  * @param {*} id
  * @param {*} node
  */
-const async function patchTableData(tableName, id, node) {
+const patchTableData = async(tableName, id, node) => {
 
     //大写转小写
     tableName = tableName.toLowerCase();
@@ -3164,6 +3167,8 @@ const async function patchTableData(tableName, id, node) {
         console.log(err);
     }
 }
+
+window.patchTableData = patchTableData;
 
 /**
  * 更新数据
