@@ -471,7 +471,7 @@ window.queryWorkflowStatus = queryWorkflowStatus;
  * @function 查询表字段信息
  * @param {*} tableName
  */
-const queryTableFieldInfoJSON = async(tableName, tools = window.tools, queryTableDataByField) => {
+const queryTableFieldInfoJSON = async(tableName, tools = window.tools, queryTableDataByField = window.queryTableDataByField) => {
     //初始化
     window.tools = window.tools == null ? tools : window.tools;
 
@@ -509,7 +509,7 @@ window.queryTableFieldInfoJSON = queryTableFieldInfoJSON;
 /**
  * @function 渲染审批流程详情
  */
-const colorProcessDetail = async(that, main, tools, queryFileType, queryFileViewURL, queryOfficeURL, queryImageURL, queryCurNodePageType, changeImageCSS) => {
+const colorProcessDetail = async(that, main, tools, queryFileType = window.queryFileType, queryFileViewURL = window.queryFileViewURL , queryOfficeURL = window.queryOfficeURL , queryImageURL = window.queryImageURL , queryCurNodePageType = window.queryCurNodePageType , changeImageCSS = window.changeImageCSS) => {
     try {
         main.curRow = that.curRow;
     } catch (error) {
