@@ -411,7 +411,7 @@ window.queryUrlValid = queryUrlValid;
 /**
  * @function 查询工作流节点状态
  */
-const queryWorkflowStatus = async(tableName, id, tools, queryTableData) => {
+const queryWorkflowStatus = async(tableName, id, tools, queryTableData = window.queryTableData) => {
 
     //初始化
     window.tools = window.tools == null ? tools : window.tools;
@@ -509,7 +509,7 @@ window.queryTableFieldInfoJSON = queryTableFieldInfoJSON;
 /**
  * @function 渲染审批流程详情
  */
-const colorProcessDetail = async(that, main, tools, queryFileType = window.queryFileType, queryFileViewURL = window.queryFileViewURL , queryOfficeURL = window.queryOfficeURL , queryImageURL = window.queryImageURL , queryCurNodePageType = window.queryCurNodePageType , changeImageCSS = window.changeImageCSS) => {
+const colorProcessDetail = async(that, main, tools, queryFileType = window.queryFileType, queryFileViewURL = window.queryFileViewURL, queryOfficeURL = window.queryOfficeURL, queryImageURL = window.queryImageURL, queryCurNodePageType = window.queryCurNodePageType, changeImageCSS = window.changeImageCSS) => {
     try {
         main.curRow = that.curRow;
     } catch (error) {
@@ -616,7 +616,7 @@ window.colorProcessDetail = colorProcessDetail;
 /**
  * @function 获取当前节点是否有知会或者审批节点信息
  */
-const queryCurNodePageType = async(pageType, tools, queryProcessLogByID, queryProcessLogInfByID) => {
+const queryCurNodePageType = async(pageType, tools, queryProcessLogByID = window.queryProcessLogByID, queryProcessLogInfByID = window.queryProcessLogInfByID) => {
     //获取页面类型
     var type = window.tools.queryUrlString('type');
 
@@ -942,7 +942,7 @@ const queryRegisterByUserName = async(
     page = 0,
     size = 50,
     result = '',
-    tools
+    tools = window.tools
 ) => {
     //提交URL
     var queryURL = `${window.requestAPIConfig.restapi}/api/bs_user_info?_where=(name,eq,${realname})~or(username,eq,${username})&_p=${page}&_size=${size}&_sort=-join_time`;
@@ -989,7 +989,7 @@ const queryWageByUserName = async(
     page = 0,
     size = 50,
     result = '',
-    tools
+    tools = window.tools
 ) => {
 
     //提交URL
@@ -1038,7 +1038,7 @@ const queryWageBillByParam = async(
     page = 0,
     size = 50,
     result = '',
-    tools
+    tools = window.tools
 ) => {
 
     //条件SQL
@@ -1136,7 +1136,7 @@ const queryWageByParam = async(
     page = 0,
     size = 50,
     result = '',
-    tools
+    tools = window.tools
 ) => {
 
     //初始化
@@ -1591,7 +1591,7 @@ window.queryFileViewURL = queryFileViewURL;
 /**
  * @function 知会/流程通知转移到历史记录的子操作
  */
-const transWflowHistoring = async(tableName, wfnode, deleteProcessLog, deleteProcessLogInf, postProcessLogHistory, tools) => {
+const transWflowHistoring = async(tableName, wfnode, deleteProcessLog = window.deleteProcessLog, deleteProcessLogInf = window.deleteProcessLogInf, postProcessLogHistory = window.postProcessLogHistory, tools = window.tools) => {
 
     //初始化
     window.tools = window.tools == null ? tools : window.tools;
@@ -1649,7 +1649,7 @@ window.transWflowHistoring = transWflowHistoring;
 /**
  * @function 知会/流程通知转移到历史记录中
  */
-const transWflowToHistory = async(tableName, id, queryProcessLog, queryProcessLogInformed, transWflowHistoring, tools) => {
+const transWflowToHistory = async(tableName, id, queryProcessLog = window.queryProcessLog, queryProcessLogInformed = window.queryProcessLogInformed, transWflowHistoring = window.transWflowHistoring, tools = window.tools) => {
 
     //初始化
     window.tools = window.tools == null ? tools : window.tools;
@@ -3369,7 +3369,7 @@ const queryDynamic = async() => {
 
 window.queryDynamic = queryDynamic;
 
-const queryDynamicByUser = async(username, storage) => {
+const queryDynamicByUser = async(username, storage = window.storage) => {
     //设置查询URL
     var queryURL = `${window.requestAPIConfig.restapi}/api/bs_dynamic?_where=(relate_users,like,~${username}~)&_size=10&_sort=-create_time`;
     //定义查询结果
@@ -3690,7 +3690,7 @@ window.queryProcessLogToApproved = queryProcessLogToApproved;
 /**
  * 查询审批历史记录页面的记录
  */
-const queryProcessLogHisApproved = async(username, realname, params, tools) => {
+const queryProcessLogHisApproved = async(username, realname, params, tools = window.tools) => {
     //pageNo从0开始计算
     params.pageNo = params.pageNo - 1;
 
@@ -3735,7 +3735,7 @@ const queryProcessLogWait = async(
     realname,
     page = 0,
     size = 50,
-    tools
+    tools = window.tools
 ) => {
     //查询URL
     var queryURL = `${window.requestAPIConfig.restapi}/api/v_handling_events?_where=(username,like,~${username}~)~or(username,like,~${realname}~)&_p=${page}&_size=${size}&_sort=-create_time`;
@@ -3782,7 +3782,7 @@ window.queryProcessLogWait = queryProcessLogWait;
 /**
  * 查询用户名称信息
  */
-const queryUserName = async(storage) => {
+const queryUserName = async(storage = window.storage) => {
     //查询URL
     var index = 0;
     var queryURL;
@@ -3956,7 +3956,7 @@ const queryProcessLogWaitByParam = async(
     param,
     page = 0,
     size = 50,
-    tools
+    tools = window.tools
 ) => {
     //条件SQL
     var whereSQL = '';
@@ -4096,7 +4096,7 @@ window.queryProcessLogDoneByTime = queryProcessLogDoneByTime
 /**
  * 查询最新的10篇博文数据
  */
-const queryBlogInfoNew = async(page = 0, size = 10, tools) => {
+const queryBlogInfoNew = async(page = 0, size = 10, tools = window.tools) => {
 
     //查询URL
     var queryURL = `${window.requestAPIConfig.restapi}/api/bs_blog?_p=${page}&_size=${size}&_sort=-create_time`;
@@ -4144,7 +4144,7 @@ window.queryBlogInfoNew = queryBlogInfoNew;
 /**
  * 查询我的博文数据
  */
-const queryBlogInfoByUser = async(username, page = 0, size = 50, tools) => {
+const queryBlogInfoByUser = async(username, page = 0, size = 50, tools = window.tools) => {
 
 
     //查询URL
@@ -4200,7 +4200,7 @@ const queryBlogInfo = async(
     nousername,
     starttime,
     endtime,
-    tools
+    tools = window.tools
 ) => {
     //查询URL
     var queryURL = `${window.requestAPIConfig.restapi}/api/bs_blog?_p=${page}&_size=${size}&_sort=-create_time`;
@@ -4253,7 +4253,7 @@ const queryProcessLogDone = async(
     realname,
     page = 0,
     size = 50,
-    tools
+    tools = window.tools
 ) => {
     //查询URL
     var queryURL = `${window.requestAPIConfig.restapi}/api/v_handled_events_unq?_where=(username,like,~${username}~)~or(username,like,~${realname}~)&_p=${page}&_size=${size}&_sort=-create_time`;
@@ -4303,7 +4303,7 @@ window.queryProcessLogDone = queryProcessLogDone;
 /**
  * 查询我的已办数据
  */
-const queryProcessLogDoneAll = async(username, realname, storage, tools) => {
+const queryProcessLogDoneAll = async(username, realname, storage = window.storage, tools = window.tools) => {
     //返回结果
     var result = [];
     //遍历计数器
@@ -4418,7 +4418,7 @@ window.queryProcessLogDoneAll = queryProcessLogDoneAll;
 /**
  * 查询我的待办数据
  */
-const queryProcessLogWaitAll = async(username, realname, tools) => {
+const queryProcessLogWaitAll = async(username, realname, tools = window.tools) => {
     //返回结果
     var result = [];
 
@@ -4457,7 +4457,7 @@ window.queryProcessLogWaitAll = queryProcessLogWaitAll;
 /**
  * 查询我的已办数据（条件查询ALL）
  */
-const queryProcessLogDoneByParamAll = async(username, param, tools) => {
+const queryProcessLogDoneByParamAll = async(username, param, tools = window.tools) => {
     //返回结果
     var result = [];
 
@@ -4503,7 +4503,7 @@ window.queryProcessLogDoneByParamAll = queryProcessLogDoneByParamAll;
 /**
  * 查询我的待办数据（条件查询ALL）
  */
-const queryProcessLogWaitByParamAll = async(username, param, tools) => {
+const queryProcessLogWaitByParamAll = async(username, param, tools = window.tools) => {
     //返回结果
     var result = [];
 
@@ -4546,7 +4546,7 @@ const queryProcessLogDoneByParam = async(
     param,
     page = 0,
     size = 50,
-    tools
+    tools = window.tools
 ) => {
     //条件SQL
     var whereSQL = '';
@@ -5108,7 +5108,7 @@ window.queryAnnounceList = queryAnnounceList;
 /**
  * 获取红头文件数据
  */
-const queryHeadList = async(page = 0, size = 50, tools) => {
+const queryHeadList = async(page = 0, size = 50, tools = window.tools) => {
     //提交URL
     var queryURL = `${window.requestAPIConfig.restapi}/api/bs_redhead?_where=(bpm_status,in,4,5)&_sort=-create_time&_p=${page}&_size=${size}`;
 
@@ -5174,7 +5174,7 @@ window.queryNewsList = queryNewsList;
 /**
  * @function 发送post请求
  */
-const postAction = async(url, parameter, requestAPI) => {
+const postAction = async(url, parameter, requestAPI = window.requestAPI) => {
     try {
         return window.requestAPI.axios({
             url: url,
@@ -5189,7 +5189,7 @@ const postAction = async(url, parameter, requestAPI) => {
 window.postAction = postAction;
 
 //post method= {post | put}
-const httpAction = async(url, parameter, method, requestAPI) => {
+const httpAction = async(url, parameter, method, requestAPI = window.requestAPI) => {
     try {
         return window.requestAPI.axios({
             url: url,
@@ -5204,7 +5204,7 @@ const httpAction = async(url, parameter, method, requestAPI) => {
 window.httpAction = httpAction;
 
 //put
-const putAction = async(url, parameter, requestAPI) => {
+const putAction = async(url, parameter, requestAPI = window.requestAPI) => {
 
     try {
         return window.requestAPI.axios({
@@ -5220,7 +5220,7 @@ const putAction = async(url, parameter, requestAPI) => {
 window.putAction = putAction;
 
 //get
-const getAction = async(url, parameter, requestAPI) => {
+const getAction = async(url, parameter, requestAPI = window.requestAPI) => {
     try {
         return window.requestAPI.axios({
             url: url,
@@ -5235,7 +5235,7 @@ const getAction = async(url, parameter, requestAPI) => {
 window.getAction = getAction;
 
 //deleteAction
-const deleteAction = async(url, parameter, requestAPI) => {
+const deleteAction = async(url, parameter, requestAPI = window.requestAPI) => {
     try {
         return window.requestAPI.axios({
             url: url,
@@ -5249,7 +5249,7 @@ const deleteAction = async(url, parameter, requestAPI) => {
 
 window.deleteAction = deleteAction;
 
-const getUserList = async(parameter, requestAPI) => {
+const getUserList = async(parameter, requestAPI = window.requestAPI) => {
     try {
         return window.requestAPI.axios({
             url: api.user,
@@ -5263,7 +5263,7 @@ const getUserList = async(parameter, requestAPI) => {
 
 window.getUserList = getUserList;
 
-const getRoleList = async(parameter, requestAPI) => {
+const getRoleList = async(parameter, requestAPI = window.requestAPI) => {
     try {
         return window.requestAPI.axios({
             url: api.role,
@@ -5277,7 +5277,7 @@ const getRoleList = async(parameter, requestAPI) => {
 
 window.getRoleList = getRoleList;
 
-const getServiceList = async(parameter, requestAPI) => {
+const getServiceList = async(parameter, requestAPI = window.requestAPI) => {
     try {
         return window.requestAPI.axios({
             url: api.service,
@@ -5291,7 +5291,7 @@ const getServiceList = async(parameter, requestAPI) => {
 
 window.getServiceList = getServiceList;
 
-const getPermissions = async(parameter, requestAPI) => {
+const getPermissions = async(parameter, requestAPI = window.requestAPI) => {
     try {
         return window.requestAPI.axios({
             url: api.permissionNoPager,
@@ -5308,7 +5308,7 @@ window.getPermissions = getPermissions;
 /**
  * @function 获取用户信息操作
  */
-const getInfo = (requestAPI) => {
+const getInfo = (requestAPI = window.requestAPI) => {
     try {
         return window.requestAPI.axios({
             url: `${window._CONFIG['domainURL']}/api/user/info`,
@@ -5327,7 +5327,7 @@ window.getInfo = getInfo;
 /**
  * @function 保存操作
  */
-const saveService = async(parameter, requestAPI) => {
+const saveService = async(parameter, requestAPI = window.requestAPI) => {
     try {
         return window.requestAPI.axios({
             url: api.service,
