@@ -1,31 +1,17 @@
-try {
-    //设置moment
-    moment = null || moment;
-} catch (error) {
-    console.error(error);
-}
-
-try {
-    //设置superagent
-    superagent = null || superagent;
-} catch (error) {
-    console.error(error);   
-}
-
-try{
-    //定义工具
-    window.tools = null || tools;
-    //定义superagent
-    window.superagent = null || superagent;
-    //定义请求API
-    window.requestAPI = null || requestAPI;
-    //定义存储工具
-    window.storage = null || storage;
-    //定义流程API
-    window.workflowAPI = null || workflowAPI;   
-} catch(e) {
-    console.log(e)
-}
+//设置moment
+moment = null || moment;
+//设置superagent
+superagent = null || superagent;
+//定义工具
+window.tools = null || tools;
+//定义superagent
+window.superagent = null || superagent;
+//定义请求API
+window.requestAPI = null || requestAPI;
+//定义存储工具
+window.storage = null || storage;
+//定义流程API
+window.workflowAPI = null || workflowAPI;
 
 try {
     /**
@@ -56,7 +42,6 @@ try {
     }
 
     window.queryQuestionById = queryQuestionById;
-
 } catch (error) {
     console.log(error);
 }
