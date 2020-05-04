@@ -1,17 +1,31 @@
-//设置moment
-moment = null || moment;
-//设置superagent
-superagent = null || superagent;
-//定义工具
-window.tools = null || tools;
-//定义superagent
-window.superagent = null || superagent;
-//定义请求API
-window.requestAPI = null || requestAPI;
-//定义存储工具
-window.storage = null || storage;
-//定义流程API
-window.workflowAPI = null || workflowAPI;
+try {
+    //设置moment
+    moment = null || moment;
+} catch (error) {
+    console.error(error);
+}
+
+try {
+    //设置superagent
+    superagent = null || superagent;
+} catch (error) {
+    console.error(error);
+}
+
+try {
+    //定义工具
+    window.tools = null || tools;
+    //定义superagent
+    window.superagent = null || superagent;
+    //定义请求API
+    window.requestAPI = null || requestAPI;
+    //定义存储工具
+    window.storage = null || storage;
+    //定义流程API
+    window.workflowAPI = null || workflowAPI;
+} catch (e) {
+    console.log(e)
+}
 
 try {
     /**
@@ -42,6 +56,7 @@ try {
     }
 
     window.queryQuestionById = queryQuestionById;
+
 } catch (error) {
     console.log(error);
 }
@@ -255,7 +270,7 @@ try {
     /**
      * @function 查询流程总数
      */
-    var queryWflowDayCount = async(tools) => {
+    var queryWflowDayCount = async(tools = window.tools) => {
 
         //初始化
         window.tools = window.tools == null ? tools : window.tools;
@@ -341,7 +356,7 @@ try {
     /**
      * @function 将英文名转化为中文名
      */
-    var patchCnameEname = async(origin, tools, queryUserName) => {
+    var patchCnameEname = async(origin, tools = window.tools, queryUserName = window.queryUserName) => {
 
         //初始化
         window.tools = window.tools == null ? tools : window.tools;
@@ -395,7 +410,7 @@ try {
     /**
      * @function 将英文名转化为中文名
      */
-    var patchEnameCname = async(origin, tools, queryUserName) => {
+    var patchEnameCname = async(origin, tools = window.tools, queryUserName = window.queryUserName) => {
         //初始化
         window.tools = window.tools == null ? tools : window.tools;
 
@@ -496,7 +511,7 @@ try {
     /**
      * @function 查询工作流节点状态
      */
-    var queryWorkflowStatus = async(tableName, id, tools, queryTableData) => {
+    var queryWorkflowStatus = async(tableName, id, tools = window.tools, queryTableData = window.queryTableData) => {
 
         //初始化
         window.tools = window.tools == null ? tools : window.tools;
@@ -563,7 +578,7 @@ try {
      * @function 查询表字段信息
      * @param {*} tableName
      */
-    var queryTableFieldInfoJSON = async(tableName, tools = window.tools, queryTableDataByField) => {
+    var queryTableFieldInfoJSON = async(tableName, tools = window.tools, queryTableDataByField = window.queryTableDataByField) => {
         //初始化
         window.tools = window.tools == null ? tools : window.tools;
 
@@ -607,7 +622,7 @@ try {
     /**
      * @function 渲染审批流程详情
      */
-    var colorProcessDetail = async(that, main, tools, queryFileType, queryFileViewURL, queryOfficeURL, queryImageURL, queryCurNodePageType, changeImageCSS) => {
+    var colorProcessDetail = async(that, main, tools = window.tools, queryFileType = window.queryFileType, queryFileViewURL = window.queryFileViewURL, queryOfficeURL = window.queryOfficeURL, queryImageURL = window.queryImageURL, queryCurNodePageType = window.queryCurNodePageType, changeImageCSS = window.changeImageCSS) => {
         try {
             main.curRow = that.curRow;
         } catch (error) {
@@ -720,7 +735,7 @@ try {
     /**
      * @function 获取当前节点是否有知会或者审批节点信息
      */
-    var queryCurNodePageType = async(pageType, tools, queryProcessLogByID, queryProcessLogInfByID) => {
+    var queryCurNodePageType = async(pageType, tools = window.tools, queryProcessLogByID = window.queryProcessLogByID, queryProcessLogInfByID = window.queryProcessLogInfByID) => {
         //获取页面类型
         var type = window.tools.queryUrlString('type');
 
@@ -846,7 +861,7 @@ try {
     /**
      * @function 查询附件中的文档地址
      */
-    var queryOfficeURL = async(text, tools) => {
+    var queryOfficeURL = async(text, tools = window.tools) => {
         //文档数组
         var fileList = [];
         var officeList = [];
@@ -977,7 +992,7 @@ try {
         page = 0,
         size = 50,
         result = '',
-        tools
+        tools = window.tools
     ) => {
         //条件SQL
         var whereSQL = '';
@@ -1079,7 +1094,7 @@ try {
         page = 0,
         size = 50,
         result = '',
-        tools
+        tools = window.tools
     ) => {
         //提交URL
         var queryURL = `${window.requestAPIConfig.restapi}/api/bs_user_info?_where=(name,eq,${realname})~or(username,eq,${username})&_p=${page}&_size=${size}&_sort=-join_time`;
@@ -1131,7 +1146,7 @@ try {
         page = 0,
         size = 50,
         result = '',
-        tools
+        tools = window.tools
     ) => {
 
         //提交URL
@@ -1185,7 +1200,7 @@ try {
         page = 0,
         size = 50,
         result = '',
-        tools
+        tools = window.tools
     ) => {
 
         //条件SQL
@@ -1289,7 +1304,7 @@ try {
         page = 0,
         size = 50,
         result = '',
-        tools
+        tools = window.tools
     ) => {
 
         //初始化
@@ -1421,7 +1436,7 @@ try {
     /**
      * @function 查询附件中的视频地址
      */
-    var queryVideoURL = (text, tools) => {
+    var queryVideoURL = (text, tools = window.tools) => {
 
         //初始化
         window.tools = window.tools == null ? tools : window.tools;
@@ -1493,7 +1508,7 @@ try {
     /**
      * @function 查询附件中的图片地址
      */
-    var queryImageURL = (text, tools) => {
+    var queryImageURL = (text, tools = window.tools) => {
 
         //初始化
         window.tools = window.tools == null ? tools : window.tools;
@@ -1596,7 +1611,7 @@ try {
      * @description 查询表单含有的文件的文档类型
      * @param {*} text
      */
-    var queryFileType = (text, tools) => {
+    var queryFileType = (text, tools = window.tools) => {
 
         //初始化
         window.tools = window.tools == null ? tools : window.tools;
@@ -1655,7 +1670,7 @@ try {
      * @function 查询文档对应预览地址
      * @param {*} text
      */
-    var queryFileViewURL = async(text, tools) => {
+    var queryFileViewURL = async(text, tools = window.tools) => {
 
         //初始化
         window.tools = window.tools == null ? tools : window.tools;
@@ -1774,7 +1789,7 @@ try {
     /**
      * @function 知会/流程通知转移到历史记录的子操作
      */
-    var transWflowHistoring = async(tableName, wfnode, deleteProcessLog, deleteProcessLogInf, postProcessLogHistory, tools) => {
+    var transWflowHistoring = async(tableName, wfnode, deleteProcessLog = window.deleteProcessLog, deleteProcessLogInf = window.deleteProcessLogInf, postProcessLogHistory = window.postProcessLogHistory, tools = window.tools) => {
 
         //初始化
         window.tools = window.tools == null ? tools : window.tools;
@@ -1837,7 +1852,7 @@ try {
     /**
      * @function 知会/流程通知转移到历史记录中
      */
-    var transWflowToHistory = async(tableName, id, queryProcessLog, queryProcessLogInformed, transWflowHistoring, tools) => {
+    var transWflowToHistory = async(tableName, id, queryProcessLog = window.queryProcessLog, queryProcessLogInformed = window.queryProcessLogInformed, transWflowHistoring = window.transWflowHistoring, tools = window.tools) => {
 
         //初始化
         window.tools = window.tools == null ? tools : window.tools;
@@ -1875,7 +1890,7 @@ try {
     /**
      * @function 查询表单详情页面
      */
-    var watchFormLeave = async(that, queryFormName, queryTableData, transWflowToHistory, queryDepartNameByCode, queryWorkflows, queryLeaveType, queryFormTypeValue, queryBpmStatus, queryFormTypeName, queryFormMainTable, queryFormMTSubColumns, queryFormMTSubData, queryFormMTStarttimeName, queryFormMTEndtimeName, queryFormMTFileName, queryWorkflowStatus, queryTableFieldInfo, tools) => {
+    var watchFormLeave = async(that, queryFormName = window.queryFormName, queryTableData = window.queryTableData, transWflowToHistory = window.transWflowToHistory, queryDepartNameByCode = window.queryDepartNameByCode, queryWorkflows = window.queryWorkflows, queryLeaveType = window.queryLeaveType, queryFormTypeValue = window.queryFormTypeValue, queryBpmStatus = window.queryBpmStatus, queryFormTypeName = window.queryFormTypeName, queryFormMainTable = window.queryFormMainTable, queryFormMTSubColumns = window.queryFormMTSubColumns, queryFormMTSubData = window.queryFormMTSubData, queryFormMTStarttimeName = window.queryFormMTStarttimeName, queryFormMTEndtimeName = window.queryFormMTEndtimeName, queryFormMTFileName = window.queryFormMTFileName, queryWorkflowStatus = window.queryWorkflowStatus, queryTableFieldInfo = window.queryTableFieldInfo, tools = window.tools) => {
 
         //初始化
         window.tools = window.tools == null ? tools : window.tools;
@@ -2160,7 +2175,7 @@ try {
     /**
      * 获取某业务记录对应的审批日志信息
      */
-    var queryDepartNameByCode = async(code, tools) => {
+    var queryDepartNameByCode = async(code, tools = window.tools) => {
 
         //初始化
         window.tools = window.tools == null ? tools : window.tools;
@@ -2187,7 +2202,7 @@ try {
     /**
      * @function 查询审批流程信息
      */
-    var queryWorkflows = async(business_data_id, queryPRLogHistoryByDataID, queryUserRealName, queryPRLogByDataID, queryPRLogInfByDataID, storage, tools) => {
+    var queryWorkflows = async(business_data_id, queryPRLogHistoryByDataID = window.queryPRLogHistoryByDataID, queryUserRealName = window.queryUserRealName, queryPRLogByDataID = window.queryPRLogByDataID, queryPRLogInfByDataID = window.queryPRLogInfByDataID, storage = window.storage, tools = window.tools) => {
 
         //初始化
         window.tools = window.tools == null ? tools : window.tools;
@@ -2390,7 +2405,7 @@ try {
     /**
      * @function 查询当前评论信息
      */
-    var queryCurReplayList = async(id, tools) => {
+    var queryCurReplayList = async(id, tools = window.tools) => {
 
         //初始化
         window.tools = window.tools == null ? tools : window.tools;
@@ -2438,7 +2453,7 @@ try {
     /**
      * @function 获取当前自动生成的文件编号
      */
-    var queryFileNumb = async(companyName, tableName, date, curRow, tname, tools) => {
+    var queryFileNumb = async(companyName, tableName, date, curRow, tname, tools = window.tools) => {
 
         //初始化
         window.tools = window.tools == null ? tools : window.tools;
@@ -2463,7 +2478,7 @@ try {
     /**
      * @function 查询表单对应的历史自由流程
      */
-    var queryCurFreeWorkflow = async(id, tools) => {
+    var queryCurFreeWorkflow = async(id, tools = window.tools) => {
 
         //初始化
         window.tools = window.tools == null ? tools : window.tools;
@@ -2541,7 +2556,7 @@ try {
     /**
      * @function 查询用户的真实姓名
      */
-    var queryUserRealName = (name, queryUserNameByCache) => {
+    var queryUserRealName = (name, queryUserNameByCache = window.queryUserNameByCache) => {
         //查询用户信息
         var userlist = queryUserNameByCache();
         var user = '';
@@ -2597,7 +2612,7 @@ try {
     /**
      * @function 查询附表数据
      */
-    var queryFormMTSubData = async(tableName, foreignKey, id, queryTableDataByField, queryBpmStatus, tools) => {
+    var queryFormMTSubData = async(tableName, foreignKey, id, queryTableDataByField = window.queryTableDataByField, queryBpmStatus = window.queryBpmStatus, tools = window.tools) => {
         //大写转小写
         tableName = tableName.toUpperCase();
 
@@ -2862,7 +2877,7 @@ try {
     /**
      * 获取n位随机数,随机来源chars
      */
-    var queryRandomStr = (length = 32, tools) => {
+    var queryRandomStr = (length = 32, tools = window.tools) => {
 
         var res = '';
 
@@ -2998,11 +3013,11 @@ try {
         content = '',
         starttime,
         endtime,
-        queryAnnounceList,
-        queryHeadList,
-        queryNewsList,
-        queryNoticeList,
-        queryViewsList,
+        queryAnnounceList = window.queryAnnounceList,
+        queryHeadList = window.queryHeadList,
+        queryNewsList = window.queryNewsList,
+        queryNoticeList = window.queryNoticeList,
+        queryViewsList = window.queryNoticeList,
         tools = window.tools
     ) => {
         //定义内容
@@ -3150,7 +3165,7 @@ try {
     /**
      * 获取某业务记录对应的审批日志信息
      */
-    var queryPRLogInfTotal = async(business_data_id, tools) => {
+    var queryPRLogInfTotal = async(business_data_id, tools = window.tools) => {
         //获取今天日期
         var ctime = window.tools.formatDate(new Date(), 'yyyy-MM-dd');
 
@@ -3217,7 +3232,7 @@ try {
     /**
      * @function 定时刷新Token，保持连接，Keep-Alive
      */
-    var queryToken = async(storage) => {
+    var queryToken = async(storage = window.storage) => {
         try {
             var token = window.storage.getStore('pro__Access-Token');
 
@@ -3245,7 +3260,7 @@ try {
      * @param parameter
      * @returns {*}
      */
-    var downFile = async(url, parameter, requestAPI) => {
+    var downFile = async(url, parameter, requestAPI = window.requestAPI) => {
         //检查此处的URL,改成Nginx服务器对应的下载地址
         console.log(' download url :' + url);
 
@@ -3318,7 +3333,7 @@ try {
      * 查询当前业务对应表单名称
      * @param {*} url
      */
-    var queryTableName = async(callback, queryURLTableParam) => {
+    var queryTableName = async(callback, queryURLTableParam = window.queryURLTableParam) => {
         //获取主键ID
         var tableID = queryURLTableParam();
         //查询URL
@@ -3556,7 +3571,7 @@ try {
      * @param {*} id
      * @param {*} node
      */
-    var patchTableItem = async(tableName, id, node, patchTableData) => {
+    var patchTableItem = async(tableName, id, node, patchTableData = window.patchTableData) => {
         //大写转小写
         tableName = tableName.toLowerCase();
         try {
@@ -3780,7 +3795,7 @@ try {
 
 
 try {
-    var queryDynamicByUser = async(username, storage) => {
+    var queryDynamicByUser = async(username, storage = window.storage) => {
         //设置查询URL
         var queryURL = `${window.requestAPIConfig.restapi}/api/bs_dynamic?_where=(relate_users,like,~${username}~)&_size=10&_sort=-create_time`;
         //定义查询结果
@@ -4153,7 +4168,7 @@ try {
     /**
      * 查询审批历史记录页面的记录
      */
-    var queryProcessLogHisApproved = async(username, realname, params, tools) => {
+    var queryProcessLogHisApproved = async(username, realname, params, tools = window.tools) => {
         //pageNo从0开始计算
         params.pageNo = params.pageNo - 1;
 
@@ -4204,7 +4219,7 @@ try {
         realname,
         page = 0,
         size = 50,
-        tools
+        tools = window.tools
     ) => {
         //查询URL
         var queryURL = `${window.requestAPIConfig.restapi}/api/v_handling_events?_where=(username,like,~${username}~)~or(username,like,~${realname}~)&_p=${page}&_size=${size}&_sort=-create_time`;
@@ -4257,7 +4272,7 @@ try {
     /**
      * 查询用户名称信息
      */
-    var queryUserName = async(storage) => {
+    var queryUserName = async(storage = window.storage) => {
         //查询URL
         var index = 0;
         var queryURL;
@@ -4457,7 +4472,7 @@ try {
         param,
         page = 0,
         size = 50,
-        tools
+        tools = window.tools
     ) => {
         //条件SQL
         var whereSQL = '';
@@ -4607,7 +4622,7 @@ try {
     /**
      * 查询最新的10篇博文数据
      */
-    var queryBlogInfoNew = async(page = 0, size = 10, tools) => {
+    var queryBlogInfoNew = async(page = 0, size = 10, tools = window.tools) => {
 
         //查询URL
         var queryURL = `${window.requestAPIConfig.restapi}/api/bs_blog?_p=${page}&_size=${size}&_sort=-create_time`;
@@ -4661,7 +4676,7 @@ try {
     /**
      * 查询我的博文数据
      */
-    var queryBlogInfoByUser = async(username, page = 0, size = 50, tools) => {
+    var queryBlogInfoByUser = async(username, page = 0, size = 50, tools = window.tools) => {
 
 
         //查询URL
@@ -4722,7 +4737,7 @@ try {
         nousername,
         starttime,
         endtime,
-        tools
+        tools = window.tools
     ) => {
         //查询URL
         var queryURL = `${window.requestAPIConfig.restapi}/api/bs_blog?_p=${page}&_size=${size}&_sort=-create_time`;
@@ -4781,7 +4796,7 @@ try {
         realname,
         page = 0,
         size = 50,
-        tools
+        tools = window.tools
     ) => {
         //查询URL
         var queryURL = `${window.requestAPIConfig.restapi}/api/v_handled_events_unq?_where=(username,like,~${username}~)~or(username,like,~${realname}~)&_p=${page}&_size=${size}&_sort=-create_time`;
@@ -4836,7 +4851,7 @@ try {
     /**
      * 查询我的已办数据
      */
-    var queryProcessLogDoneAll = async(username, realname, storage, tools) => {
+    var queryProcessLogDoneAll = async(username, realname, storage = window.storage, tools = window.tools) => {
         //返回结果
         var result = [];
         //遍历计数器
@@ -4956,7 +4971,7 @@ try {
     /**
      * 查询我的待办数据
      */
-    var queryProcessLogWaitAll = async(username, realname, tools) => {
+    var queryProcessLogWaitAll = async(username, realname, tools = window.tools) => {
         //返回结果
         var result = [];
 
@@ -5001,7 +5016,7 @@ try {
     /**
      * 查询我的已办数据（条件查询ALL）
      */
-    var queryProcessLogDoneByParamAll = async(username, param, tools) => {
+    var queryProcessLogDoneByParamAll = async(username, param, tools = window.tools) => {
         //返回结果
         var result = [];
 
@@ -5053,7 +5068,7 @@ try {
     /**
      * 查询我的待办数据（条件查询ALL）
      */
-    var queryProcessLogWaitByParamAll = async(username, param, tools) => {
+    var queryProcessLogWaitByParamAll = async(username, param, tools = window.tools) => {
         //返回结果
         var result = [];
 
@@ -5101,7 +5116,7 @@ try {
         param,
         page = 0,
         size = 50,
-        tools
+        tools = window.tools
     ) => {
         //条件SQL
         var whereSQL = '';
