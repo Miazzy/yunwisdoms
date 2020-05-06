@@ -3665,24 +3665,29 @@ try {
         tableName = tableName.toLowerCase();
         username = username.trim();
         realname = realname.trim();
+        var queryURL = null;
+        var res = null;
 
         if (size <= 50) {
             //更新URL PATCH	/api/tableName/:id	Updates row element by primary key
-            var queryURL = `${window.requestAPIConfig.restapi}/api/${tableName}?_where=(create_by,like,~${username}~)~or(create_by,like,~${realname}~)&_p=${page}&_size=${size}&_sort=-create_time`;
+            queryURL = `${window.requestAPIConfig.restapi}/api/${tableName}?_where=(create_by,like,~${username}~)~or(create_by,like,~${realname}~)&_p=${page}&_size=${size}&_sort=-create_time`;
 
             try {
-                var res = await superagent.get(queryURL).set('accept', 'json');
+                res = await superagent.get(queryURL).set('accept', 'json');
                 data = [...data, ...res.body];
             } catch (err) {
                 console.log(...arguments.args, ...[err]);
             }
         } else {
+            //设置循环次数
             const times = parseInt(size / 50) + 1;
+            //定义当前循环次数
             var i = 0;
-            while (i <= time) {
+            //进行遍历查询
+            while (i <= times) {
                 //更新URL PATCH	/api/tableName/:id	Updates row element by primary key
-                var queryURL = `${window.requestAPIConfig.restapi}/api/${tableName}?_where=(create_by,like,~${username}~)~or(create_by,like,~${realname}~)&_p=${page + i++}&_size=${50}&_sort=-create_time`;
-                var res = null;
+                queryURL = `${window.requestAPIConfig.restapi}/api/${tableName}?_where=(create_by,like,~${username}~)~or(create_by,like,~${realname}~)&_p=${page + i++}&_size=${50}&_sort=-create_time`;
+                res = null;
                 try {
                     res = await superagent.get(queryURL).set('accept', 'json');
                     data = [...data, ...res.body];
