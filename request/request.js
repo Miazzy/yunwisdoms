@@ -2,29 +2,49 @@ try {
     //设置moment
     moment = null || moment;
 } catch (error) {
-    console.error(error);
+    console.log(error);
 }
 
 try {
     //设置superagent
     superagent = null || superagent;
 } catch (error) {
-    console.error(error);
+    console.log(error);
 }
 
 try {
     //定义工具
     window.tools = null || tools;
-    //定义superagent
-    window.superagent = null || superagent;
-    //定义请求API
-    window.requestAPI = null || requestAPI;
-    //定义存储工具
-    window.storage = null || storage;
-    //定义流程API
-    window.workflowAPI = null || workflowAPI;
 } catch (e) {
     console.log(e)
+}
+
+try {
+    //定义superagent
+    window.superagent = null || superagent;
+} catch (error) {
+    console.log(error);
+}
+
+try {
+    //定义请求API
+    window.requestAPI = null || requestAPI;
+} catch (error) {
+    console.log(error);
+}
+
+try {
+    //定义存储工具
+    window.storage = null || storage;
+} catch (error) {
+    console.log(error);
+}
+
+try {
+    //定义流程API
+    window.workflowAPI = null || workflowAPI;
+} catch (error) {
+    console.log(error);
 }
 
 try {
@@ -3639,9 +3659,47 @@ try {
         param
     ) => {
 
-        //TODO
-        console.log(...arguments.args);
+        var data = [];
 
+        //大写转小写
+        tableName = tableName.toLowerCase();
+        username = username.trim();
+        realname = realname.trim();
+
+        if (size <= 50) {
+            //更新URL PATCH	/api/tableName/:id	Updates row element by primary key
+            var queryURL = `${window.requestAPIConfig.restapi}/api/${tableName}?_where=(create_by,like,~${username}~)~or(create_by,like,~${realname}~)&_p=${page}&_size=${size}&_sort=-create_time`;
+
+            try {
+                var res = await superagent.get(queryURL).set('accept', 'json');
+                data = [...data, ...res.body];
+            } catch (err) {
+                console.log(...arguments.args, ...[err]);
+            }
+        } else {
+            const times = parseInt(size / 50) + 1;
+            var i = 0;
+            while (i <= time) {
+                //更新URL PATCH	/api/tableName/:id	Updates row element by primary key
+                var queryURL = `${window.requestAPIConfig.restapi}/api/${tableName}?_where=(create_by,like,~${username}~)~or(create_by,like,~${realname}~)&_p=${page + i++}&_size=${50}&_sort=-create_time`;
+
+                try {
+                    var res = await superagent.get(queryURL).set('accept', 'json');
+                    data = [...data, ...res.body];
+                } catch (err) {
+                    console.log(...arguments.args, ...[err]);
+                }
+            }
+        }
+
+        var response = {
+            success: true,
+            result: {
+                records: data,
+                total: data.length + 1
+            }
+        }
+        return response;
     }
 
     window.queryTableDataByParam = queryTableDataByParam;
@@ -5911,7 +5969,7 @@ try {
 
 try {
     //get
-    var getAction = async(url, parameter, requestAPI = window.requestAPI) => {
+    var getAction = async(url, parameter) => {
         try {
             return window.requestAPI.axios({
                 url: url,
@@ -6067,6 +6125,8 @@ try {
     }
 
     window.saveService = saveService;
+} catch (error) {
+    console.log(error);
 } catch (error) {
     console.log(error);
 }
