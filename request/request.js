@@ -3682,12 +3682,15 @@ try {
             while (i <= time) {
                 //更新URL PATCH	/api/tableName/:id	Updates row element by primary key
                 var queryURL = `${window.requestAPIConfig.restapi}/api/${tableName}?_where=(create_by,like,~${username}~)~or(create_by,like,~${realname}~)&_p=${page + i++}&_size=${50}&_sort=-create_time`;
-
+                var res = null;
                 try {
-                    var res = await superagent.get(queryURL).set('accept', 'json');
+                    res = await superagent.get(queryURL).set('accept', 'json');
                     data = [...data, ...res.body];
                 } catch (err) {
                     console.log(...arguments.args, ...[err]);
+                }
+                if (res.body.length == 0) {
+                    break;
                 }
             }
         }
