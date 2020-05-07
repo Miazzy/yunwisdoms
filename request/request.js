@@ -3660,6 +3660,8 @@ try {
     ) => {
 
         var data = [];
+        //定义默认页面大小
+        const page_size = 99;
 
         //大写转小写
         tableName = tableName.toLowerCase();
@@ -3668,7 +3670,7 @@ try {
         var queryURL = null;
         var res = null;
 
-        if (size <= 50) {
+        if (size <= page_size) {
             //更新URL PATCH	/api/tableName/:id	Updates row element by primary key
             queryURL = `${window.requestAPIConfig.restapi}/api/${tableName}?_where=(create_by,like,~${username}~)~or(create_by,like,~${realname}~)&_p=${page}&_size=${size}&_sort=-create_time`;
 
@@ -3680,13 +3682,13 @@ try {
             }
         } else {
             //设置循环次数
-            const times = parseInt(size / 50) + 1;
+            const times = parseInt(size / page_size) + 1;
             //定义当前循环次数
             var i = 0;
             //进行遍历查询
             while (i <= times) {
                 //更新URL PATCH	/api/tableName/:id	Updates row element by primary key
-                queryURL = `${window.requestAPIConfig.restapi}/api/${tableName}?_where=(create_by,like,~${username}~)~or(create_by,like,~${realname}~)&_p=${page + i++}&_size=${50}&_sort=-create_time`;
+                queryURL = `${window.requestAPIConfig.restapi}/api/${tableName}?_where=(create_by,like,~${username}~)~or(create_by,like,~${realname}~)&_p=${page + i++}&_size=${page_size}&_sort=-create_time`;
                 res = null;
                 try {
                     res = await superagent.get(queryURL).set('accept', 'json');
