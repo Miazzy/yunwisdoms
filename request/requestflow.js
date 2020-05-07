@@ -10,21 +10,21 @@ async function initWflowPage(that, tools = window.tools, storage = window.storag
     await manageAPI.queryUserName();
 
     //获取用户信息
-    this.userInfo = storage.getStore("cur_user");
+    that.userInfo = storage.getStore("cur_user");
 
     //设置员工岗位信息/部门信息
     try {
-        this.v_user = await manageAPI.queryUserInfoByView(this.userInfo.username);
+        that.v_user = await manageAPI.queryUserInfoByView(that.userInfo.username);
 
-        this.postName = this.v_user[0]["post"];
-        this.departName = this.v_user[0]["name"];
+        that.postName = that.v_user[0]["post"];
+        that.departName = that.v_user[0]["name"];
 
-        this.address = this.v_user[0]["address"];
-        this.bio = this.v_user[0]["bio"];
+        that.address = that.v_user[0]["address"];
+        that.bio = that.v_user[0]["bio"];
 
         //设置头像信息
-        this.avatar =
-            window._CONFIG["imgDomainURL"] + "/" + this.v_user[0]["avatar"];
+        that.avatar =
+            window._CONFIG["imgDomainURL"] + "/" + that.v_user[0]["avatar"];
     } catch (error) {
         console.log("工作台设置员工岗位信息/部门信息异常：" + error);
     }
