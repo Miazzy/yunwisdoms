@@ -40,12 +40,8 @@ window.sendTopic = sendTopic;
  */
 async function queryTopic(topic, group, noask, offset, partionID) {
 
-    var message = await superagent
-        .get(topicGetURL.replace('{topic}', topic))
-        .set('accept', 'json')
-        .end((err, res) => {
-            console.log(err, res);
-        });
+    var url = topicGetURL.replace('{topic}', topic);
+    var message = await superagent.get(url);
 
     message.key = decodeBase64(message.key);
     message.value = decodeBase64(message.value);
