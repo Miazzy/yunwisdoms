@@ -43,6 +43,7 @@ async function queryTopic(topic, group, noask, offset, partionID) {
     var url = topicGetURL.replace('{topic}', topic);
     var message = await superagent.get(url);
 
+    message = message.body;
     message.key = decodeBase64(message.key);
     message.value = decodeBase64(message.value);
 
