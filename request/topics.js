@@ -30,6 +30,14 @@ async function sendTopic(topic, message) {
 
 window.sendTopic = sendTopic;
 
+/**
+ * @function 通过kafka订阅消息
+ * @param {*} topic 
+ * @param {*} group 
+ * @param {*} noask 
+ * @param {*} offset 
+ * @param {*} partionID 
+ */
 async function queryTopic(topic, group, noask, offset, partionID) {
 
     var message = await superagent
@@ -40,9 +48,22 @@ async function queryTopic(topic, group, noask, offset, partionID) {
             console.log(err, res);
         });
 
+    message.key = decodeBase64(message.key);
+    message.value = decodeBase64(message.value);
+
     console.log(` Kafka订阅消息：`, topic, ` 返回结果：`, message);
 
     return message;
 }
 
 window.queryTopic = queryTopic;
+
+/**
+ * @function Base64解密
+ * @param {*} message 
+ */
+function decodeBase64(message) {
+    return decodeURIComponent(window.atob(message));
+}
+
+window.decodeBase64 = decodeBase64;
