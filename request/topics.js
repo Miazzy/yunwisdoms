@@ -42,7 +42,6 @@ async function queryTopic(topic, group, noask, offset, partionID) {
 
     var message = await superagent
         .get(topicGetURL.replace('{topic}', topic))
-        .send(JSON.stringify(content))
         .set('accept', 'json')
         .end((err, res) => {
             console.log(err, res);
