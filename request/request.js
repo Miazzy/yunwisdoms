@@ -811,6 +811,9 @@ try {
             $('.pswp__caption__center').css('text-align', 'center');
             //异常图片高度，避免竖版图片走样
             $('.pswp__img').css('height', '');
+            //设置图片宽度和高度
+            $('.fileshow').find('.my-gallery').find('img').css('width', '120');
+            $('.fileshow').find('.my-gallery').find('img').css('height', '72');
         } catch (error) {
             console.error(error);
         }
@@ -1565,7 +1568,7 @@ try {
                     ptext.includes('bmp') ||
                     ptext.includes('gif') ||
                     ptext.includes('webp') ||
-                    suffix.includes('svg') ||
+                    ptext.includes('svg') ||
                     ptext.includes('png');
 
                 //获取文件后缀
@@ -1589,8 +1592,7 @@ try {
                 //图片预加载地址
                 ptext = thumborURL;
                 //获取在线裁剪预览地址
-                thumborURL =
-                    window._CONFIG['thumborURL'] + encodeURIComponent(thumborURL);
+                //thumborURL = thumborURL;
 
                 //动态加载图片，并计算图片高宽比
                 var img = new Image();
