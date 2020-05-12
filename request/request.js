@@ -1530,6 +1530,10 @@ try {
             console.log('query image url error :' + error);
         }
 
+        debugger;
+
+        console.log('video list : ' + images);
+
         //返回图片数组信息
         return images;
     }
@@ -1609,8 +1613,8 @@ try {
         //设置取消显示音频长度
         if (images.length > 0) {
             setTimeout(() => {
-                $('.aplayer-dtime').html($('.aplayer-dtime').html().replace(`Infinity:NaN:NaN`, ``));
                 $('.aplayer-pause').css('border', '0px solid #fefefe');
+                $('.aplayer-dtime').html(window.tools.deNull($('.aplayer-dtime').html()).replace(`Infinity:NaN:NaN`, ``));
             }, 300);
         }
 
