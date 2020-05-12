@@ -712,6 +712,16 @@ try {
             console.log('set curRow OfficeURL error :' + error);
         }
         try {
+            main.curRow.videoList = await queryVideoURL(main.curRow.files);
+        } catch (error) {
+            console.log('set curRow VideoURL error :' + error);
+        }
+        try {
+            main.curRow.musicList = await queryMusicURL(main.curRow.files);
+        } catch (error) {
+            console.log('set curRow MusicURL error :' + error);
+        }
+        try {
             main.slides = queryImageURL(main.curRow.files);
         } catch (error) {
             console.log('set curRow slides error :' + error);
@@ -1506,7 +1516,10 @@ try {
                 //如果文件路径为图片地址，则存入images中
                 if (flag) {
                     //将数据存入images中
-                    images.push(text);
+                    images.push({
+                        src: text,
+                        type: `video/${suffix}`
+                    });
                 }
 
                 console.log('image suffix :' + suffix);
@@ -1522,6 +1535,90 @@ try {
     }
 
     window.queryVideoURL = queryVideoURL;
+
+} catch (error) {
+    console.log(error);
+}
+
+try {
+    /**
+     * @function 查询附件中的视频地址
+     */
+    var queryMusicURL = (text, tools = window.tools) => {
+
+        //初始化
+        window.tools = window.tools == null ? tools : window.tools;
+
+        //文档数组
+        var fileList = [];
+        var images = [];
+
+        try {
+            //如果text为空，则返回空数组
+            if (window.tools.deNull(text) == '') {
+                return [];
+            }
+            //如果含有多个地址，则split后获取数组
+            if (window.tools.deNull(text).indexOf(',') > 0) {
+                fileList = text.split(',');
+            } else {
+                fileList.push(text);
+            }
+        } catch (error) {
+            console.log('query image url error :' + error);
+        }
+
+        try {
+            //遍历并筛选出里面的图片信息
+            fileList = window.__.filter(fileList, function(text, index) {
+                //获取小写后的路径
+                var ptext = window.tools.deNull(text).toLowerCase();
+
+                //获取图片标识
+                var flag =
+                    ptext.includes('mp3') || ptext.includes('wav');
+
+                //获取文件后缀
+                var suffix = window.tools
+                    .deNull(ptext)
+                    .substring(ptext.lastIndexOf('.'), ptext.length)
+                    .toLowerCase();
+
+                //获取图片真实下载地址 在线压缩地址：window._CONFIG['thumborURL'] + encodeURIComponent(text)  离线压缩地址：text.replace('files/', 'files/images/').replace(suffix,'_S240x160'+suffix)
+                text =
+                    window._CONFIG['downloadURL'] + '/' + text.replace('files/', 'files/');
+
+                //如果文件路径为图片地址，则存入images中
+                if (flag) {
+                    //将数据存入images中
+                    images.push({
+                        title: ptext.replace('.' + suffix, '').replace(`files/`, ``),
+                        artist: '音频',
+                        src: text,
+                    });
+                }
+
+                console.log('image suffix :' + suffix);
+
+                return flag;
+            });
+        } catch (error) {
+            console.log('query image url error :' + error);
+        }
+
+        //设置取消显示音频长度
+        if (images.length > 0) {
+            setTimeout(() => {
+                $('.aplayer-dtime').html($('.aplayer-dtime').html().replace(`Infinity:NaN:NaN`, ``));
+                $('.aplayer-pause').css('border', '0px solid #fefefe');
+            }, 300);
+        }
+
+        //返回图片数组信息
+        return images;
+    }
+
+    window.queryMusicURL = queryMusicURL;
 
 } catch (error) {
     console.log(error);
