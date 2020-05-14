@@ -1,1 +1,0 @@
-"function"!=typeof Promise&&require("promise-polyfill/dist/polyfill");

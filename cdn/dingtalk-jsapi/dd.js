@@ -1,1 +1,0 @@
-"use strict";var ddSdk_1=require("./lib/ddSdk"),otherApi=require("./lib/otherApi"),dd=Object.assign({},otherApi,ddSdk_1.ddSdk.getExportSdk());module.exports=dd;

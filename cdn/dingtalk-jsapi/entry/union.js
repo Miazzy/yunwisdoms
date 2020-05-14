@@ -1,1 +1,0 @@
-"use strict";var dd=require("../core");require("../platform"),module.exports=dd;

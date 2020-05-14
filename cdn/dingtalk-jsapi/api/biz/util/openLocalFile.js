@@ -1,1 +1,0 @@
-"use strict";function openLocalFile$(e){return ddSdk_1.ddSdk.invokeAPI(apiName,e)}var _a;Object.defineProperty(exports,"__esModule",{value:!0});var ddSdk_1=require("../../../lib/ddSdk"),apiName="biz.util.openLocalFile";ddSdk_1.ddSdk.setAPI(apiName,(_a={},_a[ddSdk_1.ENV_ENUM.pc]={vs:"2.5.0"},_a)),exports.openLocalFile$=openLocalFile$,exports.default=openLocalFile$;
