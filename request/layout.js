@@ -160,22 +160,6 @@ const initLayout = (that) => {
         });
         that.linkList.push(window.sourceKey);
     }
-    //是否存在路径标识,检查pageList中是否含有window.wallKey
-    flag = window.__.find(that.pageList, item => {
-        return item.path == window.wallKey;
-    });
-    if (flag == null || typeof flag == "undefined") {
-        that.pageList.push({
-            name: "wall-center",
-            path: window.wallKey,
-            fullPath: window.wallKey,
-            meta: {
-                icon: "wall",
-                title: "壁纸中心"
-            }
-        });
-        that.linkList.push(window.wallKey);
-    }
     if (
         that.$route.fullPath != window.indexKey &&
         that.$route.fullPath != window.workplaceKey &&
@@ -186,7 +170,6 @@ const initLayout = (that) => {
         that.$route.fullPath != window.docKey &&
         that.$route.fullPath != window.yunpanKey &&
         that.$route.fullPath != window.sourceKey &&
-        that.$route.fullPath != window.wallKey &&
         that.$route.fullPath != window.musicKey
     ) {
         that.pageList.push(that.$route);
@@ -385,10 +368,6 @@ const checkClosePageValidLayout = (key, that) => {
     }
     if (key == window.sourceKey) {
         that.$message.warning("资料仓库不能关闭!");
-        return false;
-    }
-    if (key == window.wallKey) {
-        that.$message.warning("壁纸中心不能关闭!");
         return false;
     }
     if (that.$root.$tabs.pageList.length === 1) {
