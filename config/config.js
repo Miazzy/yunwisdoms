@@ -1,3 +1,50 @@
+const indexKey = `/dashboard/analysis`;
+const workplaceKey = `/dashboard/workplace`;
+const centerKey = `/account/center`;
+const blogKey = `/blog/center`;
+const taskKey = `/task/center`;
+const documentKey = `/document/center`;
+const musicKey = `/task/5bda534e2b8da95b12aec4f207dd6996`;
+const docKey = `/task/59f3d7da4716cdb57c527da1486e70f3`;
+const yunpanKey = `/task/c6565e2db9b1c70ed962cf5b2ac5d29b`;
+const sourceKey = `/task/c8fcdc16dd5d951a370ab5fb608fc749`;
+
+var titleKV = {
+    "0b511f234f3847baa50106a14fff6215": "审批处理",
+    b0ceb7cfb2b0487a96e03f50c413d762: "请假申请",
+    "933e21cf445440abb8cfdae366082a62": "外出申请",
+    "9ed5bc42eb934bbe8dac16ed1a3b103f": "加班申请",
+    b0fee76c2ee84baeb9494b196b779e3e: "考勤异常",
+    "3da23c7955d84465a759d0f1830a0d00": "档案及证照借阅",
+    cfd4ee2d60fa48f585c157d524b0a108: "用印申请(非合同)",
+    dd78c4c8a59e4ee3bd93ec011a3f6b4c: "用印申请(合同)",
+    e412b58db17b4cbf8cb9833c118c2d3b: "印章借用",
+    "62f7122c73c244119e5d4ec8aa170a3d": "出差申请",
+    "3972c2cb5a824aaab8ef0aad3ea56e7f": "行政公告",
+    c9c7e537dbb54691b4f0eff23854fdbb: "红头文件",
+    ebe9412bb4f34b5c8ea3fb7c0908d315: "新闻资讯",
+    "6650f6e79479489192fe469d1e3f98f3": "奖罚通报",
+    "6bfb3ee6257a4066b1d26f195da83fe0": "车辆补贴",
+    "688a9ea8187d461e9e921fd5a5829201": "日报管理",
+    "9c4bf0f4951b44648659a34ead5d31cc": "周报管理",
+    "6bf6537008514d319a95330459464f3e": "月报管理",
+    "878dd1f28f0b4dfdaa74534eec902c0c": "年度汇报",
+    "02c2e82c486542df992c3860ad6cd25a": "名册管理",
+    "237fa97d3c974bdbb36090d0dd2f3a39": "工资管理",
+    "079c6dd6140c4b269e9bf8601deef901": "团队管理",
+    "89237955a75f4d8c8cb15d30592628fd": "季度汇报",
+    "5480de4b82db4b40be8af021caeb6d30": "汇报管理",
+    "7542962e9a31442eb9e4ddd887891f81": "费用报销",
+    f48cb4862fde439e9a43ca6c9a7102d3: "付款申请",
+    c23f27d4e1b54b48bc88b4c532ab0dea: "采购申请",
+    "0ed85356f7f04e048bc540b0047c7559": "用章申请",
+    c990e98e13124c91aabec84ae149e423: "备用金申请",
+    e7ee0cd851454ed1a17454c31116b012: "物品领用",
+    dae6cc0e7a7f4b7e9dc0fc36757fdc96: "审批历史",
+    c98940fae2404cacb6ed4bd0aeffbc6d: "我的计划",
+    a10f38d1c64343f39560061e4124ba44: "我的任务"
+};
+
 //设置表单配置
 var tableConfig = {
     BS_LEAVE: '请假流程申请单',
@@ -521,6 +568,17 @@ var requestAPIConfig = {
     PROCESS_NODE_DICT_ID: '095a5c3fed5b29706cdfc6d9cb32cd4c', //流程节点，对应的字典的ID,根据这个查询流程节点的名称
 }
 
+window.indexKey = indexKey;
+window.workplaceKey = workplaceKey;
+window.centerKey = centerKey;
+window.blogKey = blogKey;
+window.taskKey = taskKey;
+window.documentKey = documentKey;
+window.musicKey = musicKey;
+window.docKey = docKey;
+window.yunpanKey = yunpanKey;
+window.sourceKey = sourceKey;
+window.titleKV = titleKV;
 window.tableConfig = tableConfig;
 window.leaveTypeConfig = leaveTypeConfig;
 window.bpmStatusConfig = bpmStatus;
