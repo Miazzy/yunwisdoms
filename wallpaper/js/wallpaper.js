@@ -172,16 +172,17 @@ function contAdd(html) {
     });
 }
 
+//获取真实URL
 function queryRealURL(cid = '', start = 0, count = 10) {
     switch (cid) {
         case '360new': // 360壁纸 新图片
-            return `http://172.18.231.229:8090/image?cid=360new&start=${start}&count=${count}`;
+            return `https://gogs.shengtai.club/image?cid=360new&start=${start}&count=${count}`;
         case '360tags':
             return `https://gogs.shengtai.club/category`;
         case 'bing':
             return `https://gogs.shengtai.club/bing?start=${start}&count=${count}`;
         default:
-            return `http://172.18.231.229:8090/image?cid=${cid}&start=${start}&count=${count}`;
+            return `https://gogs.shengtai.club/image?cid=${cid}&start=${start}&count=${count}`;
     }
 }
 

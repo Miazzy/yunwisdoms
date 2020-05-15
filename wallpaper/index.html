@@ -8,77 +8,11 @@
     <meta name="keywords" content="壁纸" />
     <meta name="description" content="壁纸" />
     <script src="https://cdn.bootcss.com/jquery/1.11.3/jquery.min.js"></script>
-    <script type="text/javascript" src="//cdn.jsdelivr.net/gh/Miazzy/yunwisdoms@v1.3.1.7/wallpaper/js/jquery.lazyload.min.js"></script>
-    <script type="text/javascript" src="//cdn.jsdelivr.net/gh/Miazzy/yunwisdoms@v1.3.1.7/wallpaper/js/jquery.onepage-scroll.min.js"></script>
-    <script type="text/javascript" src="//cdn.jsdelivr.net/gh/Miazzy/yunwisdoms@v1.3.1.7/wallpaper/js/wallpaper.js"></script>
-    <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/Miazzy/yunwisdoms@v1.3.1.7/wallpaper/css/wallpaper.css">
+    <script type="text/javascript" src="//cdn.jsdelivr.net/gh/Miazzy/yunwisdoms@v1.3.1.9/wallpaper/js/jquery.lazyload.min.js"></script>
+    <script type="text/javascript" src="//cdn.jsdelivr.net/gh/Miazzy/yunwisdoms@v1.3.1.9/wallpaper/js/jquery.onepage-scroll.min.js"></script>
+    <script type="text/javascript" src="//cdn.jsdelivr.net/gh/Miazzy/yunwisdoms@v1.3.1.9/wallpaper/js/wallpaper.js"></script>
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/Miazzy/yunwisdoms@v1.3.1.9/wallpaper/css/wallpaper.css">
     <script>
-        // ajax加载来自360的壁纸
-        function ajax360Wal(cid, start, count) {
-            if (jigsaw.ajaxing === true) return false;
-            $("#loadmore").html('努力加载中……');
-            $("#loadmore").show();
-            jigsaw.ajaxing = true;
-
-            $.ajax({
-                type: "GET",
-                url: queryRealURL(cid, start, count),
-                dataType: "json",
-                success: function(jsonData) {
-                    for (var i = 0; i < jsonData.data.length; i++) {
-                        addJigsaw(jsonData.data[i].url, decode360Tag(jsonData.data[i].tag));
-                    }
-                    resizeHeight();
-                    jigsaw.ajaxing = false;
-                    if (jsonData.data.length === 0) {
-                        $("#loadmore").html('所有的壁纸都已经加载完啦！');
-                    } else {
-                        $("#loadmore").hide();
-                    }
-                }
-            });
-            return true;
-        }
-        // ajax加载必应壁纸
-        function ajaxBingWal(start, count) {
-            $.ajax({
-                type: "GET",
-                url: queryRealURL('bing', start, count),
-                dataType: "json",
-                success: function(jsonData) {
-                    var newHtml = '<link rel="stylesheet" href="css/onepage-scroll.css">',
-                        downUrl = '';
-                    $("#walBox").append(newHtml); // 全屏滚动插件css
-
-                    for (var i = 0; i < jsonData.images.length; i++) {
-                        if (jsonData.images[i].wp === true) { // BING官方不让下载的图片处理
-                            downUrl = 'http://cn.bing.com/hpwp/' + jsonData.images[i].hsh;
-                        } else {
-                            downUrl = 'http://cn.bing.com' + jsonData.images[i].url;
-                        }
-                        newHtml += '<section data-url="' + downUrl + '" data-img="http://cn.bing.com' + jsonData.images[i].url + '"><p class="note">' + jsonData.images[i].copyright + '</p></section>';
-                    }
-                    $("#walBox").append(newHtml);
-
-                    $('#walBox').onepage_scroll({
-                        loop: false, // 禁止循环滚动
-                        beforeMove: function(index) {
-                            $("#toolBall").attr('href', $(".section").eq(index - 1).attr('data-url'));
-                            $(".section").eq(index - 1).attr('style', 'background-image: url(' + $(".section").eq(index - 1).attr('data-img') + ')');
-                        },
-                        afterMove: function(index) {
-                            $(".section").eq(index).attr('style', 'background-image: url(' + $(".section").eq(index).attr('data-img') + ')');
-                            $(".section").eq(index - 2).attr('style', 'background-image: url(' + $(".section").eq(index - 2).attr('data-img') + ')');
-                            // $(".section").eq(index-1).attr('style','background-image: url('+ $(".section").eq(index-1).attr('data-img') +')');
-                        }
-                    });
-                    $("#toolBall").attr('href', $(".section").eq(0).attr('data-url'));
-                    $(".section").eq(0).attr('style', 'background-image: url(' + $(".section").eq(0).attr('data-img') + ')');
-
-                }
-            });
-            return true;
-        }
         // 获取真实查询API
         function queryRealURL(cid = '', start = 0, count = 10) {
             switch (cid) {
@@ -101,8 +35,7 @@
         <h1 class="webTitle"></h1>
         <ul id="banner" style="margin-left:-100px;width:300px;">
             <li onclick="loadData('360new', true);changeTitle(this)">最新壁纸</li>
-            <li class="tags">
-                分类壁纸
+            <li class="tags">分类壁纸
                 <ul id="tags"></ul>
             </li>
             <li onclick="loadData('bing', true);changeTitle(this)">必应美图</li>
@@ -110,7 +43,6 @@
     </div>
 
     <div class="container">
-
         <div class="jigsaw" id="walBox"></div>
         <!-- id="walBox" -->
         <a id="toolBall" target="_blank" href="javascript:void(0);" class="uptoTop"></a>
