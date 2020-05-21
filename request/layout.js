@@ -128,18 +128,34 @@ const initLayout = (that) => {
         });
         that.linkList.push(window.musicKey);
     }
+    //是否存在路径标识,检查pageList中是否含有window.companyPanKey
+    flag = window.__.find(that.pageList, item => {
+        return item.path == window.companyPanKey;
+    });
+    if (flag == null || typeof flag == "undefined") {
+        that.pageList.push({
+            name: "company-disk-center",
+            path: window.companyPanKey,
+            fullPath: window.companyPanKey,
+            meta: {
+                icon: "disk",
+                title: "公司云盘"
+            }
+        });
+        that.linkList.push(window.companyPanKey);
+    }
     //是否存在路径标识,检查pageList中是否含有window.yunpanKey
     flag = window.__.find(that.pageList, item => {
         return item.path == window.yunpanKey;
     });
     if (flag == null || typeof flag == "undefined") {
         that.pageList.push({
-            name: "disk-center",
+            name: "person-disk-center",
             path: window.yunpanKey,
             fullPath: window.yunpanKey,
             meta: {
                 icon: "disk",
-                title: "云盘中心"
+                title: "个人云盘"
             }
         });
         that.linkList.push(window.yunpanKey);
@@ -184,6 +200,7 @@ const initLayout = (that) => {
         that.$route.fullPath != window.taskKey &&
         that.$route.fullPath != window.documentKey &&
         that.$route.fullPath != window.docKey &&
+        that.$route.fullPath != window.companyPanKey &&
         that.$route.fullPath != window.yunpanKey &&
         that.$route.fullPath != window.sourceKey &&
         that.$route.fullPath != window.wallKey &&
@@ -379,8 +396,12 @@ const checkClosePageValidLayout = (key, that) => {
         that.$message.warning("音乐中心不能关闭!");
         return false;
     }
+    if (key == window.companyPanKey) {
+        that.$message.warning("公司云盘不能关闭!");
+        return false;
+    }
     if (key == window.yunpanKey) {
-        that.$message.warning("云盘中心不能关闭!");
+        that.$message.warning("个人云盘不能关闭!");
         return false;
     }
     if (key == window.sourceKey) {
