@@ -216,6 +216,17 @@ const initLayout = (that) => {
     that.$root.$tabs = that;
     that.$root.$tabs.closeTab = that.$options.methods.closeTabPage;
 
+    //初始化样式
+    initCss();
+}
+
+const initCss = () => {
+    //设置样式
+    try {
+        $('.ant-tabs.ant-tabs-card .ant-tabs-tab').css('cssText', 'padding: 0px 16px !important; margin-right: 8px !important; ');
+    } catch (error) {
+        console.log(error);
+    }
 }
 
 window.initLayout = initLayout;
