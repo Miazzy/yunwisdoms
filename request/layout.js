@@ -221,12 +221,15 @@ const initLayout = (that) => {
 }
 
 const initCss = () => {
-    //设置样式
-    try {
-        $('.ant-tabs.ant-tabs-card .ant-tabs-tab').css('cssText', 'padding: 0px 16px !important; margin-right: 8px !important; ');
-    } catch (error) {
-        console.log(error);
-    }
+    debugger;
+    setTimeout(() => {
+        //设置样式
+        try {
+            $('.ant-tabs.ant-tabs-card .ant-tabs-tab').css('cssText', 'padding: 0px 16px !important; margin-right: 8px !important; ');
+        } catch (error) {
+            console.log(error);
+        }
+    }, 300);
 }
 
 window.initLayout = initLayout;
