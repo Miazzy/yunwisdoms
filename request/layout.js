@@ -220,19 +220,18 @@ const initLayout = (that) => {
     initCss();
 }
 
+window.initLayout = initLayout;
+
 const initCss = () => {
-    debugger;
     setTimeout(() => {
         //设置样式
         try {
-            $('.ant-tabs.ant-tabs-card .ant-tabs-tab').css('cssText', 'padding: 0px 16px !important; margin-right: 8px !important; ');
+            $('.ant-tabs.ant-tabs-card .ant-tabs-tab').css('cssText', 'padding: 0px 14px !important; margin-right: 7px !important; ');
         } catch (error) {
             console.log(error);
         }
-    }, 300);
+    }, 150);
 }
-
-window.initLayout = initLayout;
 
 const removeLayout = (key, that) => {
     if (that.checkClosePageValid(key)) {
@@ -434,6 +433,26 @@ const checkClosePageValidLayout = (key, that) => {
 }
 
 window.checkClosePageValidLayout = checkClosePageValidLayout;
+
+const closeTabLayout = (key, that) => {
+    let flag = checkClosePageValidLayout(key, that);
+    if (flag == true) {
+        that.$root.$tabs.pageList = that.$root.$tabs.pageList.filter(
+            item => item.fullPath !== key
+        );
+        let index = that.$root.$tabs.linkList.indexOf(key);
+        that.$root.$tabs.linkList = that.$root.$tabs.linkList.filter(
+            item => item !== key
+        );
+        index =
+            index >= that.$root.$tabs.linkList.length ?
+            that.$root.$tabs.linkList.length - 1 :
+            index;
+        that.$root.$tabs.activePage = that.$root.$tabs.linkList[index];
+    }
+}
+
+window.closeTabLayout = closeTabLayout;
 
 const toggleTopMenuLayout = () => {
     try {
