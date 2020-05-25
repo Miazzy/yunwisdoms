@@ -311,46 +311,64 @@ window.handleAnnounceInfo = handleAnnounceInfo;
  * @function 获取近期用户访问统计，
  */
 async function initLogInfo(that, getLoginfo, getVisitInfo, manageAPI) {
-    //查询登录统计数据
-    that.loginfo = (await getLoginfo(null))['result'];
+    debugger;
+    //统计信息
+    let loginfo = {};
 
-    //查询访问统计数据
-    that.visitInfo = (await getVisitInfo())['result'];
+    //获取缓存
+    let temp = window.storage.getStore(`log_info_statistic`);
 
-    //查询用户信息
-    that.vuserTotal = await manageAPI.queryUserCount();
+    //如果获取到缓存，则使用缓存
+    if (typeof temp === 'string') {
+        loginfo = JSON.parse(temp);
+    } else if (typeof temp === 'object') {
+        loginfo = temp;
+    } else {
+        //查询登录统计数据
+        loginfo.loginfo = (await getLoginfo(null))['result'];
 
-    //查询流程统计
-    that.vwflowTotal = await manageAPI.queryWflowCount();
+        //查询访问统计数据
+        loginfo.visitInfo = (await getVisitInfo())['result'];
 
-    //查询月度流程统计
-    that.vwflowMonthTotal = await manageAPI.queryWflowMonthCount();
+        //查询用户信息
+        loginfo.vuserTotal = await manageAPI.queryUserCount();
 
-    //查询日常流程统计
-    that.vwflowDayTotal = await manageAPI.queryWflowDayCount();
+        //查询流程统计
+        loginfo.vwflowTotal = await manageAPI.queryWflowCount();
 
-    //查询日同比率
-    that.vwflowDailyRatio = await manageAPI.queryWflowDailyRatio();
+        //查询月度流程统计
+        loginfo.vwflowMonthTotal = await manageAPI.queryWflowMonthCount();
 
-    //查询月同比率
-    that.vwflowMonthlyRatio = await manageAPI.queryWflowMonthlyRatio();
+        //查询日常流程统计
+        loginfo.vwflowDayTotal = await manageAPI.queryWflowDayCount();
 
-    //查询月度新增用户数
-    that.vNewUserTotal = await manageAPI.queryNewUserTotal();
+        //查询日同比率
+        loginfo.vwflowDailyRatio = await manageAPI.queryWflowDailyRatio();
 
-    //返回上月月度新增用户数
-    that.vNewUserTotalLast = await manageAPI.queryNewUserTotalLastMonth();
+        //查询月同比率
+        loginfo.vwflowMonthlyRatio = await manageAPI.queryWflowMonthlyRatio();
 
-    //查询日新增用户数
-    that.vNewUserTotalD =
-        typeof that.vNewUserTotal == "number" ?
-        Number.parseFloat(that.vNewUserTotal / 30).toFixed(2) :
-        "-";
+        //查询月度新增用户数
+        loginfo.vNewUserTotal = await manageAPI.queryNewUserTotal();
 
-    //查询业务数据
-    that.vBussinessTotal = await manageAPI.queryBusinessTotal();
+        //返回上月月度新增用户数
+        loginfo.vNewUserTotalLast = await manageAPI.queryNewUserTotalLastMonth();
 
-    console.log(that.vuserTotal);
+        //查询日新增用户数
+        loginfo.vNewUserTotalD =
+            typeof that.vNewUserTotal == "number" ?
+            Number.parseFloat(that.vNewUserTotal / 30).toFixed(2) :
+            "-";
+
+        //查询业务数据
+        loginfo.vBussinessTotal = await manageAPI.queryBusinessTotal();
+
+        //设置缓存
+        window.storage.setStore(`log_info_statistic`, JSON.stringify(loginfo), 36000);
+    }
+
+    //设置属性合并
+    Object.assign(that, loginfo);
 }
 
 window.initLogInfo = initLogInfo;
