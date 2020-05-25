@@ -319,9 +319,9 @@ async function initLogInfo(that, getLoginfo, getVisitInfo, manageAPI) {
     let temp = window.storage.getStore(`log_info_statistic`);
 
     //如果获取到缓存，则使用缓存
-    if (typeof temp === 'string') {
+    if (typeof temp === 'string' && !Object.is(temp, null)) {
         loginfo = JSON.parse(temp);
-    } else if (typeof temp === 'object') {
+    } else if (typeof temp === 'object' && !Object.is(temp, null)) {
         loginfo = temp;
     } else {
         //查询登录统计数据
