@@ -311,7 +311,6 @@ window.handleAnnounceInfo = handleAnnounceInfo;
  * @function 获取近期用户访问统计，
  */
 async function initLogInfo(that, getLoginfo, getVisitInfo, manageAPI) {
-    debugger;
     //统计信息
     let loginfo = {};
 

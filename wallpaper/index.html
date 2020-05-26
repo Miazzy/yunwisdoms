@@ -7,13 +7,13 @@
     <title>壁纸</title>
     <meta name="keywords" content="壁纸" />
     <meta name="description" content="壁纸" />
-    <script src="https://cdn.bootcss.com/jquery/1.11.3/jquery.min.js"></script>
+    <script type="text/javascript" src="//cdn.bootcss.com/jquery/1.11.3/jquery.min.js"></script>
     <script type="text/javascript" src="//cdn.jsdelivr.net/gh/Miazzy/yunwisdoms@v1.3.1.9/wallpaper/js/jquery.lazyload.min.js"></script>
     <script type="text/javascript" src="//cdn.jsdelivr.net/gh/Miazzy/yunwisdoms@v1.3.1.9/wallpaper/js/jquery.onepage-scroll.min.js"></script>
-    <script type="text/javascript" src="//cdn.jsdelivr.net/gh/Miazzy/yunwisdoms@v1.3.1.9/wallpaper/js/wallpaper.js"></script>
+    <script type="text/javascript" src="//cdn.jsdelivr.net/gh/Miazzy/yunwisdoms@v1.3.1.7/wallpaper/js/wallpaper.js"></script>
     <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/Miazzy/yunwisdoms@v1.3.1.9/wallpaper/css/wallpaper.css">
-    <script>
-        // 获取真实查询API
+    <script type="text/javascript">
+        //获取真实URL
         function queryRealURL(cid = '', start = 0, count = 10) {
             switch (cid) {
                 case '360new': // 360壁纸 新图片
@@ -44,10 +44,8 @@
 
     <div class="container">
         <div class="jigsaw" id="walBox"></div>
-        <!-- id="walBox" -->
         <a id="toolBall" target="_blank" href="javascript:void(0);" class="uptoTop"></a>
         <div id="loadmore">壁纸加载中……</div>
     </div>
-    <!-- class="container" -->
 
 </body>

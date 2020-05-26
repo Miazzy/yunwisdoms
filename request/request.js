@@ -1506,7 +1506,7 @@ try {
                 //获取文件后缀
                 var suffix = window.tools
                     .deNull(ptext)
-                    .substring(ptext.lastIndexOf('.'), ptext.length)
+                    .substring(ptext.lastIndexOf('.') + 1, ptext.length)
                     .toLowerCase();
 
                 //获取图片真实下载地址 在线压缩地址：window._CONFIG['thumborURL'] + encodeURIComponent(text)  离线压缩地址：text.replace('files/', 'files/images/').replace(suffix,'_S240x160'+suffix)
@@ -1522,15 +1522,13 @@ try {
                     });
                 }
 
-                console.log('image suffix :' + suffix);
+                console.log('video suffix :' + suffix);
 
                 return flag;
             });
         } catch (error) {
-            console.log('query image url error :' + error);
+            console.log('query video url error :' + error);
         }
-
-        debugger;
 
         console.log('video list : ' + images);
 
