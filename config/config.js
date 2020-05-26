@@ -44,7 +44,8 @@ var titleKV = {
     e7ee0cd851454ed1a17454c31116b012: "物品领用",
     dae6cc0e7a7f4b7e9dc0fc36757fdc96: "审批历史",
     c98940fae2404cacb6ed4bd0aeffbc6d: "我的计划",
-    a10f38d1c64343f39560061e4124ba44: "我的任务"
+    a10f38d1c64343f39560061e4124ba44: "我的任务",
+
 };
 
 //设置表单配置
@@ -122,6 +123,7 @@ var tableConfig = {
     BS_SHIFTS_APPLY: '换班申请表',
     BS_REPAIR_APPLY: '补卡申请表',
     BS_CAR_APPLY: '用车申请表',
+    BS_APPROVE_GENERAL: '审批申请表',
     PR_LOG: '流程审批日志表'
 };
 
