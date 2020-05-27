@@ -1,3 +1,4 @@
+/*************** 检查是否为HTTPS协议，如果不是，则跳转到HTTPS ***************/
 //http协议
 let protocol = window.location.host.includes('localhost') ? 'http:' : 'https:';
 //刷新切换
