@@ -192,6 +192,22 @@ const initLayout = (that) => {
         });
         that.linkList.push(window.wallKey);
     }
+    //是否存在路径标识,检查pageList中是否含有window.webchatKey
+    flag = window.__.find(that.pageList, item => {
+        return item.path == window.webchatKey;
+    });
+    if (flag == null || typeof flag == "undefined") {
+        that.pageList.push({
+            name: "webchat-center",
+            path: window.webchatKey,
+            fullPath: window.webchatKey,
+            meta: {
+                icon: "webchat",
+                title: "云聊信息"
+            }
+        });
+        that.linkList.push(window.webchatKey);
+    }
     if (
         that.$route.fullPath != window.indexKey &&
         that.$route.fullPath != window.workplaceKey &&
@@ -204,6 +220,7 @@ const initLayout = (that) => {
         that.$route.fullPath != window.yunpanKey &&
         that.$route.fullPath != window.sourceKey &&
         that.$route.fullPath != window.wallKey &&
+        that.$route.fullPath != window.webchatKey &&
         that.$route.fullPath != window.musicKey
     ) {
         that.pageList.push(that.$route);
@@ -423,6 +440,10 @@ const checkClosePageValidLayout = (key, that) => {
     }
     if (key == window.wallKey) {
         that.$message.warning("壁纸中心不能关闭!");
+        return false;
+    }
+    if (key == window.webchatKey) {
+        that.$message.warning("云聊不能关闭!");
         return false;
     }
     if (that.$root.$tabs.pageList.length === 1) {
