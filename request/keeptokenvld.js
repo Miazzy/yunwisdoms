@@ -1,10 +1,14 @@
 const yunpanToken = async(that, UUID, md5) => {
 
+    //清空缓存
+    //window.localStorage.clear();
+
     var response = null;
     var stoken = that.getQueryString('token');
     var hashtoken = that.getQueryString('hashtoken');
     var hashkey = that.getQueryString('hashkey');
     var sfingerprint = that.getQueryString('fingerprint');
+    var flag = that.getQueryString('flag');
     var date = dayjs().format('YYYY-MM-DD');
     var tokenname = '';
 
@@ -18,6 +22,9 @@ const yunpanToken = async(that, UUID, md5) => {
     }
 
     //第二步，检查stoken、hashtoken、hashkey、fingerprint是否合法
+
+    //设置用户flag
+    localStorage.setItem(`system_user_flag`, flag);
 
     //服务端stoken认证
     try {
