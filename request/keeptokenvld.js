@@ -1,7 +1,5 @@
 const yunpanToken = async(that, UUID, md5) => {
 
-    debugger;
-
     var response = null;
     var stoken = that.getQueryString('token');
     var hashtoken = that.getQueryString('hashtoken');
@@ -71,7 +69,7 @@ const yunpanToken = async(that, UUID, md5) => {
     }
 
     //计算指纹
-    var cfingerprint = that.calcuFingerPrint();
+    var cfingerprint = await that.calcuFingerPrint();
 
     //指纹认证失败
     if (sfingerprint !== cfingerprint || sfingerprint.length != 128) {
