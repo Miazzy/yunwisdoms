@@ -111,3 +111,5 @@ const yunpanToken = async(that, ) => {
         console.log(error);
     }
 }
+
+window.yunpanToken = yunpanToken;
