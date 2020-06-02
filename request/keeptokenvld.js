@@ -1,7 +1,7 @@
 const yunpanToken = async(that, UUID, md5) => {
 
     //清空缓存
-    //window.localStorage.clear();
+    window.localStorage.clear();
 
     var response = null;
     var stoken = that.getQueryString('token');
