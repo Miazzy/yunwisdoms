@@ -21,7 +21,7 @@ window._CONFIG['docDownURL'] = window._CONFIG['uploadURL'] + '/jeecg-boot/sys/co
 //图片服务器域名
 window._CONFIG['imgDomainURL'] = window._CONFIG['domain'];
 //KKFileView文档预览URL
-window._CONFIG['previewURL'] = 'https://fileview.' + window._CONFIG['topDomain'] + '/onlinePreview?url=';
+window._CONFIG['previewURL'] = 'https://fileview.' + window._CONFIG['topDomain'] + '/onlinePreview?officePreviewType=pdf&url=';
 //微软文档预览URL
 window._CONFIG['officeURL'] = 'https://view.officeapps.live.com/op/view.aspx?src=';
 //图片压缩裁剪URL
