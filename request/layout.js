@@ -27,7 +27,7 @@ const initLayout = (that) => {
             fullPath: window.centerKey,
             meta: {
                 icon: "account",
-                title: "个人中心"
+                title: "博文交流"
             }
         });
         that.linkList.push(window.centerKey);
@@ -243,7 +243,7 @@ const initCss = () => {
     setTimeout(() => {
         //设置样式
         try {
-            $('.ant-tabs.ant-tabs-card .ant-tabs-tab').css('cssText', 'padding: 0px 14px !important; margin-right: 7px !important; ');
+            $('.ant-tabs.ant-tabs-card .ant-tabs-tab').css('cssText', 'padding: 0px 12px !important; margin-right: 6px !important; ');
         } catch (error) {
             console.log(error);
         }
@@ -403,7 +403,7 @@ const checkClosePageValidLayout = (key, that) => {
         return false;
     }
     if (key == window.centerKey) {
-        that.$message.warning("个人中心不能关闭!");
+        that.$message.warning("博文交流不能关闭!");
         return false;
     }
     if (key == window.blogKey) {
