@@ -104,7 +104,7 @@ const accountNode = {
             route: '1',
             meta: {
                 keepAlive: false,
-                title: '个人中心'
+                title: '博文交流'
             },
             name: 'account-center',
             id: 'd86f58e7ab516d3bc6bfb1fe10585f97',
