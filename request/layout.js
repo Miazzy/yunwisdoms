@@ -16,22 +16,6 @@ const initLayout = (that) => {
         });
         that.linkList.push(window.indexKey);
     }
-    //是否存在路径标识,检查pageList中是否含有window.centerKey
-    flag = window.__.find(that.pageList, item => {
-        return item.path == window.centerKey;
-    });
-    if (flag == null || typeof flag == "undefined") {
-        that.pageList.push({
-            name: "account-center",
-            path: window.centerKey,
-            fullPath: window.centerKey,
-            meta: {
-                icon: "account",
-                title: "博文交流"
-            }
-        });
-        that.linkList.push(window.centerKey);
-    }
     //是否存在路径标识,检查pageList中是否含有window.workplaceKey
     flag = window.__.find(that.pageList, item => {
         return item.path == window.workplaceKey;
@@ -47,6 +31,22 @@ const initLayout = (that) => {
             }
         });
         that.linkList.push(window.workplaceKey);
+    }
+    //是否存在路径标识,检查pageList中是否含有window.centerKey
+    flag = window.__.find(that.pageList, item => {
+        return item.path == window.centerKey;
+    });
+    if (flag == null || typeof flag == "undefined") {
+        that.pageList.push({
+            name: "account-center",
+            path: window.centerKey,
+            fullPath: window.centerKey,
+            meta: {
+                icon: "account",
+                title: "博文交流"
+            }
+        });
+        that.linkList.push(window.centerKey);
     }
     //是否存在路径标识,检查pageList中是否含有window.blogKey
     flag = window.__.find(that.pageList, item => {
@@ -403,7 +403,7 @@ const checkClosePageValidLayout = (key, that) => {
         return false;
     }
     if (key == window.centerKey) {
-        that.$message.warning("博文交流不能关闭!");
+        that.$message.warning("个人中心不能关闭!");
         return false;
     }
     if (key == window.blogKey) {
