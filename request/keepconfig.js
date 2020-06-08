@@ -19,7 +19,7 @@ window._CONFIG['downloadURL'] = window._CONFIG['uploadURL'];
 //document下载服务器地址
 window._CONFIG['docDownURL'] = window._CONFIG['uploadURL'] + '/jeecg-boot/sys/common/view/';
 //图片服务器域名
-window._CONFIG['imgDomainURL'] = window._CONFIG['domain'];
+window._CONFIG['imgDomainURL'] = window._CONFIG['uploadURL'];
 //KKFileView文档预览URL
 window._CONFIG['previewURL'] = 'https://fileview.' + window._CONFIG['topDomain'] + '/onlinePreview?officePreviewType=pdf&url=';
 //微软文档预览URL
@@ -37,7 +37,7 @@ window._CONFIG['casPrefixUrl'] = 'https://sso.' + window._CONFIG['topDomain'] + 
 //检测URL文件是否存在
 window._CONFIG['validURL'] = window._CONFIG['domain'] + '/sys/common/url?path=';
 //下载地址URL
-window._CONFIG['staticDomainURL'] = window._CONFIG['domain'];
+window._CONFIG['staticDomainURL'] = window._CONFIG['uploadURL'];
 //设置公式名称
 window._CONFIG['company'] = '鹏程';
 

@@ -24,7 +24,7 @@ async function initWflowPage(that, tools = window.tools, storage = window.storag
 
         //设置头像信息
         that.avatar =
-            window._CONFIG["imgDomainURL"] + "/" + that.v_user[0]["avatar"];
+            window._CONFIG["uploadURL"] + "/" + that.v_user[0]["avatar"];
     } catch (error) {
         console.log("工作台设置员工岗位信息/部门信息异常：" + error);
     }

@@ -4216,7 +4216,6 @@ try {
      * 根据数据字典中的节点编号，查询到这个节点对应的员工信息
      */
     var queryProcessNodeEmployee = async(node, callback) => {
-        debugger;
         //查询URL
         var queryURL = `${window.requestAPIConfig.restapi}/api/bs_approve_node?_where=(name,eq,${node})`;
 
