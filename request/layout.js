@@ -49,21 +49,21 @@ const initLayout = (that) => {
         that.linkList.push(window.centerKey);
     }
     //是否存在路径标识,检查pageList中是否含有window.blogKey
-    flag = window.__.find(that.pageList, item => {
-        return item.path == window.blogKey;
-    });
-    if (flag == null || typeof flag == "undefined") {
-        that.pageList.push({
-            name: "blog-center",
-            path: window.blogKey,
-            fullPath: window.blogKey,
-            meta: {
-                icon: "blog",
-                title: "博客中心"
-            }
-        });
-        that.linkList.push(window.blogKey);
-    }
+    // flag = window.__.find(that.pageList, item => {
+    //     return item.path == window.blogKey;
+    // });
+    // if (flag == null || typeof flag == "undefined") {
+    // that.pageList.push({
+    //     name: "blog-center",
+    //     path: window.blogKey,
+    //     fullPath: window.blogKey,
+    //     meta: {
+    //         icon: "blog",
+    //         title: "博客管理"
+    //     }
+    // });
+    // that.linkList.push(window.blogKey);
+    // }
     //是否存在路径标识,检查pageList中是否含有window.taskKey
     flag = window.__.find(that.pageList, item => {
         return item.path == window.taskKey;
@@ -212,7 +212,7 @@ const initLayout = (that) => {
         that.$route.fullPath != window.indexKey &&
         that.$route.fullPath != window.workplaceKey &&
         that.$route.fullPath != window.centerKey &&
-        that.$route.fullPath != window.blogKey &&
+        //that.$route.fullPath != window.blogKey &&
         that.$route.fullPath != window.taskKey &&
         that.$route.fullPath != window.documentKey &&
         that.$route.fullPath != window.docKey &&
@@ -406,10 +406,10 @@ const checkClosePageValidLayout = (key, that) => {
         that.$message.warning("个人中心不能关闭!");
         return false;
     }
-    if (key == window.blogKey) {
-        that.$message.warning("博客中心不能关闭!");
-        return false;
-    }
+    // if (key == window.blogKey) {
+    //     that.$message.warning("博客中心不能关闭!");
+    //     return false;
+    // }
     if (key == window.taskKey) {
         that.$message.warning("任务中心不能关闭!");
         return false;
