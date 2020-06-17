@@ -1,0 +1,1 @@
+(window["webpackJsonp"]=window["webpackJsonp"]||[]).push([["chunk-2d0b21a7"],{"234d":function(n,t,e){"use strict";e.r(t);var r=e("4fb7");e.d(t,"ArticlePage",(function(){return r["default"]}));var u=e("9133");e.d(t,"ArticleListContent",(function(){return u["default"]}))}}]);

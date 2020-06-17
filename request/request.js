@@ -2333,7 +2333,7 @@ try {
 
         //从浏览器缓存中获取审批日志数据
         try {
-            workflows = await window.storage.getStore(`workflows_by_data_id@${business_data_id}`);
+            workflows = window.storage.getStore(`workflows_by_data_id@${business_data_id}`);
         } catch (error) {
             console.log('query store info of workflows error :' + error);
         }
@@ -2355,36 +2355,31 @@ try {
                 //查询审批日志信息
                 processLogs = await queryPRLogHistoryByDataID(business_data_id);
 
-                //遍历数据
-                for await (let item of processLogs) {
-                    let index = processLogs.findIndex((element) => {
-                        item.id == element.id
-                    });
+                //遍历审批日志
+                window.__.each(processLogs, (item, index) => {
                     //获取下一节点
-                    let next =
+                    var next =
                         index < processLogs.length - 1 ?
                         processLogs[index + 1] : {
                             action: '',
                         };
                     //获取标识
-                    let flag = index == processLogs.length - 1;
+                    var flag = index == processLogs.length - 1;
                     //获取操作时间
-                    let optime = window.tools.formatDate(
+                    var optime = window.tools.formatDate(
                         new Date(item.operate_time),
                         'yyyy-MM-dd hh:mm:ss'
                     );
 
-                    let man = await queryUserRealName(item.approve_user);
+                    var content = `节点：${window.tools.deNull(
+              item.process_station
+            )} , 处理人： ${window.tools.deNull(
+              queryUserRealName(item.approve_user)
+            )} , 审批：${window.tools.deNull(item.action)} , 审批意见：${window.tools.deNull(
+              item.action_opinion
+            )}  时间：${window.tools.deNull(optime)} `;
 
-                    man = window.tools.deNull(man);
-                    let process_station = window.tools.deNull(item.process_station);
-                    let action = window.tools.deNull(item.action);
-                    let action_opinion = window.tools.deNull(item.action_opinion);
-                    let operatetime = window.tools.deNull(optime);
-
-                    let content = `节点：${process_station} , 处理人： ${man} , 审批：${action} , 审批意见：${action_opinion}。时间：${operatetime} `;
-
-                    let color =
+                    var color =
                         item.action == '同意' ?
                         'green' :
                         item.action == '驳回' || item.action == '撤销' ?
@@ -2400,7 +2395,7 @@ try {
                     color = flag && item.action == '同意' ? 'blue' : color;
                     color = flag && item.action == '知会' ? 'orange' : color;
 
-                    let status =
+                    var status =
                         (item.action == '同意' && next.action == '知会') ||
                         (flag && item.action == '同意') ?
                         'over' :
@@ -2414,7 +2409,7 @@ try {
                         'message' :
                         'over';
 
-                    let node = {
+                    var node = {
                         id: item.id,
                         color: color,
                         content: content,
@@ -2422,8 +2417,7 @@ try {
                     };
 
                     workflows.push(node);
-                }
-
+                });
             } catch (error) {
                 console.log('获取已处理的审批日志信息异常 :' + error);
             }
@@ -2435,29 +2429,23 @@ try {
                 processLogs = await queryPRLogByDataID(business_data_id);
 
                 //遍历数据
-                for await (let item of processLogs) {
-
-                    let index = processLogs.findIndex((element) => {
-                        item.id == element.id
-                    });
-
-                    let man = await queryUserRealName(item.employee);
-                    man = window.tools.deNull(man);
-                    let process_station = window.tools.deNull(item.process_station);
-                    let content = `节点：${process_station} , 待处理人： ${man} , 审批：待处理 , 时间：-- `;
-
-                    let node = {
+                window.__.each(processLogs, (item, index) => {
+                    var node = {
                         id: item.id,
                         employee: item.employee,
                         color: 'pink',
-                        content: content,
+                        content: `节点：${window.tools.deNull(
+                item.process_station
+              )} , 待处理人： ${window.tools.deNull(
+                queryUserRealName(item.employee)
+              )} , 审批：待处理 , 时间：-- `,
                         status: 'wait',
                         index: index,
                     };
                     workflows.push(node);
                     //设置最后一条审核节点
                     auditnode = node;
-                }
+                });
 
                 //获取正在审批的最后一条数据
                 window.storage.setStore(
@@ -2475,42 +2463,32 @@ try {
                 //获取正在审批的知会日志信息
                 processLogs = await queryPRLogInfByDataID(business_data_id);
 
-                //遍历数据
-                for await (let item of processLogs) {
-                    var index = processLogs.findIndex((element) => {
-                        item.id == element.id
-                    });
-
+                window.__.each(processLogs, (item, index) => {
                     //获取操作时间
                     var optime = window.tools.formatDate(
                         new Date(item.operate_time),
                         'yyyy-MM-dd hh:mm:ss'
                     );
-
                     var appruser = window.tools.deNull(item.approve_user);
-                    let memployee = await queryUserRealName(item.employee);
-                    let mappruser = await queryUserRealName(appruser);
-                    let process_station = window.tools.deNull(item.process_station);
-                    memployee = window.tools.deNull(memployee);
-                    mappruser = window.tools.deNull(mappruser);
-                    optime = window.tools.deNull(optime);
-
-                    let content = `节点：${process_station} , 待处理人： ${memployee} ,  已处理人： ${mappruser} , 审批：知会 , 时间：${optime} `;
-
-                    let node = {
+                    var node = {
                         id: item.id,
                         employee: item.employee,
                         appruser: appruser,
                         color: 'orange',
-                        content: content,
+                        content: `节点：${window.tools.deNull(
+                item.process_station
+              )} , 待处理人： ${window.tools.deNull(
+                queryUserRealName(item.employee)
+              )} ,  已处理人： ${window.tools.deNull(
+                queryUserRealName(appruser)
+              )} , 审批：知会 , 时间：${window.tools.deNull(optime)} `,
                         status: 'sound',
                         index: index,
                     };
-
                     workflows.push(node);
                     //设置最后一条知会节点
                     notifynode = node;
-                }
+                });
 
                 //获取知会的最后一条数据
                 window.storage.setStore(
@@ -2548,15 +2526,21 @@ try {
     /**
      * @function 查询当前评论信息
      */
-    var queryCurReplayList = async(id, tools = window.tools) => {
+    var queryCurReplayList = async(id, tools = window.tools, storage, authortool) => {
 
         //初始化
         window.tools = window.tools == null ? tools : window.tools;
 
         //提交URL
         var queryURL = `${window.requestAPIConfig.restapi}/api/bs_comments?_where=(main_key,eq,${id})&_sort=create_time`;
+
         //根据业务编号，查询业务数据
-        var wflow = [];
+        var wflow = await storage.getStoreDB(`cache_bs_comments_id:${id}`);
+
+        //从缓存中获取到评论信息，则直接返回
+        if (wflow !== null && typeof wflow !== 'undefined' && Object.prototype.toString.call(wflow) === '[object Array]') {
+            return wflow;
+        }
 
         try {
             var res = await superagent.get(queryURL).set('accept', 'json');
@@ -2575,15 +2559,23 @@ try {
             }
 
             //遍历数据，格式化日期
-            for (var item of wflow) {
+            for await (let item of wflow) {
                 item['create_time'] = window.tools.formatDate(item['create_time'], 'yyyy-MM-dd');
                 item['replay'] = JSON.parse(item['replay']);
+                item['avatar'] = `${window._CONFIG['uploadURL']}/` + (await authortool.queryAvatarByName(item.create_by, storage)).avatar;
+                //遍历二级评论
+                for await (let subItem of item['replay']) {
+                    subItem['avatar'] = `${window._CONFIG['uploadURL']}/` + (await authortool.queryAvatarByName(subItem.create_by, storage)).avatar;
+                }
             }
+
+            //设置缓存信息
+            storage.setStoreDB(`cache_bs_comments_id:${id}`, JSON.stringify(wflow), 3600);
+
         } catch (err) {
             console.log(err);
         }
 
-        return wflow;
     }
 
     window.queryCurReplayList = queryCurReplayList;
@@ -2699,9 +2691,9 @@ try {
     /**
      * @function 查询用户的真实姓名
      */
-    var queryUserRealName = async(name, queryUserNameByCache = window.queryUserNameByCache) => {
+    var queryUserRealName = (name, queryUserNameByCache = window.queryUserNameByCache) => {
         //查询用户信息
-        var userlist = await queryUserNameByCache();
+        var userlist = queryUserNameByCache();
         var user = '';
 
         try {
@@ -3377,7 +3369,7 @@ try {
      */
     var queryToken = async(storage = window.storage) => {
         try {
-            var token = await window.storage.getStore('pro__Access-Token');
+            var token = window.storage.getStore('pro__Access-Token');
 
             var queryURL = `${window.requestAPIConfig.token}/${token.value}`;
 
@@ -3744,7 +3736,7 @@ try {
 
         try {
             //获取缓存中的数据
-            var cache = await window.storage.getStore(`sys_user_cache@${tableName}&id${id}`);
+            var cache = window.storage.getStore(`sys_user_cache@${tableName}&id${id}`);
 
             //返回缓存值
             if (typeof cache != 'undefined' && cache != null && cache != '') {
@@ -3856,7 +3848,7 @@ try {
 
         try {
             //先检测缓存中，是否有数据，如果没有数据，则从数据库中查询
-            result = await window.storage.getStore('system_table_data_info_all');
+            result = window.storage.getStore('system_table_data_info_all');
 
             if (!(typeof result != 'undefined' && result != null && result != '')) {
                 //发送HTTP请求，获取返回值后，设置数据
@@ -3907,7 +3899,7 @@ try {
 
         try {
             //先检测缓存中，是否有数据，如果没有数据，则从数据库中查询
-            result = await window.storage.getStore(`system_depart_name_by_id@${id}`);
+            result = window.storage.getStore(`system_depart_name_by_id@${id}`);
 
             if (!(typeof result != 'undefined' && result != null && result != '')) {
                 //发送HTTP请求，获取返回值后，设置数据
@@ -3945,7 +3937,7 @@ try {
 
         try {
             //先检测缓存中，是否有数据，如果没有数据，则从数据库中查询
-            result = await window.storage.getStore('system_dynamic_info_all');
+            result = window.storage.getStore('system_dynamic_info_all');
 
             if (!(typeof result != 'undefined' && result != null && result != '')) {
                 //发送HTTP请求，获取返回值后，设置数据
@@ -3994,7 +3986,7 @@ try {
 
         try {
             //先检测缓存中，是否有数据，如果没有数据，则从数据库中查询
-            result = await window.storage.getStore(`system_dynamic_info_by_user@${username}`);
+            result = window.storage.getStore(`system_dynamic_info_by_user@${username}`);
 
             if (!(typeof result != 'undefined' && result != null && result != '')) {
                 //发送HTTP请求，获取返回值后，设置数据
@@ -4077,7 +4069,7 @@ try {
 
         try {
             //先检测缓存中，是否有数据，如果没有数据，则从数据库中查询
-            result = await window.storage.getStore(`system_v_admin_info@username$${username}`);
+            result = window.storage.getStore(`system_v_admin_info@username$${username}`);
 
             if (!(typeof result != 'undefined' && result != null && result != '')) {
                 //发送HTTP请求，获取返回值后，设置数据
@@ -4115,7 +4107,7 @@ try {
 
         try {
             //先检测缓存中，是否有数据，如果没有数据，则从数据库中查询
-            result = await window.storage.getStore(`system_v_user_info@username$${username}`);
+            result = window.storage.getStore(`system_v_user_info@username$${username}`);
 
             if (!(typeof result != 'undefined' && result != null && result != '')) {
                 //发送HTTP请求，获取返回值后，设置数据
@@ -4511,7 +4503,7 @@ try {
 
         try {
             //从缓存中获取用户数据
-            var userlist = await window.storage.getStore('cache_all_user_name');
+            var userlist = window.storage.getStore('cache_all_user_name');
 
             if (
                 typeof userlist == 'undefined' ||
@@ -4553,13 +4545,13 @@ try {
     /**
      * 查询用户名称信息
      */
-    var queryUserNameByCache = async() => {
+    var queryUserNameByCache = () => {
         //返回对象结果
         var result = [];
 
         try {
             //从缓存中获取用户数据
-            var userlist = await window.storage.getStore('cache_all_user_name');
+            var userlist = window.storage.getStore('cache_all_user_name');
 
             if (
                 typeof userlist == 'undefined' ||
@@ -4637,7 +4629,7 @@ try {
                 result = res.body[0];
 
                 if (result.notify == null || result.notify == '') {
-                    let notifynode = await window.storage.getStore(
+                    let notifynode = window.storage.getStore(
                         `workflows_notify_node_by_data_id@${id}`
                     );
                     result.notify = notifynode.employee + ',' + notifynode.appruser;
@@ -4645,7 +4637,7 @@ try {
                 }
 
                 //获取当前正在审批用户
-                let auditnode = await window.storage.getStore(`workflows_audit_node_by_data_id@${id}`);
+                let auditnode = window.storage.getStore(`workflows_audit_node_by_data_id@${id}`);
                 result.operate = auditnode.employee;
             }
         } catch (err) {
@@ -5089,7 +5081,7 @@ try {
         var i = 0;
 
         try {
-            result = await window.storage.getStore(`system_process_log_done_all_user@${username}`);
+            result = window.storage.getStore(`system_process_log_done_all_user@${username}`);
 
             if (window.tools.isNull(result) || result.length == 0) {
                 result = [];
@@ -6299,14 +6291,5 @@ try {
 
     window.saveService = saveService;
 } catch (error) {
-    console.log(error);
-}
-console.log(error);
-}
-}
-
-window.saveService = saveService;
-}
-catch (error) {
     console.log(error);
 }
