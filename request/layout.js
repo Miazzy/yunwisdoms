@@ -113,21 +113,21 @@ const initLayout = (that) => {
         that.linkList.push(window.docKey);
     }
     //是否存在路径标识,检查pageList中是否含有window.musicKey
-    flag = window.__.find(that.pageList, item => {
-        return item.path == window.musicKey;
-    });
-    if (flag == null || typeof flag == "undefined") {
-        that.pageList.push({
-            name: "music-center",
-            path: window.musicKey,
-            fullPath: window.musicKey,
-            meta: {
-                icon: "music",
-                title: "音乐中心"
-            }
-        });
-        that.linkList.push(window.musicKey);
-    }
+    // flag = window.__.find(that.pageList, item => {
+    //     return item.path == window.musicKey;
+    // });
+    // if (flag == null || typeof flag == "undefined") {
+    //     that.pageList.push({
+    //         name: "music-center",
+    //         path: window.musicKey,
+    //         fullPath: window.musicKey,
+    //         meta: {
+    //             icon: "music",
+    //             title: "音乐中心"
+    //         }
+    //     });
+    //     that.linkList.push(window.musicKey);
+    // }
     //是否存在路径标识,检查pageList中是否含有window.companyPanKey
     flag = window.__.find(that.pageList, item => {
         return item.path == window.companyPanKey;
@@ -177,21 +177,21 @@ const initLayout = (that) => {
         that.linkList.push(window.sourceKey);
     }
     //是否存在路径标识,检查pageList中是否含有window.wallKey
-    flag = window.__.find(that.pageList, item => {
-        return item.path == window.wallKey;
-    });
-    if (flag == null || typeof flag == "undefined") {
-        that.pageList.push({
-            name: "wall-center",
-            path: window.wallKey,
-            fullPath: window.wallKey,
-            meta: {
-                icon: "wall",
-                title: "壁纸中心"
-            }
-        });
-        that.linkList.push(window.wallKey);
-    }
+    // flag = window.__.find(that.pageList, item => {
+    //     return item.path == window.wallKey;
+    // });
+    // if (flag == null || typeof flag == "undefined") {
+    //     that.pageList.push({
+    //         name: "wall-center",
+    //         path: window.wallKey,
+    //         fullPath: window.wallKey,
+    //         meta: {
+    //             icon: "wall",
+    //             title: "壁纸中心"
+    //         }
+    //     });
+    //     that.linkList.push(window.wallKey);
+    // }
     //是否存在路径标识,检查pageList中是否含有window.webchatKey
     flag = window.__.find(that.pageList, item => {
         return item.path == window.webchatKey;
@@ -209,19 +209,19 @@ const initLayout = (that) => {
         that.linkList.push(window.webchatKey);
     }
     if (
+        //that.$route.fullPath != window.blogKey &&
+        //that.$route.fullPath != window.musicKey &&
+        //that.$route.fullPath != window.wallKey &&
         that.$route.fullPath != window.indexKey &&
         that.$route.fullPath != window.workplaceKey &&
         that.$route.fullPath != window.centerKey &&
-        //that.$route.fullPath != window.blogKey &&
         that.$route.fullPath != window.taskKey &&
         that.$route.fullPath != window.documentKey &&
         that.$route.fullPath != window.docKey &&
         that.$route.fullPath != window.companyPanKey &&
         that.$route.fullPath != window.yunpanKey &&
         that.$route.fullPath != window.sourceKey &&
-        that.$route.fullPath != window.wallKey &&
-        that.$route.fullPath != window.webchatKey &&
-        that.$route.fullPath != window.musicKey
+        that.$route.fullPath != window.webchatKey
     ) {
         that.pageList.push(that.$route);
         that.linkList.push(that.$route.fullPath);
@@ -422,10 +422,10 @@ const checkClosePageValidLayout = (key, that) => {
         that.$message.warning("文档中心不能关闭!");
         return false;
     }
-    if (key == window.musicKey) {
-        that.$message.warning("音乐中心不能关闭!");
-        return false;
-    }
+    // if (key == window.musicKey) {
+    //     that.$message.warning("音乐中心不能关闭!");
+    //     return false;
+    // }
     if (key == window.companyPanKey) {
         that.$message.warning("公司云盘不能关闭!");
         return false;
@@ -438,10 +438,10 @@ const checkClosePageValidLayout = (key, that) => {
         that.$message.warning("资料仓库不能关闭!");
         return false;
     }
-    if (key == window.wallKey) {
-        that.$message.warning("壁纸中心不能关闭!");
-        return false;
-    }
+    // if (key == window.wallKey) {
+    //     that.$message.warning("壁纸中心不能关闭!");
+    //     return false;
+    // }
     if (key == window.webchatKey) {
         that.$message.warning("云聊不能关闭!");
         return false;
