@@ -65,37 +65,37 @@ const initLayout = (that) => {
     // that.linkList.push(window.blogKey);
     // }
     //是否存在路径标识,检查pageList中是否含有window.taskKey
-    flag = window.__.find(that.pageList, item => {
-        return item.path == window.taskKey;
-    });
-    if (flag == null || typeof flag == "undefined") {
-        that.pageList.push({
-            name: "task-center",
-            path: window.taskKey,
-            fullPath: window.taskKey,
-            meta: {
-                icon: "task",
-                title: "任务中心"
-            }
-        });
-        that.linkList.push(window.taskKey);
-    }
+    // flag = window.__.find(that.pageList, item => {
+    //     return item.path == window.taskKey;
+    // });
+    // if (flag == null || typeof flag == "undefined") {
+    //     that.pageList.push({
+    //         name: "task-center",
+    //         path: window.taskKey,
+    //         fullPath: window.taskKey,
+    //         meta: {
+    //             icon: "task",
+    //             title: "任务中心"
+    //         }
+    //     });
+    //     that.linkList.push(window.taskKey);
+    // }
     //是否存在路径标识,检查pageList中是否含有window.documentKey
-    flag = window.__.find(that.pageList, item => {
-        return item.path == window.documentKey;
-    });
-    if (flag == null || typeof flag == "undefined") {
-        that.pageList.push({
-            name: "document-center",
-            path: window.documentKey,
-            fullPath: window.documentKey,
-            meta: {
-                icon: "document",
-                title: "文档中心"
-            }
-        });
-        that.linkList.push(window.documentKey);
-    }
+    // flag = window.__.find(that.pageList, item => {
+    //     return item.path == window.documentKey;
+    // });
+    // if (flag == null || typeof flag == "undefined") {
+    //     that.pageList.push({
+    //         name: "document-center",
+    //         path: window.documentKey,
+    //         fullPath: window.documentKey,
+    //         meta: {
+    //             icon: "document",
+    //             title: "文档中心"
+    //         }
+    //     });
+    //     that.linkList.push(window.documentKey);
+    // }
     //是否存在路径标识,检查pageList中是否含有window.docKey
     flag = window.__.find(that.pageList, item => {
         return item.path == window.docKey;
@@ -212,11 +212,11 @@ const initLayout = (that) => {
         //that.$route.fullPath != window.blogKey &&
         //that.$route.fullPath != window.musicKey &&
         //that.$route.fullPath != window.wallKey &&
+        //that.$route.fullPath != window.documentKey &&
+        //that.$route.fullPath != window.taskKey &&
         that.$route.fullPath != window.indexKey &&
         that.$route.fullPath != window.workplaceKey &&
         that.$route.fullPath != window.centerKey &&
-        that.$route.fullPath != window.taskKey &&
-        that.$route.fullPath != window.documentKey &&
         that.$route.fullPath != window.docKey &&
         that.$route.fullPath != window.companyPanKey &&
         that.$route.fullPath != window.yunpanKey &&
@@ -394,6 +394,26 @@ const closeTabPageLayout = (key, that) => {
 window.closeTabPageLayout = closeTabPageLayout;
 
 const checkClosePageValidLayout = (key, that) => {
+    // if (key == window.blogKey) {
+    //     that.$message.warning("博客中心不能关闭!");
+    //     return false;
+    // }
+    // if (key == window.documentKey) {
+    //     that.$message.warning("文档中心不能关闭!");
+    //     return false;
+    // }
+    // if (key == window.musicKey) {
+    //     that.$message.warning("音乐中心不能关闭!");
+    //     return false;
+    // }
+    // if (key == window.taskKey) {
+    //     that.$message.warning("任务中心不能关闭!");
+    //     return false;
+    // }
+    // if (key == window.wallKey) {
+    //     that.$message.warning("壁纸中心不能关闭!");
+    //     return false;
+    // }
     if (key == window.indexKey) {
         that.$message.warning("首页不能关闭!");
         return false;
@@ -406,26 +426,10 @@ const checkClosePageValidLayout = (key, that) => {
         that.$message.warning("个人中心不能关闭!");
         return false;
     }
-    // if (key == window.blogKey) {
-    //     that.$message.warning("博客中心不能关闭!");
-    //     return false;
-    // }
-    if (key == window.taskKey) {
-        that.$message.warning("任务中心不能关闭!");
-        return false;
-    }
-    if (key == window.documentKey) {
-        that.$message.warning("文档中心不能关闭!");
-        return false;
-    }
     if (key == window.docKey) {
         that.$message.warning("文档中心不能关闭!");
         return false;
     }
-    // if (key == window.musicKey) {
-    //     that.$message.warning("音乐中心不能关闭!");
-    //     return false;
-    // }
     if (key == window.companyPanKey) {
         that.$message.warning("公司云盘不能关闭!");
         return false;
@@ -438,10 +442,6 @@ const checkClosePageValidLayout = (key, that) => {
         that.$message.warning("资料仓库不能关闭!");
         return false;
     }
-    // if (key == window.wallKey) {
-    //     that.$message.warning("壁纸中心不能关闭!");
-    //     return false;
-    // }
     if (key == window.webchatKey) {
         that.$message.warning("云聊不能关闭!");
         return false;
