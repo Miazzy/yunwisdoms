@@ -68,7 +68,7 @@ function init() {
         console.log('设置缓存');
 
         //第三步，跳转页面到主页面
-        window.location.href = window.location.protocol + '://' + window.location.host + ':' + window.location.port + '/todo/home.xhtm';
+        window.location.href = window.location.protocol + '://' + window.location.host + '/todo/home.xhtm';
     } catch (error) {
         console.log(error);
     }
