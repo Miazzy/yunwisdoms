@@ -238,6 +238,21 @@ const initLayout = (that) => {
         });
         that.linkList.push(window.teamKey);
     }
+    flag = window.__.find(that.pageList, item => {
+        return item.path == window.searchKey;
+    });
+    if (flag == null || typeof flag == "undefined") {
+        that.pageList.push({
+            name: "search-center",
+            path: window.searchKey,
+            fullPath: window.searchKey,
+            meta: {
+                icon: "search",
+                title: "搜索"
+            }
+        });
+        that.linkList.push(window.searchKey);
+    }
     if (
         //that.$route.fullPath != window.blogKey &&
         //that.$route.fullPath != window.musicKey &&
@@ -251,6 +266,9 @@ const initLayout = (that) => {
         that.$route.fullPath != window.companyPanKey &&
         that.$route.fullPath != window.yunpanKey &&
         that.$route.fullPath != window.sourceKey &&
+        that.$route.fullPath != window.poetryKey &&
+        that.$route.fullPath != window.teamKey &&
+        that.$route.fullPath != window.searchKey &&
         that.$route.fullPath != window.webchatKey
     ) {
         that.pageList.push(that.$route);
@@ -449,31 +467,43 @@ const checkClosePageValidLayout = (key, that) => {
         return false;
     }
     if (key == window.workplaceKey) {
-        that.$message.warning("应用中心不能关闭!");
+        that.$message.warning("应用不能关闭!");
         return false;
     }
     if (key == window.centerKey) {
-        that.$message.warning("个人中心不能关闭!");
+        that.$message.warning("博文不能关闭!");
         return false;
     }
     if (key == window.docKey) {
-        that.$message.warning("文档中心不能关闭!");
+        that.$message.warning("资料不能关闭!");
         return false;
     }
     if (key == window.companyPanKey) {
-        that.$message.warning("公司云盘不能关闭!");
+        that.$message.warning("云盘不能关闭!");
         return false;
     }
     if (key == window.yunpanKey) {
-        that.$message.warning("个人云盘不能关闭!");
+        that.$message.warning("私盘不能关闭!");
         return false;
     }
     if (key == window.sourceKey) {
-        that.$message.warning("资料仓库不能关闭!");
+        that.$message.warning("仓库不能关闭!");
         return false;
     }
     if (key == window.webchatKey) {
         that.$message.warning("云聊不能关闭!");
+        return false;
+    }
+    if (key == window.poetryKey) {
+        that.$message.warning("诗词不能关闭!");
+        return false;
+    }
+    if (key == window.teamKey) {
+        that.$message.warning("协作不能关闭!");
+        return false;
+    }
+    if (key == window.searchKey) {
+        that.$message.warning("搜索不能关闭!");
         return false;
     }
     if (that.$root.$tabs.pageList.length === 1) {
