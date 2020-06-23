@@ -12,6 +12,8 @@ const wallKey = `/task/3b94800bd3640cb0f8d4a924ee2b80d2`;
 const companyPanKey = `/task/9bcd4fcb74cf9742671d28bd689f76c8`;
 const webchatKey = `/task/0e144b4013235c4e84bb4daf29c393f0`;
 const devopsKey = `/task/f9e73258e0ace5709e4cf83e6057602b`;
+const poetryKey = `/task/fc2132705ef3c93afedc3e2af1de1a91`;
+const teamKey = `/task/c2fdec94e0016aa531e5835b80776fab`;
 
 var titleKV = {
     "0b511f234f3847baa50106a14fff6215": "审批处理",
@@ -574,6 +576,8 @@ var requestAPIConfig = {
     PROCESS_NODE_DICT_ID: '095a5c3fed5b29706cdfc6d9cb32cd4c', //流程节点，对应的字典的ID,根据这个查询流程节点的名称
 }
 
+window.teamKey = teamKey; //team协作
+window.poetryKey = poetryKey; //中文诗词
 window.devopsKey = devopsKey; //云上运维
 window.webchatKey = webchatKey;
 window.companyPanKey = companyPanKey;

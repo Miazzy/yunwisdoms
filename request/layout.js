@@ -27,7 +27,7 @@ const initLayout = (that) => {
             fullPath: window.workplaceKey,
             meta: {
                 icon: "dashboard",
-                title: "应用中心"
+                title: "应用"
             }
         });
         that.linkList.push(window.workplaceKey);
@@ -43,7 +43,7 @@ const initLayout = (that) => {
             fullPath: window.centerKey,
             meta: {
                 icon: "account",
-                title: "博文交流"
+                title: "博文"
             }
         });
         that.linkList.push(window.centerKey);
@@ -107,7 +107,7 @@ const initLayout = (that) => {
             fullPath: window.docKey,
             meta: {
                 icon: "document",
-                title: "资料中心"
+                title: "资料"
             }
         });
         that.linkList.push(window.docKey);
@@ -139,7 +139,7 @@ const initLayout = (that) => {
             fullPath: window.companyPanKey,
             meta: {
                 icon: "disk",
-                title: "公司云盘"
+                title: "云盘"
             }
         });
         that.linkList.push(window.companyPanKey);
@@ -155,7 +155,7 @@ const initLayout = (that) => {
             fullPath: window.yunpanKey,
             meta: {
                 icon: "disk",
-                title: "个人云盘"
+                title: "私盘"
             }
         });
         that.linkList.push(window.yunpanKey);
@@ -171,7 +171,7 @@ const initLayout = (that) => {
             fullPath: window.sourceKey,
             meta: {
                 icon: "disk",
-                title: "资料仓库"
+                title: "仓库"
             }
         });
         that.linkList.push(window.sourceKey);
@@ -203,10 +203,40 @@ const initLayout = (that) => {
             fullPath: window.webchatKey,
             meta: {
                 icon: "webchat",
-                title: "云聊信息"
+                title: "云聊"
             }
         });
         that.linkList.push(window.webchatKey);
+    }
+    flag = window.__.find(that.pageList, item => {
+        return item.path == window.poetryKey;
+    });
+    if (flag == null || typeof flag == "undefined") {
+        that.pageList.push({
+            name: "poetry-center",
+            path: window.poetryKey,
+            fullPath: window.poetryKey,
+            meta: {
+                icon: "poetry",
+                title: "诗词"
+            }
+        });
+        that.linkList.push(window.poetryKey);
+    }
+    flag = window.__.find(that.pageList, item => {
+        return item.path == window.teamKey;
+    });
+    if (flag == null || typeof flag == "undefined") {
+        that.pageList.push({
+            name: "team-center",
+            path: window.teamKey,
+            fullPath: window.teamKey,
+            meta: {
+                icon: "team",
+                title: "协作"
+            }
+        });
+        that.linkList.push(window.teamKey);
     }
     if (
         //that.$route.fullPath != window.blogKey &&
