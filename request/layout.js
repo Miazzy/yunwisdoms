@@ -144,21 +144,6 @@ const initLayout = (that) => {
         });
         that.linkList.push(window.companyPanKey);
     }
-    flag = window.__.find(that.pageList, item => {
-        return item.path == window.calendarKey;
-    });
-    if (flag == null || typeof flag == "undefined") {
-        that.pageList.push({
-            name: "calendar-disk-center",
-            path: window.calendarKey,
-            fullPath: window.calendarKey,
-            meta: {
-                icon: "calendar",
-                title: "日历"
-            }
-        });
-        that.linkList.push(window.calendarKey);
-    }
     //是否存在路径标识,检查pageList中是否含有window.yunpanKey
     flag = window.__.find(that.pageList, item => {
         return item.path == window.yunpanKey;
@@ -267,6 +252,21 @@ const initLayout = (that) => {
             }
         });
         that.linkList.push(window.searchKey);
+    }
+    flag = window.__.find(that.pageList, item => {
+        return item.path == window.calendarKey;
+    });
+    if (flag == null || typeof flag == "undefined") {
+        that.pageList.push({
+            name: "calendar-disk-center",
+            path: window.calendarKey,
+            fullPath: window.calendarKey,
+            meta: {
+                icon: "calendar",
+                title: "日历"
+            }
+        });
+        that.linkList.push(window.calendarKey);
     }
     if (
         //that.$route.fullPath != window.blogKey &&
