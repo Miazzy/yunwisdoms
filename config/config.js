@@ -16,6 +16,7 @@ const poetryKey = `/task/fc2132705ef3c93afedc3e2af1de1a91`;
 const teamKey = `/task/c2fdec94e0016aa531e5835b80776fab`;
 const searchKey = `/task/7006ba0fcbc98b7aab607abd3de67db2`;
 const calendarKey = `/task/76e9d22de9acba944daaa2971c3918c9`;
+const mokerKey = `/task/a89532f0eb434cdd6450a0ac2407b45f`;
 
 var titleKV = {
     "0b511f234f3847baa50106a14fff6215": "审批处理",
@@ -577,6 +578,7 @@ var requestAPIConfig = {
     PROCESS_NODE_DICT_ID: '095a5c3fed5b29706cdfc6d9cb32cd4c', //流程节点，对应的字典的ID,根据这个查询流程节点的名称
 }
 
+window.mokerKey = mokerKey; //文人墨客
 window.calendarKey = calendarKey; //万年皇历
 window.searchKey = searchKey; //极速搜索
 window.teamKey = teamKey; //team协作

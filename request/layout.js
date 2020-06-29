@@ -224,6 +224,21 @@ const initLayout = (that) => {
         that.linkList.push(window.poetryKey);
     }
     flag = window.__.find(that.pageList, item => {
+        return item.path == window.mokerKey;
+    });
+    if (flag == null || typeof flag == "undefined") {
+        that.pageList.push({
+            name: "moker-disk-center",
+            path: window.mokerKey,
+            fullPath: window.mokerKey,
+            meta: {
+                icon: "moker",
+                title: "墨客"
+            }
+        });
+        that.linkList.push(window.mokerKey);
+    }
+    flag = window.__.find(that.pageList, item => {
         return item.path == window.teamKey;
     });
     if (flag == null || typeof flag == "undefined") {
@@ -282,6 +297,7 @@ const initLayout = (that) => {
         that.$route.fullPath != window.yunpanKey &&
         that.$route.fullPath != window.sourceKey &&
         that.$route.fullPath != window.poetryKey &&
+        that.$route.fullPath != window.mokerKey &&
         that.$route.fullPath != window.teamKey &&
         that.$route.fullPath != window.searchKey &&
         that.$route.fullPath != window.calendarKey &&
@@ -512,6 +528,10 @@ const checkClosePageValidLayout = (key, that) => {
     }
     if (key == window.poetryKey) {
         that.$message.warning("诗词不能关闭!");
+        return false;
+    }
+    if (key == window.mokerKey) {
+        that.$message.warning("墨客不能关闭!");
         return false;
     }
     if (key == window.teamKey) {
