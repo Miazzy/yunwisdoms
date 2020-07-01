@@ -401,6 +401,8 @@ try {
             //如果找到用户信息，则设置用户信息
             if (!window.tools.isNull(user)) {
                 chinese = `${chinese},${user.username}`;
+            } else {
+                chinese = `${chinese},${ename}`;
             }
 
         }
@@ -453,6 +455,8 @@ try {
             //如果找到用户信息，则设置用户信息
             if (!window.tools.isNull(user)) {
                 chinese = `${chinese},${user.realname}`;
+            } else {
+                chinese = `${chinese},${ename}`;
             }
         }
 
@@ -722,7 +726,7 @@ try {
             console.log('set curRow MusicURL error :' + error);
         }
         try {
-            main.slides = queryImageURL(main.curRow.files);
+            main.slides = await window.queryImageURL(main.curRow.files);
         } catch (error) {
             console.log('set curRow slides error :' + error);
         }
@@ -895,6 +899,7 @@ try {
      * @function 查询附件中的文档地址
      */
     var queryOfficeURL = async(text, tools = window.tools) => {
+
         //文档数组
         var fileList = [];
         var officeList = [];
@@ -920,7 +925,7 @@ try {
                 //获取小写后的路径
                 var ptext = window.tools.deNull(text).toLowerCase();
                 //定义下载地址
-                var download = window._CONFIG['downloadURL'] + '/';
+                var download = window._CONFIG['ossURL'] + '/';
                 //文档预览URL
                 var previewURL = window._CONFIG['viewURL'];
 
@@ -1511,7 +1516,7 @@ try {
 
                 //获取图片真实下载地址 在线压缩地址：window._CONFIG['thumborURL'] + encodeURIComponent(text)  离线压缩地址：text.replace('files/', 'files/images/').replace(suffix,'_S240x160'+suffix)
                 text =
-                    window._CONFIG['downloadURL'] + '/' + text.replace('files/', 'files/');
+                    window._CONFIG['ossURL'] + '/' + text.replace('files/', 'files/');
 
                 //如果文件路径为图片地址，则存入images中
                 if (flag) {
@@ -1588,7 +1593,7 @@ try {
 
                 //获取图片真实下载地址 在线压缩地址：window._CONFIG['thumborURL'] + encodeURIComponent(text)  离线压缩地址：text.replace('files/', 'files/images/').replace(suffix,'_S240x160'+suffix)
                 text =
-                    window._CONFIG['downloadURL'] + '/' + text.replace('files/', 'files/');
+                    window._CONFIG['ossURL'] + '/' + text.replace('files/', 'files/');
 
                 //如果文件路径为图片地址，则存入images中
                 if (flag) {
@@ -1677,17 +1682,14 @@ try {
                     .toLowerCase();
 
                 //定义压缩图片URL
-                var thumborURL = text
-                    .replace('files/', 'files/images/')
-                    .replace(suffix, '_S240x160' + suffix);
+                var thumborURL = text;
+                // .replace('files/', 'files/images/')
+                // .replace(suffix, '_S240x160' + suffix);
 
                 //获取图片真实下载地址 在线压缩地址：window._CONFIG['thumborURL'] + encodeURIComponent(text)  离线压缩地址：text.replace('files/', 'files/images/').replace(suffix,'_S240x160'+suffix)
-                text =
-                    window._CONFIG['downloadURL'] +
-                    '/' +
-                    text.replace('files/', 'files/origin/');
+                text = window._CONFIG['ossURL'] + '/' + text.replace('files/', 'files/');
                 //获取压缩图片地址
-                thumborURL = window._CONFIG['downloadURL'] + '/' + thumborURL;
+                thumborURL = window._CONFIG['ossURL'] + '/' + thumborURL;
                 //图片预加载地址
                 ptext = thumborURL;
                 //获取在线裁剪预览地址
@@ -1696,19 +1698,30 @@ try {
                 //动态加载图片，并计算图片高宽比
                 var img = new Image();
                 img.src = ptext;
-                img.onload = () => {
-                    //如果文件路径为图片地址，则存入images中
-                    if (flag) {
-                        //将数据存入images中
-                        images.push({
-                            src: text,
-                            msrc: thumborURL,
-                            title: '图片预览',
-                            w: 900,
-                            h: (900 * img.height) / img.width,
-                        });
-                    }
-                };
+                // img.onload = () => {
+                //     //如果文件路径为图片地址，则存入images中
+                //     if (flag) {
+                //         //将数据存入images中
+                //         images.push({
+                //             src: text,
+                //             msrc: thumborURL,
+                //             title: '图片预览',
+                //             w: 900,
+                //             h: (900 * img.height) / img.width,
+                //         });
+                //     }
+                // };
+
+                if (flag) {
+                    //将数据存入images中
+                    images.push({
+                        src: text,
+                        msrc: thumborURL,
+                        title: '图片预览',
+                        w: 900,
+                        h: (900 * img.height) / img.width,
+                    });
+                }
 
                 return flag;
             });
@@ -2570,7 +2583,7 @@ try {
             }
 
             //设置缓存信息
-            storage.setStoreDB(`cache_bs_comments_id:${id}`, JSON.stringify(wflow), 3600);
+            storage.setStoreDB(`cache_bs_comments_id:${id}`, JSON.stringify(wflow), 3600 * 2);
 
         } catch (err) {
             console.log(err);
@@ -4081,7 +4094,7 @@ try {
                 window.storage.setStore(
                     `system_v_admin_info@username$${username}`,
                     result,
-                    3600 * 24
+                    3600 * 2
                 );
             }
         } catch (err) {
@@ -4119,7 +4132,7 @@ try {
                 window.storage.setStore(
                     `system_v_user_info@username$${username}`,
                     result,
-                    3600 * 24
+                    3600 * 2
                 );
             }
         } catch (err) {
@@ -4490,6 +4503,55 @@ try {
     console.log(error);
 }
 
+try {
+    /**
+     * 查询用户名称信息
+     */
+    var queryUserNameByDB = async(storage = window.storage) => {
+        //查询URL
+        var index = 0;
+        var queryURL;
+        var result = [];
+
+        try {
+            //从缓存中获取用户数据
+            var userlist = window.storage.getStore('cache_all_user_name_db');
+
+            if (
+                typeof userlist == 'undefined' ||
+                userlist == null ||
+                userlist.length == 0
+            ) {
+                while (index < 10000) {
+                    queryURL = `${window.requestAPIConfig.restapi}/api/v_uname?_p=${index++}&_size=95`;
+                    var res = await superagent.get(queryURL).set('accept', 'json');
+                    result = result.concat(res.body);
+                    //如果返回结果数据小于size，则表示查询到末页，不在查询
+                    if (res.body.length < 50) {
+                        break;
+                    } else {
+                        continue;
+                    }
+                }
+
+                //将用户数据设置到缓存中
+                window.storage.setStore('cache_all_user_name_db', result, 300);
+            } else {
+                result = userlist;
+            }
+
+            return result;
+        } catch (err) {
+            console.log(err);
+        }
+    }
+
+    window.queryUserNameByDB = queryUserNameByDB;
+
+} catch (error) {
+    console.log(error);
+}
+
 
 try {
     /**
@@ -4523,7 +4585,7 @@ try {
                 }
 
                 //将用户数据设置到缓存中
-                window.storage.setStore('cache_all_user_name', result, 3600 * 24);
+                window.storage.setStore('cache_all_user_name', result, 3600 * 2);
             } else {
                 result = userlist;
             }
@@ -5115,7 +5177,7 @@ try {
                 window.storage.setStore(
                     `system_process_log_done_all_user@${username}`,
                     JSON.stringify(result),
-                    3600 * 24
+                    3600 * 2
                 );
             } else {
                 //获取到数据，查询最新的数据，取出数组中第一条数据，然后查询时间大于等于这条的待办，然后去掉重复数据
@@ -5173,7 +5235,7 @@ try {
                 window.storage.setStore(
                     `system_process_log_done_all_user@${username}`,
                     JSON.stringify(result),
-                    3600 * 24
+                    3600 * 2
                 );
             }
 
@@ -6292,4 +6354,6 @@ try {
     window.saveService = saveService;
 } catch (error) {
     console.log(error);
+}
+console.log(error);
 }

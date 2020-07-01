@@ -15,9 +15,13 @@ window._CONFIG['domianURL'] = window._CONFIG['domain'] + '/jeecg-boot';
 //下载服务器域名
 window._CONFIG['uploadURL'] = 'https://upload.' + window._CONFIG['topDomain'];
 //下载服务器域名
-window._CONFIG['downloadURL'] = window._CONFIG['uploadURL'];
+window._CONFIG['uploaxURL'] = `https://oa-system-oss.oss-cn-beijing.aliyuncs.com`;
+//下载服务器域名
+window._CONFIG['downloadURL'] = window._CONFIG['uploaxURL'];
+//OSS对象服务域名
+window._CONFIG['ossURL'] = window._CONFIG['uploaxURL'];
 //document下载服务器地址
-window._CONFIG['docDownURL'] = window._CONFIG['uploadURL'] + '/jeecg-boot/sys/common/view/';
+window._CONFIG['docDownURL'] = window._CONFIG['uploadURL'];
 //图片服务器域名
 window._CONFIG['imgDomainURL'] = window._CONFIG['uploadURL'];
 //KKFileView文档预览URL
@@ -38,8 +42,14 @@ window._CONFIG['casPrefixUrl'] = 'https://sso.' + window._CONFIG['topDomain'] + 
 window._CONFIG['validURL'] = window._CONFIG['domain'] + '/sys/common/url?path=';
 //下载地址URL
 window._CONFIG['staticDomainURL'] = window._CONFIG['uploadURL'];
+//查询浏览器IP地址，所属地区
+window._CONFIG['ipLocationURL'] = `https://apis.map.qq.com/ws/location/v1/ip?key=3BFBZ-ZKD3X-LW54A-ZT76D-E7AHO-4RBD5`;
+//查询天气预报URL
+window._CONFIG['weatherURL'] = `https://weather.shengtai.club`;
 //设置公式名称
 window._CONFIG['company'] = '鹏程';
+//文档转换时间
+window._CONFIG['office_expire_time'] = 10000;
 
 //设置underscore
 try {

@@ -283,6 +283,21 @@ const initLayout = (that) => {
         });
         that.linkList.push(window.calendarKey);
     }
+    flag = window.__.find(that.pageList, item => {
+        return item.path == window.weatherKey;
+    });
+    if (flag == null || typeof flag == "undefined") {
+        that.pageList.push({
+            name: "weather-center",
+            path: window.weatherKey,
+            fullPath: window.weatherKey,
+            meta: {
+                icon: "weather",
+                title: "天气"
+            }
+        });
+        that.linkList.push(window.weatherKey);
+    }
     if (
         //that.$route.fullPath != window.blogKey &&
         //that.$route.fullPath != window.musicKey &&
@@ -301,6 +316,7 @@ const initLayout = (that) => {
         that.$route.fullPath != window.teamKey &&
         that.$route.fullPath != window.searchKey &&
         that.$route.fullPath != window.calendarKey &&
+        that.$route.fullPath != window.weatherKey &&
         that.$route.fullPath != window.webchatKey
     ) {
         that.pageList.push(that.$route);
@@ -544,6 +560,10 @@ const checkClosePageValidLayout = (key, that) => {
     }
     if (key == window.calendarKey) {
         that.$message.warning("日历不能关闭!");
+        return false;
+    }
+    if (key == window.weatherKey) {
+        that.$message.warning("天气不能关闭!");
         return false;
     }
     if (that.$root.$tabs.pageList.length === 1) {

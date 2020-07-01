@@ -7,7 +7,7 @@
  */
 async function initWflowPage(that, tools = window.tools, storage = window.storage, manageAPI = window.manageAPI) {
     //查询用户数据，将数据缓存到浏览器缓存
-    await manageAPI.queryUserName();
+    await manageAPI.queryUserNameByDB();
 
     //获取用户信息
     that.userInfo = storage.getStore("cur_user");
@@ -111,7 +111,7 @@ window.loadData = loadData;
  */
 async function loadWorkflowNode(that, tools, storage, manageAPI) {
     //查询用户信息
-    var userlist = await manageAPI.queryUserName();
+    var userlist = await manageAPI.queryUserNameByDB();
     //获取当前流程的节点信息
     var node = await manageAPI.queryWorkflowNode(that.curRow.id);
 
@@ -426,10 +426,13 @@ async function handleShort(that, storage, tools, manageAPI) {
 window.handleShort = handleShort;
 
 async function handlePreview(item, manageAPI) {
+    let type = ['doc', 'docx', 'xlsx', 'xls', 'ppt', 'pptx'];
     //检测转化后的FileURL是否可用，如果可用则使用本地地址预览，否则使用kkfileview预览
-    var existFlag = await manageAPI.queryUrlValid(item.fileURL);
+    let existFlag = await manageAPI.queryUrlValid(item.file);
+    let suffix = item.name.split('.');
+    suffix = suffix[suffix.length - 1];
     //如果文件地址不存在，则使用kkfileview预览模式，否则使用自带预览服务
-    if (!existFlag) {
+    if (!existFlag && type.includes(suffix)) {
         window.open(window._CONFIG["previewURL"] + item.msrc);
     } else {
         //window打开链接
@@ -1113,6 +1116,7 @@ window.handleApproveWF = handleApproveWF;
  * @function 生成任务记录数据
  */
 async function handleTaskItem(result = "", that, tools = window.tools, manageAPI = window.manageAPI) {
+
     //打印表单名称
     var tableName = tools.queryUrlString("table_name");
 
@@ -1438,6 +1442,7 @@ window.handleConfirmWF = handleConfirmWF;
  * @function 提交自由流程
  */
 async function handleSubmitWF(that, tools = window.tools, storage = window.storage, manageAPI = window.manageAPI, workflowAPI = window.workflowAPI) {
+
     //获取审核用户记录
     var wfUsers = that.wflowUsers;
 
