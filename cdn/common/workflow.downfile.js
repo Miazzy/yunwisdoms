@@ -4,6 +4,10 @@ const port = window.location.port ? window.location.port : window.location.proto
 const apiURL = window.location.protocol + `//` + window.location.host + `:` + port + `/jeecg-boot/api/v1`;
 //下载调用通用接口
 const downApiURL = window.location.protocol + `//` + window.location.host + `:` + port + `/jeecg-boot/sys/common/officefile/`;
+//允许拦截视图标题 //允许拦截标题 const titleArray = ['通用审批单', '内部留言', '会议室申请单', '共享服务', '集团总裁工作部署通知'];
+const viewArray = ['【融量】通用审批', 'RC02.内部留言', 'RC03.会议室申请', 'RC04.共享服务', 'RC05.集团总裁工作部署通知', 'RC07.会议通知/纪要', 'RC08.工作联系函', 'RC09.工作说明/汇报(单职能)'];
+//是否开启检查标题
+const checkTitleFlag = false;
 
 /**
  * @function 定时任务数组执行器
@@ -25,19 +29,24 @@ function downloadButton() {
     var downloadLength = $('#rightBox').find('#null_box').find('input[title="下载"]').length;
     var fileinfo = $('td[name="appendixDatasField"]').find('div span').attr('onClick');
     var wedownloadLength = $('#wework-download-button').length;
+    var titleName = $($('.excelMainTable tbody tr')[1]).find('td div span').html().trim();
+    var viewTitle = $('#view_page #view_title').html().trim();
 
-    if (bodyLength > 0 && downloadLength <= 0) {
-        let title = $('#bodyiframe').contents().find('table[_target="mainFileUploadField"]').find('div span a[onmouseover="changefileaon(this)"]').attr('title')
-        let fileID = $('#bodyiframe').contents().find('table[_target="mainFileUploadField"]').find('div span a[onmouseover="changefileaon(this)"]').attr('onClick').split(';')[1].split(',')[2].replace(/\"|\'/g, "")
-        $('#rightBox').find('#null_box').find('input[title="打印"]').after('<input type="button" class="e8_btn_top" value="下载" title="下载" onclick="downloadFile(\'' + title + '\',' + fileID + ')" style="max-width: 100px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">')
+    if (viewTitle.includes(viewTitle) || checkTitleFlag) {
+        if (bodyLength > 0 && downloadLength <= 0) {
+            let title = $('#bodyiframe').contents().find('table[_target="mainFileUploadField"]').find('div span a[onmouseover="changefileaon(this)"]').attr('title')
+            let fileID = $('#bodyiframe').contents().find('table[_target="mainFileUploadField"]').find('div span a[onmouseover="changefileaon(this)"]').attr('onClick').split(';')[1].split(',')[2].replace(/\"|\'/g, "")
+            $('#rightBox').find('#null_box').find('input[title="打印"]').after('<input type="button" class="e8_btn_top" value="下载" title="下载" onclick="downloadFile(\'' + title + '\',' + fileID + ')" style="max-width: 100px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">')
+        }
+        if (fileinfo != null && typeof fileinfo != 'undefined' && wedownloadLength <= 0) {
+            let args = $('td[name="appendixDatasField"]').find('div span').attr('onClick').replace(/toDownload|\'/g, '').slice(1, -2).split(',');
+            let title = args[1];
+            let fileID = args[0];
+            $($('.excelMainTable tbody tr')[1]).find('td div').css('position', 'relative').css('font-size', '14px!important');
+            $($('.excelMainTable tbody tr')[1]).find('td div').append('<input id="wework-download-button" type="button" class="e8_btn_top" style="display:none;float:right;max-width: 100px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;font-size:12px!important;transform: scale(0.8); position: absolute;right: -10px!important; background: #007AFF;color: #fefefe!important;border: 0px solid #fefefe;border-radius: 5px; top: 15px;" value="下载" title="下载" onclick="downloadFile(\'' + title + '\',' + fileID + ')" />');
+        }
     }
-    if (fileinfo != null && typeof fileinfo != 'undefined' && wedownloadLength <= 0) {
-        let args = $('td[name="appendixDatasField"]').find('div span').attr('onClick').replace(/toDownload|\'/g, '').slice(1, -2).split(',');
-        let title = args[1];
-        let fileID = args[0];
-        $($('.excelMainTable tbody tr')[1]).find('td div').css('position', 'relative').css('font-size', '14px!important');
-        $($('.excelMainTable tbody tr')[1]).find('td div').append('<input id="wework-download-button" type="button" class="e8_btn_top" style="float:right;max-width: 100px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;font-size:12px!important;transform: scale(0.8); position: absolute;right: -10px!important; background: #007AFF;color: #fefefe!important;border: 0px solid #fefefe;border-radius: 5px; top: 15px;" value="下载" title="下载" onclick="downloadFile(\'' + title + '\',' + fileID + ')" />');
-    }
+
 }
 
 /**
