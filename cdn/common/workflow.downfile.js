@@ -5,8 +5,8 @@ const apiURL = window.location.protocol + `//` + window.location.host + `:` + po
 //下载调用通用接口
 const downApiURL = window.location.protocol + `//` + window.location.host + `:` + port + `/jeecg-boot/sys/common/officefile/`;
 //允许拦截视图标题 //允许拦截标题 const titleArray = ['通用审批单', '内部留言', '会议室申请单', '共享服务', '集团总裁工作部署通知'];
-const viewArray = ['【融量】通用审批', 'RC02.内部留言', 'RC03.会议室申请', 'RC04.共享服务', 'RC05.集团总裁工作部署通知', 'RC07.会议通知/纪要', 'RC08.工作联系函', 'RC09.工作说明/汇报(单职能)'];
-//是否开启检查标题
+const viewArray = ['【融量】通用审批', 'RC01.通用审批', 'RC02.内部留言', 'RC03.会议室申请', 'RC04.共享服务', 'RC05.集团总裁工作部署通知', 'RC06.行政处罚单批量发送', 'RC07.会议通知/纪要', 'RC08.工作联系函', 'RC09.工作说明/汇报(单职能)'];
+//是否开启检查标题 false: 开启 ， true: 所有标题都放行
 const checkTitleFlag = false;
 
 /**
@@ -65,6 +65,7 @@ function downloadFile(title, fileID) {
         });
     })
 
+    //绑定执行下载函数（原OA下载函数）
     window.toDownload = (fileID, title) => {
         downloadSingleFile(title, fileID);
     }
@@ -87,27 +88,32 @@ function toDownload(fileID, title) {
  */
 function downloadSingleFile(title, fileID) {
 
-    var url = apiURL + `/imagefile?_order=imagefileid&_where=(imagefileid,eq,` + fileID + `)&_fields=TokenKey,fileSize,filerealpath,imagefilename,imagefileid,imagefiletype`; //~and(imagefilename,like,%27` + title + `%27)
+    var viewTitle = $('#view_page #view_title').html().trim();
 
-    try {
-        superagent.get(url).then((res) => {
-            fileMap(res.body); //alert(JSON.stringify(res.body));
-        });
-    } catch (error) {
-        console.log(error);
+    if (viewArray.includes(viewTitle) || checkTitleFlag) {
+        var url = apiURL + `/imagefile?_order=imagefileid&_where=(imagefileid,eq,` + fileID + `)&_fields=TokenKey,fileSize,filerealpath,imagefilename,imagefileid,imagefiletype`;
+
+        try {
+            superagent.get(url).then((res) => {
+                fileMap(res.body);
+            });
+        } catch (error) {
+            console.log(error);
+        }
+
+        try {
+            fetch(url).then(function(response) {
+                return response.json();
+            }).then(function(arr) {
+                return fileMap(arr);
+            })
+        } catch (error) {
+            console.log(error);
+        }
+
+        console.log(`title:${title} , fileID:${fileID}`);
     }
 
-    try {
-        fetch(url).then(function(response) {
-            return response.json();
-        }).then(function(arr) {
-            return fileMap(arr);
-        })
-    } catch (error) {
-        console.log(error);
-    }
-
-    console.log(`title:${title} , fileID:${fileID}`);
 }
 
 /**
