@@ -1,9 +1,9 @@
 //检查本网站端口
 const port = window.location.port ? window.location.port : window.location.protocol == 'https:' ? 443 : 80;
 //API调用接口
-const apiURL = `http://` + window.location.host + `:` + port + `/jeecg-boot/api/v1`;
+const apiURL = window.location.protocol + `//` + window.location.host + `:` + port + `/jeecg-boot/api/v1`;
 //下载调用通用接口
-const downApiURL = `http://` + window.location.host + `:` + port + `/jeecg-boot/sys/common/officefile/`;
+const downApiURL = window.location.protocol + `//` + window.location.host + `:` + port + `/jeecg-boot/sys/common/officefile/`;
 
 /**
  * @function 定时任务数组执行器
