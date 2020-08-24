@@ -29,10 +29,9 @@ function downloadButton() {
     var downloadLength = $('#rightBox').find('#null_box').find('input[title="下载"]').length;
     var fileinfo = $('td[name="appendixDatasField"]').find('div span').attr('onClick');
     var wedownloadLength = $('#wework-download-button').length;
-    var titleName = $($('.excelMainTable tbody tr')[1]).find('td div span').html().trim();
-    var viewTitle = $('#view_page #view_title').html().trim();
+    var viewTitle = $('#view_page #view_title').html().trim(); //var titleName = $($('.excelMainTable tbody tr')[1]).find('td div span').html().trim();
 
-    if (viewTitle.includes(viewTitle) || checkTitleFlag) {
+    if (viewArray.includes(viewTitle) || checkTitleFlag) {
         if (bodyLength > 0 && downloadLength <= 0) {
             let title = $('#bodyiframe').contents().find('table[_target="mainFileUploadField"]').find('div span a[onmouseover="changefileaon(this)"]').attr('title')
             let fileID = $('#bodyiframe').contents().find('table[_target="mainFileUploadField"]').find('div span a[onmouseover="changefileaon(this)"]').attr('onClick').split(';')[1].split(',')[2].replace(/\"|\'/g, "")
