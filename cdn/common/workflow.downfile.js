@@ -17,7 +17,7 @@ const viewArray = ['【融量】通用审批', 'RC01.通用审批', 'RC02.内部
 //是否开启检查标题 false: 开启 ， true: 所有标题都放行
 const checkTitleFlag = true;
 //标题验证标识
-const checkTitleChar = "";
+const checkTitleChar = "加密";
 //检查企业微信UA
 const userAgent = navigator.userAgent;
 //流程标题
