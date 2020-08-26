@@ -18,13 +18,21 @@ const viewArray = ['【融量】通用审批', 'RC01.通用审批', 'RC02.内部
 const checkTitleFlag = true;
 //标题验证标识
 const checkTitleChar = "";
-//流程标题
-const viewTitle = $('#view_page #view_title').html().trim();
-//流程子标题
-const requestName = $('#requestname').value().trim()
-    .slice(-4);
 //检查企业微信UA
 const userAgent = navigator.userAgent;
+//流程标题
+var viewTitle = null;
+//流程子标题
+var requestName = null;
+
+try {
+    //流程标题
+    viewTitle = $('#view_page #view_title').html().trim();
+    //流程子标题
+    requestName = $('#requestnamespan').html().trim().slice(-4);
+} catch (error) {
+    console.log(error);
+}
 
 //如果是IP,则换成域名
 if (isValidIP(window.location.host.split(':')[0])) {
