@@ -1,7 +1,7 @@
 //定义配置文件对象
 window._CONFIG = {};
 //Vue服务器顶级域名
-window._CONFIG['topDomain'] = 'yunwisdom.club:30080';
+window._CONFIG['topDomain'] = 'yunwisdom.club:30443';
 //Vue服务器域名
 window._CONFIG['domain'] = 'https://www.' + window._CONFIG['topDomain'];
 //Vue-REST-API服务器域名
