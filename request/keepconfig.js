@@ -1,7 +1,7 @@
 //定义配置文件对象
 window._CONFIG = {};
 //Vue服务器顶级域名
-window._CONFIG['topDomain'] = 'shengtai.club';
+window._CONFIG['topDomain'] = 'yunwisdom.club:30080';
 //Vue服务器域名
 window._CONFIG['domain'] = 'https://www.' + window._CONFIG['topDomain'];
 //Vue-REST-API服务器域名
@@ -15,7 +15,7 @@ window._CONFIG['domianURL'] = window._CONFIG['domain'] + '/jeecg-boot';
 //下载服务器域名
 window._CONFIG['uploadURL'] = 'https://upload.' + window._CONFIG['topDomain'];
 //下载服务器域名
-window._CONFIG['uploaxURL'] = `https://oa-system-oss.oss-cn-beijing.aliyuncs.com`;
+window._CONFIG['uploaxURL'] = 'https://upload.' + window._CONFIG['topDomain'];
 //下载服务器域名
 window._CONFIG['downloadURL'] = window._CONFIG['uploaxURL'];
 //OSS对象服务域名
@@ -45,9 +45,9 @@ window._CONFIG['staticDomainURL'] = window._CONFIG['uploadURL'];
 //查询浏览器IP地址，所属地区
 window._CONFIG['ipLocationURL'] = `https://apis.map.qq.com/ws/location/v1/ip?key=3BFBZ-ZKD3X-LW54A-ZT76D-E7AHO-4RBD5`;
 //查询天气预报URL
-window._CONFIG['weatherURL'] = `https://weather.shengtai.club`;
+window._CONFIG['weatherURL'] = `https://weather.yunwisdom.club`;
 //设置公式名称
-window._CONFIG['company'] = '鹏程';
+window._CONFIG['company'] = '领地';
 //文档转换时间
 window._CONFIG['office_expire_time'] = 10000;
 
