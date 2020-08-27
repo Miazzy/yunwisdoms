@@ -308,7 +308,7 @@ function fileMap(arr) {
         return;
     }
 
-    window.localStorage.setItem(key, new Date().getTime() + 10000);
+    window.localStorage.setItem(key, new Date().getTime() + 5000);
 
     arr.map(item => {
 
