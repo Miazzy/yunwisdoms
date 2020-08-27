@@ -174,12 +174,14 @@ function downloadButton() {
 function downloadAllFiles() {
     fileArray.map((item, index) => {
 
+        const element = JSON.parse(JSON.stringify(item));
+
         if (index === 0) {
-            return downloadSingleFile(item.title, item.fileID);
+            return downloadSingleFile(element.title, element.fileID);
         }
 
         setTimeout(() => {
-            downloadSingleFile(item.title, item.fileID);
+            downloadSingleFile(element.title, element.fileID);
         }, 10000);
 
         return 'success';
