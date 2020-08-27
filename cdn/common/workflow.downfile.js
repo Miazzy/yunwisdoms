@@ -1,3 +1,4 @@
+/* eslint-disable newline-per-chained-call */
 /* eslint-disable no-inner-declarations */
 /* eslint-disable no-unused-vars */
 /* eslint-disable indent */
@@ -7,11 +8,13 @@
 /* eslint-disable spaced-comment */
 /* eslint-disable strict */
 //检查本网站端口
-const port = window.location.port ? window.location.port : window.location.protocol == 'https:' ? 443 : 80;
+const port = window.location.port ? window.location.port : window.location.protocol === 'https:' ? 443 : 80;
+//获取主机域名或IP
+const hostnameValue = window.location.host.split(':')[0];
 //API调用接口
-var apiURL = window.location.protocol + `//` + window.location.host.split(':')[0] + `:` + port + `/jeecg-boot/api/v1`;
+var apiURL = window.location.protocol + `//` + hostnameValue + `:` + port + `/jeecg-boot/api/v1`;
 //下载调用通用接口
-var downApiURL = window.location.protocol + `//` + window.location.host.split(':')[0] + `:` + port + `/jeecg-boot/api/v1/filebase/`;
+var downApiURL = window.location.protocol + `//` + hostnameValue + `:` + port + `/jeecg-boot/api/v1/filebase/`;
 //允许拦截视图标题 //允许拦截标题 const titleArray = ['通用审批单', '内部留言', '会议室申请单', '共享服务', '集团总裁工作部署通知'];
 const viewArray = ['【融量】通用审批', 'RC01.通用审批', 'RC02.内部留言', 'RC03.会议室申请', 'RC04.共享服务', 'RC05.集团总裁工作部署通知', 'RC06.行政处罚单批量发送', 'RC07.会议通知/纪要', 'RC08.工作联系函', 'RC09.工作说明/汇报(单职能)'];
 //是否开启检查标题 false: 开启 ， true: 所有标题都放行
@@ -19,7 +22,9 @@ const checkTitleFlag = true;
 //标题验证标识
 const checkTitleChar = "加密";
 //检查企业微信UA
-const userAgent = navigator.userAgent;
+const userAgent = navigator.userAgent.toLowerCase();
+//IP RegExp
+const ipRegExp = /^(127\.0\.0\.1)|(localhost)|(10\.\d{1,3}\.\d{1,3}\.\d{1,3})|(172\.((1[6-9])|(2\d)|(3[01]))\.\d{1,3}\.\d{1,3})|(192\.168\.\d{1,3}\.\d{1,3})$/;
 //流程标题
 var viewTitle = null;
 //流程子标题
@@ -27,25 +32,33 @@ var requestName = null;
 
 try {
     //流程标题
-    viewTitle = $('#view_page #view_title').html().trim();
+    viewTitle = ($('#view_page #view_title') && $('#view_page #view_title').html()) ? $('#view_page #view_title').html().trim() : '';
     //流程子标题
-    requestName = $('#requestnamespan').html().trim().slice(-4);
+    requestName = ($('#requestnamespan') && $('#requestnamespan').html() && $('#requestnamespan').html().trim()) ? $('#requestnamespan').html().trim().slice(-4) : '';
 } catch (error) {
     console.log(error);
 }
 
 //如果是IP,则换成域名
-if (isValidIP(window.location.host.split(':')[0])) {
+if (isValidIP(hostnameValue) && isOuterIP(hostnameValue)) {
     apiURL = "http://qy.leading-group.com:8082/jeecg-boot/api/v1";
     downApiURL = "http://qy.leading-group.com:8082/jeecg-boot/api/v1/filebase/";
 }
 
+//如果是IP,则换成域名
+if (isValidIP(hostnameValue) && isInnerIP(hostnameValue)) {
+    apiURL = "http://wework.yunwisdom.club:8083/jeecg-boot/api/v1";
+    downApiURL = "http://wework.yunwisdom.club:8083/jeecg-boot/api/v1/filebase/";
+}
+
 /**
  * @function 定时任务数组执行器
+ * @param {*} callback
+ * @param  {...any} timestamps
  */
 function setTimeouts(callback, ...timestamps) {
     timestamps.map(timestamp => {
-        setTimeout(function() {
+        return setTimeout(function() {
             callback();
         }, timestamp);
     });
@@ -53,6 +66,7 @@ function setTimeouts(callback, ...timestamps) {
 
 /**
  * @function 验证IP函数
+ * @param {*} ip
  */
 function isValidIP(ip) {
     var reg = /^(\d{1,2}|1\d\d|2[0-4]\d|25[0-5])\.(\d{1,2}|1\d\d|2[0-4]\d|25[0-5])\.(\d{1,2}|1\d\d|2[0-4]\d|25[0-5])\.(\d{1,2}|1\d\d|2[0-4]\d|25[0-5])$/;
@@ -60,10 +74,34 @@ function isValidIP(ip) {
 }
 
 /**
+ * @function 验证内网IP函数
+ * @param {*} ip
+ */
+function isInnerIP(ip) {
+    return ipRegExp.test(ip);
+}
+
+/**
+ * @function 验证外网IP函数
+ * @param {*} ip
+ */
+function isOuterIP(ip) {
+    return !isRegExp.test(ip);
+}
+
+/**
  * @function 检查文档是否需要进行代理下载函数
  */
 function isTransDownFile() {
-    return (viewArray.includes(viewTitle) || checkTitleFlag) && requestName.includes(checkTitleChar);
+    return (viewArray.includes(viewTitle) || checkTitleFlag) && (isNull(requestName) || requestName.includes(checkTitleChar));
+}
+
+/**
+ * @function 判断字符串是否为空
+ * @param {*} str
+ */
+function isNull(str) {
+    return typeof str === 'undefined' || str == null || str.trim() === '';
 }
 
 /**
@@ -219,29 +257,36 @@ function fileMap(arr) {
 
     window.localStorage.setItem(key, new Date().getTime() + 10000);
 
-    arr.map(function(item) {
+    arr.map(item => {
 
         const durl = downApiURL + window.btoa(window.encodeURIComponent(item.imagefilename)) + '/' + window.btoa(item.TokenKey.replace('.wfile', '.zip'));
         const name = window.decodeURIComponent(item.imagefilename);
         const suffix = name.slice(name.lastIndexOf('.'));
         const prefix = name.slice(0, name.lastIndexOf('.'));
         const pinyinName = pinyinlite(prefix).flat().join("_");
-        //alert(pinyinName);
+        const uagent = userAgent.toLowerCase();
+        const pcflag = (uagent.toLowerCase().includes('macintosh') && uagent.includes('mac os x')) || (uagent.includes('windows'));
+
         try {
-            if (userAgent.includes('Macintosh') || userAgent.includes('Mac OS X')) {
+            if (pcflag) {
                 downloadURL(durl, item.imagefilename);
             } else {
                 window.saveAs(durl, item.imagefilename);
             }
         } catch (error) {
             console.log(error);
+            return 'error';
         }
+
+        return 'success';
 
     });
 }
 
 /**
  * @function 下载文件（通过A标签）
+ * @param {*} href
+ * @param {*} title
  */
 function downloadURL(href, title) {
 
