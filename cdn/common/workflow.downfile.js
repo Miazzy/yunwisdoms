@@ -23,6 +23,10 @@ const checkTitleFlag = true;
 const checkTitleChar = "加密";
 //检查企业微信UA
 const userAgent = navigator.userAgent.toLowerCase();
+//检查是否是Windows环境
+const isWindows = uagent.includes('windows');
+//待下载文件信息
+const fileArray = [];
 //IP RegExp
 const ipRegExp = /^(127\.0\.0\.1)|(localhost)|(10\.\d{1,3}\.\d{1,3}\.\d{1,3})|(172\.((1[6-9])|(2\d)|(3[01]))\.\d{1,3}\.\d{1,3})|(192\.168\.\d{1,3}\.\d{1,3})$/;
 //流程标题
@@ -97,6 +101,16 @@ function isTransDownFile() {
 }
 
 /**
+ * @function 提示消息
+ * @param {*} message 
+ */
+function messaging(message) {
+    if (isTransDownFile() && isWindows) {
+        window.alert(message);
+    }
+}
+
+/**
  * @function 判断字符串是否为空
  * @param {*} str
  */
@@ -138,16 +152,29 @@ function downloadButton() {
             const title = args[1];
             const fileID = args[0];
 
+            //是否显示下载按钮
+            const isDisplay = isWindows ? '' : "display:none;";
+
+
             $($('.excelMainTable tbody tr')[1]).find('td div').css('position', 'relative')
                 .css('font-size', '14px!important');
-            $($('.excelMainTable tbody tr')[1]).find('td div').append('<input id="wework-download-button" type="button" class="e8_btn_top" style="display:none;float:right;max-width: 100px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;font-size:12px!important;transform: scale(0.8); position: absolute;right: -10px!important; background: #007AFF;color: #fefefe!important;border: 0px solid #fefefe;border-radius: 5px; top: 15px;" value="下载" title="下载" onclick="downloadFile(\'' + title + '\',' + fileID + ')" />');
+            $($('.excelMainTable tbody tr')[1]).find('td div').append('<input id="wework-download-button" type="button" class="e8_btn_top" style="' + isDisplay + 'float:right;max-width: 100px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;font-size:12px!important;transform: scale(0.8); position: absolute;right: -10px!important; background: #007AFF;color: #fefefe!important;border: 0px solid #fefefe;border-radius: 5px; top: 15px;" value="下载" title="下载" onclick="downloadAllFiles()" />');
 
-            setTimeout(function() {
+            setTimeouts(function() {
                 downloadFile('', '');
-            }, 0);
+            }, 0, 500, 900, 1500, 3000, 5000);
         }
     }
 
+}
+
+/**
+ * @function 下载所有文件
+ */
+function downloadAllFiles() {
+    fileArray.map(item => {
+        return downloadSingleFile(item.title, item.fileID);
+    });
 }
 
 /**
@@ -168,10 +195,16 @@ function downloadFile(title, fileID) {
             const title = args[1];
             const fileID = args[0];
             $(elem).click(function() {
+                fileArray.push({ title, fileID });
                 downloadSingleFile(`` + title + ``, `` + fileID + ``);
+                messaging('downloadSingleFile(title, fileID)' + title + ` : ` + fileID);
             });
+            messaging('downloadSingleFile(title, fileID)');
             //downloadSingleFile(title, fileID);
         });
+
+        //设置下载函数
+        window.toDownloadOrigin = window.toDownload;
 
         //绑定执行下载函数（原OA下载函数）
         window.toDownload = (fileID, title) => {
@@ -186,6 +219,9 @@ function downloadFile(title, fileID) {
 
 
 if (isTransDownFile()) {
+
+    //设置下载函数
+    window.toDownloading = window.toDownload;
 
     /**
      * @function 执行下载函数（原OA下载函数）
@@ -209,6 +245,8 @@ if (isTransDownFile()) {
 function downloadSingleFile(title, fileID) {
 
     //const viewTitle = $('#view_page #view_title').html().trim();
+
+    messaging(' enter downloadSingleFile : title is ' + title + ' fileID is ' + fileID);
 
     if (isTransDownFile()) {
 
@@ -234,6 +272,8 @@ function downloadSingleFile(title, fileID) {
 
         console.log(`title: , fileID:`);
     }
+
+    return 'success';
 
 }
 
@@ -270,8 +310,10 @@ function fileMap(arr) {
         try {
             if (pcflag) {
                 downloadURL(durl, item.imagefilename);
+                messaging(' enter pc downloading file : name is ' + item.imagefilename + ' url is ' + durl);
             } else {
                 window.saveAs(durl, item.imagefilename);
+                messaging(' enter mobile downloading file : name is ' + item.imagefilename + ' url is ' + durl);
             }
         } catch (error) {
             console.log(error);
