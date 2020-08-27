@@ -183,7 +183,6 @@ function downloadAllFiles() {
         }, 1500);
 
         return 'success';
-
     });
 }
 
