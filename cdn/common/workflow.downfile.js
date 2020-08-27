@@ -184,7 +184,7 @@ function downloadAllFiles() {
 
         setTimeout(() => {
             downloadSingleFile(element.title, element.fileID);
-        }, 5299 * index);
+        }, 3000 * index + Math.random() * 3000);
 
         return 'success';
     });
