@@ -172,7 +172,13 @@ function downloadButton() {
  * @function 下载所有文件
  */
 function downloadAllFiles() {
-    fileArray.map((item, index) => {
+
+    const files = fileArray.filter((item, index) => {
+        const nindex = fileArray.findIndex(elem => { return elem.fileID == item.fileID });
+        return nindex === index;
+    });
+
+    files.map((item, index) => {
 
         const element = JSON.parse(JSON.stringify(item));
 
@@ -182,7 +188,7 @@ function downloadAllFiles() {
 
         setTimeout(() => {
             downloadSingleFile(element.title, element.fileID);
-        }, 10000);
+        }, 6000);
 
         return 'success';
     });
