@@ -182,9 +182,13 @@ function downloadAllFiles() {
 
         const element = JSON.parse(JSON.stringify(item));
 
+        if (index === 0) {
+            return downloadSingleFile(element.title, element.fileID);
+        }
+
         setTimeout(() => {
             downloadSingleFile(element.title, element.fileID);
-        }, 3000 * index + Math.random() * 3000);
+        }, 6000 * index + Math.random() * 4000);
 
         return 'success';
     });
