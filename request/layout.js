@@ -161,21 +161,21 @@ const initLayout = (that) => {
         that.linkList.push(window.yunpanKey);
     }
     //是否存在路径标识,检查pageList中是否含有window.sourceKey
-    flag = window.__.find(that.pageList, item => {
-        return item.path == window.sourceKey;
-    });
-    if (flag == null || typeof flag == "undefined") {
-        that.pageList.push({
-            name: "disk-center",
-            path: window.sourceKey,
-            fullPath: window.sourceKey,
-            meta: {
-                icon: "disk",
-                title: "仓库"
-            }
-        });
-        that.linkList.push(window.sourceKey);
-    }
+    // flag = window.__.find(that.pageList, item => {
+    //     return item.path == window.sourceKey;
+    // });
+    // if (flag == null || typeof flag == "undefined") {
+    //     that.pageList.push({
+    //         name: "disk-center",
+    //         path: window.sourceKey,
+    //         fullPath: window.sourceKey,
+    //         meta: {
+    //             icon: "disk",
+    //             title: "仓库"
+    //         }
+    //     });
+    //     that.linkList.push(window.sourceKey);
+    // }
     //是否存在路径标识,检查pageList中是否含有window.wallKey
     // flag = window.__.find(that.pageList, item => {
     //     return item.path == window.wallKey;
@@ -193,21 +193,36 @@ const initLayout = (that) => {
     //     that.linkList.push(window.wallKey);
     // }
     //是否存在路径标识,检查pageList中是否含有window.webchatKey
-    flag = window.__.find(that.pageList, item => {
-        return item.path == window.webchatKey;
-    });
-    if (flag == null || typeof flag == "undefined") {
-        that.pageList.push({
-            name: "webchat-center",
-            path: window.webchatKey,
-            fullPath: window.webchatKey,
-            meta: {
-                icon: "webchat",
-                title: "云聊"
-            }
-        });
-        that.linkList.push(window.webchatKey);
-    }
+    // flag = window.__.find(that.pageList, item => {
+    //     return item.path == window.webchatKey;
+    // });
+    // if (flag == null || typeof flag == "undefined") {
+    //     that.pageList.push({
+    //         name: "webchat-center",
+    //         path: window.webchatKey,
+    //         fullPath: window.webchatKey,
+    //         meta: {
+    //             icon: "webchat",
+    //             title: "云聊"
+    //         }
+    //     });
+    //     that.linkList.push(window.webchatKey);
+    // }
+    // flag = window.__.find(that.pageList, item => {
+    //     return item.path == window.weatherKey;
+    // });
+    // if (flag == null || typeof flag == "undefined") {
+    //     that.pageList.push({
+    //         name: "weather-center",
+    //         path: window.weatherKey,
+    //         fullPath: window.weatherKey,
+    //         meta: {
+    //             icon: "weather",
+    //             title: "天气"
+    //         }
+    //     });
+    //     that.linkList.push(window.weatherKey);
+    // }
     flag = window.__.find(that.pageList, item => {
         return item.path == window.poetryKey;
     });
@@ -238,21 +253,21 @@ const initLayout = (that) => {
         });
         that.linkList.push(window.mokerKey);
     }
-    flag = window.__.find(that.pageList, item => {
-        return item.path == window.teamKey;
-    });
-    if (flag == null || typeof flag == "undefined") {
-        that.pageList.push({
-            name: "team-center",
-            path: window.teamKey,
-            fullPath: window.teamKey,
-            meta: {
-                icon: "team",
-                title: "协作"
-            }
-        });
-        that.linkList.push(window.teamKey);
-    }
+    // flag = window.__.find(that.pageList, item => {
+    //     return item.path == window.teamKey;
+    // });
+    // if (flag == null || typeof flag == "undefined") {
+    //     that.pageList.push({
+    //         name: "team-center",
+    //         path: window.teamKey,
+    //         fullPath: window.teamKey,
+    //         meta: {
+    //             icon: "team",
+    //             title: "协作"
+    //         }
+    //     });
+    //     that.linkList.push(window.teamKey);
+    // }
     flag = window.__.find(that.pageList, item => {
         return item.path == window.searchKey;
     });
@@ -283,41 +298,27 @@ const initLayout = (that) => {
         });
         that.linkList.push(window.calendarKey);
     }
-    flag = window.__.find(that.pageList, item => {
-        return item.path == window.weatherKey;
-    });
-    if (flag == null || typeof flag == "undefined") {
-        that.pageList.push({
-            name: "weather-center",
-            path: window.weatherKey,
-            fullPath: window.weatherKey,
-            meta: {
-                icon: "weather",
-                title: "天气"
-            }
-        });
-        that.linkList.push(window.weatherKey);
-    }
+
     if (
         //that.$route.fullPath != window.blogKey &&
         //that.$route.fullPath != window.musicKey &&
         //that.$route.fullPath != window.wallKey &&
         //that.$route.fullPath != window.documentKey &&
         //that.$route.fullPath != window.taskKey &&
+        //that.$route.fullPath != window.sourceKey &&
+        //that.$route.fullPath != window.webchatKey &&
+        //that.$route.fullPath != window.weatherKey &&
+        //that.$route.fullPath != window.teamKey &&
         that.$route.fullPath != window.indexKey &&
         that.$route.fullPath != window.workplaceKey &&
         that.$route.fullPath != window.centerKey &&
         that.$route.fullPath != window.docKey &&
         that.$route.fullPath != window.companyPanKey &&
         that.$route.fullPath != window.yunpanKey &&
-        that.$route.fullPath != window.sourceKey &&
         that.$route.fullPath != window.poetryKey &&
         that.$route.fullPath != window.mokerKey &&
-        that.$route.fullPath != window.teamKey &&
         that.$route.fullPath != window.searchKey &&
-        that.$route.fullPath != window.calendarKey &&
-        that.$route.fullPath != window.weatherKey &&
-        that.$route.fullPath != window.webchatKey
+        that.$route.fullPath != window.calendarKey
     ) {
         that.pageList.push(that.$route);
         that.linkList.push(that.$route.fullPath);
@@ -510,6 +511,22 @@ const checkClosePageValidLayout = (key, that) => {
     //     that.$message.warning("壁纸中心不能关闭!");
     //     return false;
     // }
+    // if (key == window.sourceKey) {
+    //     that.$message.warning("仓库不能关闭!");
+    //     return false;
+    // }
+    // if (key == window.teamKey) {
+    //     that.$message.warning("协作不能关闭!");
+    //     return false;
+    // }
+    // if (key == window.weatherKey) {
+    //     that.$message.warning("天气不能关闭!");
+    //     return false;
+    // }
+    // if (key == window.webchatKey) {
+    //     that.$message.warning("云聊不能关闭!");
+    //     return false;
+    // }
     if (key == window.indexKey) {
         that.$message.warning("首页不能关闭!");
         return false;
@@ -534,14 +551,6 @@ const checkClosePageValidLayout = (key, that) => {
         that.$message.warning("私盘不能关闭!");
         return false;
     }
-    if (key == window.sourceKey) {
-        that.$message.warning("仓库不能关闭!");
-        return false;
-    }
-    if (key == window.webchatKey) {
-        that.$message.warning("云聊不能关闭!");
-        return false;
-    }
     if (key == window.poetryKey) {
         that.$message.warning("诗词不能关闭!");
         return false;
@@ -550,20 +559,12 @@ const checkClosePageValidLayout = (key, that) => {
         that.$message.warning("墨客不能关闭!");
         return false;
     }
-    if (key == window.teamKey) {
-        that.$message.warning("协作不能关闭!");
-        return false;
-    }
     if (key == window.searchKey) {
         that.$message.warning("搜索不能关闭!");
         return false;
     }
     if (key == window.calendarKey) {
         that.$message.warning("日历不能关闭!");
-        return false;
-    }
-    if (key == window.weatherKey) {
-        that.$message.warning("天气不能关闭!");
         return false;
     }
     if (that.$root.$tabs.pageList.length === 1) {
