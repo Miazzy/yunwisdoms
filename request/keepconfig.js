@@ -48,6 +48,8 @@ window._CONFIG['ipLocationURL'] = `https://apis.map.qq.com/ws/location/v1/ip?key
 window._CONFIG['weatherURL'] = `https://weather.yunwisdom.club`;
 //设置公式名称
 window._CONFIG['company'] = '领地';
+//设置微信移动端应用URL
+window._CONFIG['WechatVueChat'] = 'https://wechat.yunwisdom.club:30443';
 //文档转换时间
 window._CONFIG['office_expire_time'] = 10000;
 

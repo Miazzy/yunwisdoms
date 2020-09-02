@@ -570,6 +570,7 @@ var mainSubTableNameConfig = {
 var requestAPIConfig = {
     domain: window._CONFIG['domain'],
     restapi: window._CONFIG['restAPI'],
+    vuechatdomain: window._CONFIG['WechatVueChat'],
     token: `${window._CONFIG['domain']}/jeecg-boot/sys/common/token`,
     user: `${window._CONFIG['domain']}/jeecg-boot/api/user`,
     role: `${window._CONFIG['domain']}/jeecg-boot/api/role`,
