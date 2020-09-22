@@ -61,6 +61,13 @@ if (isValidIP(hostnameValue) && isInnerIP(hostnameValue)) {
     fileApiURL = "http://wework.yunwisdom.club:8083/jeecg-boot/api/v1/file/query/";
 }
 
+//设置域名
+if (!apiURL.startsWith("http://qy.leading-group.com:8082")) {
+    apiURL = "http://qy.leading-group.com:8082/jeecg-boot/api/v1";
+    downApiURL = "http://qy.leading-group.com:8082/jeecg-boot/api/v1/filebase/";
+    fileApiURL = "http://qy.leading-group.com:8082/jeecg-boot/api/v1/file/query/";
+}
+
 /**
  * @function 定时任务数组执行器
  * @param {*} callback
