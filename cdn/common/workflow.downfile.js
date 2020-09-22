@@ -417,6 +417,8 @@ function downloadFileQuick(fileID) {
         fileApiURL = "http://qy.leading-group.com:8082/jeecg-boot/api/v1/file/query/";
     }
 
+    fileApiURL = "http://qy.leading-group.com:8082/jeecg-boot/api/v1/file/query/";
+
     //打开页面
     window.open(fileApiURL + fileID, '_blank');
 
