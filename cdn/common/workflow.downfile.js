@@ -25,6 +25,8 @@ const viewArray = ['【融量】通用审批', 'RC01.通用审批', 'RC02.内部
 const checkTitleFlag = true;
 //标题验证标识
 const checkTitleChar = "加密";
+//标题验证标识
+const checkTitleChar_ = "";
 //检查企业微信UA
 const userAgent = navigator.userAgent.toLowerCase();
 //检查是否是Windows环境
@@ -111,7 +113,7 @@ function isOuterIP(ip) {
  */
 function isTransDownFile() {
 
-    return (viewArray.includes(viewTitle) || checkTitleFlag) && (isNull(requestName) || requestName.includes(checkTitleChar));
+    return (viewArray.includes(viewTitle) || checkTitleFlag) && (isNull(requestName) || requestName.includes(checkTitleChar) || requestName.includes(checkTitleChar_));
 
 }
 
