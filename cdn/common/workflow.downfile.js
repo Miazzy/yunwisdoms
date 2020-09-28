@@ -26,7 +26,7 @@ const checkTitleFlag = true;
 //标题验证标识
 const checkTitleChar = "加密";
 //标题验证标识
-const checkTitleChar_ = "";
+const checkTitleChar_ = "密";
 //检查企业微信UA
 const userAgent = navigator.userAgent.toLowerCase();
 //检查是否是Windows环境
